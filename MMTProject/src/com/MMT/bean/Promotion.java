@@ -5,12 +5,12 @@ import java.util.Date;
 public class Promotion {
 	private String promotionId;
 	private String promotionName;
-	private float promotionDiscount;
+	private double promotionDiscount;
 	private String promotionExpiryDate;
-	private float promotionMinRequiredAmount;
+	private double promotionMinRequiredAmount;
 	private String promotionType;
-	public Promotion(String promotionId, String promotionName, float promotionDiscount, String promotionExpiryDate,
-			float promotionMinRequiredAmount, String promotionType) {
+	public Promotion(String promotionId, String promotionName, double promotionDiscount, String promotionExpiryDate,
+			double promotionMinRequiredAmount, String promotionType) {
 		super();
 		this.promotionId = promotionId;
 		this.promotionName = promotionName;
@@ -35,7 +35,7 @@ public class Promotion {
 	public void setPromotionName(String promotionName) {
 		this.promotionName = promotionName;
 	}
-	public float getPromotionDiscount() {
+	public double getPromotionDiscount() {
 		return promotionDiscount;
 	}
 	public void setPromotionDiscount(float promotionDiscount) {
@@ -47,7 +47,7 @@ public class Promotion {
 	public void setPromotionExpiryDate(String promotionExpiryDate) {
 		this.promotionExpiryDate = promotionExpiryDate;
 	}
-	public float getPromotionMinRequiredAmount() {
+	public double getPromotionMinRequiredAmount() {
 		return promotionMinRequiredAmount;
 	}
 	public void setPromotionMinRequiredAmount(float promotionMinRequiredAmount) {

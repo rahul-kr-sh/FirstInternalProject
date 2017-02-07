@@ -20,9 +20,9 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		
 		String promotionId=p.getPromotionId();
 		String promotionName=p.getPromotionName();
-		float promotionDiscount=p.getPromotionDiscount();
+		double promotionDiscount=p.getPromotionDiscount();
 		String promotionExp=p.getPromotionExpiryDate();
-		float promotionReqAmt=p.getPromotionMinRequiredAmount();
+		double promotionReqAmt=p.getPromotionMinRequiredAmount();
 		String promotionType=p.getPromotionType();
 		//Query
 				Statement stmt=con.createStatement();
@@ -68,9 +68,9 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		con=DbConnection.dbConnection();
 		String promotionId=newp.getPromotionId();
 		String promotionName=newp.getPromotionName();
-		float promotionDiscount=newp.getPromotionDiscount();
+		double promotionDiscount=newp.getPromotionDiscount();
 		String promotionExp=newp.getPromotionExpiryDate();
-		float promotionReqAmt=newp.getPromotionMinRequiredAmount();
+		double promotionReqAmt=newp.getPromotionMinRequiredAmount();
 		String promotionType=newp.getPromotionType();
 		Statement stmt=con.createStatement();
 		int rows=stmt.executeUpdate("update PROMOTION set PROMO"
