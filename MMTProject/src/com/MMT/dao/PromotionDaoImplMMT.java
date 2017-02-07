@@ -92,7 +92,9 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	public ArrayList<Promotion> displayPromotion()throws SQLException {
 		Promotion pro=new Promotion();
 		con=DbConnection.dbConnection();
+		
 		ArrayList<Promotion> proList=new ArrayList<Promotion>();
+		
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from Promotion ");
 		while(rs.next()){
@@ -102,9 +104,10 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 			pro.setPromotionExpiryDate(rs.getDate(4));
 			pro.setPromotionMinRequiredAmount(rs.getFloat(5));
 			pro.setPromotionType(rs.getString(6));
-			
+			proList.add(pro);
 		}
-		return null;
+		con.close();
+		return proList;
 	}
 
 	@Override
