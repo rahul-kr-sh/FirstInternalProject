@@ -67,18 +67,12 @@ public void choice() throws SQLException{
 		if(p1==null)
 		{
 			System.out.println("This Promotion doesn't not exist");
+			choice();
 		}
 		else{
 			ph.input();
 			Promotion ob1=ph.getOb();
-			int j1=pb.insertPromotion(ob1);
-			if(j1==1){
-				System.out.println("New Promotion Inserted");
-			}
-			else{
-				System.out.println("Can't Insert");
-			}
-		int	l=pdi.updatePromotion(h,p1);
+		int	l=pdi.updatePromotion(h,ob1);
 		if(l==1)
 		{System.out.println("Updated");}
 		else
