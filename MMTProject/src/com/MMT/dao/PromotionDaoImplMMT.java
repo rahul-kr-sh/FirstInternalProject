@@ -21,7 +21,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		String promotionId=p.getPromotionId();
 		String promotionName=p.getPromotionName();
 		float promotionDiscount=p.getPromotionDiscount();
-		Date promotionExp=p.getPromotionExpiryDate();
+		String promotionExp=p.getPromotionExpiryDate();
 		float promotionReqAmt=p.getPromotionMinRequiredAmount();
 		String promotionType=p.getPromotionType();
 		//Query
@@ -69,7 +69,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		String promotionId=newp.getPromotionId();
 		String promotionName=newp.getPromotionName();
 		float promotionDiscount=newp.getPromotionDiscount();
-		Date promotionExp=newp.getPromotionExpiryDate();
+		String promotionExp=newp.getPromotionExpiryDate();
 		float promotionReqAmt=newp.getPromotionMinRequiredAmount();
 		String promotionType=newp.getPromotionType();
 		Statement stmt=con.createStatement();
@@ -101,7 +101,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 			pro.setPromotionId(rs.getString(1));
 			pro.setPromotionName(rs.getString(2));
 			pro.setPromotionDiscount(rs.getFloat(3));
-			pro.setPromotionExpiryDate(rs.getDate(4));
+			pro.setPromotionExpiryDate(rs.getString(4));
 			pro.setPromotionMinRequiredAmount(rs.getFloat(5));
 			pro.setPromotionType(rs.getString(6));
 			proList.add(pro);
@@ -122,7 +122,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 				pro.setPromotionId(rs.getString(1));
 				pro.setPromotionName(rs.getString(2));
 				pro.setPromotionDiscount(rs.getFloat(3));
-				pro.setPromotionExpiryDate(rs.getDate(4));
+				pro.setPromotionExpiryDate(rs.getString(4));
 				pro.setPromotionMinRequiredAmount(rs.getFloat(5));
 				pro.setPromotionType(rs.getString(6));
 				con.close();
