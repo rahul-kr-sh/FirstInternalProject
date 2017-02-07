@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.MMT.bean.Flight;
 import com.MMT.bean.HotelBooking;
 
 
@@ -67,8 +68,25 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	}
 
 	@Override
-	public ArrayList<HotelBooking> display() {
-		return null;
+	public ArrayList<HotelBooking> display() throws SQLException {
+		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
+		HotelBooking h=new HotelBooking();
+		Connection con=DbConnection.dbConnection();
+		//Query
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from HotelBooking");
+		//Process Results
+		while(rs.next()){
+			h.setHotelBookingId(rs.getString("hotelBookingId"));
+			h.setHotelId(rs.getString("hotelId"));
+			h.setUserId(rs.getString("userId"));
+			h.setRoomNo(rs.getInt("roomNo"));
+			h.setHotelCheckInDate(rs.getDate("hotelCheckInDate"));
+			h.setHotelCheckOutDate(rs.getDate("hotelCheckOutDate"));
+			h.setStayDuration(rs.getInt("stayDuration"));
+			hb.add(h);
+		}
+		return hb;
 	}
 
 

@@ -10,5 +10,5 @@ public interface HotelBookingDaoMMT {
 	int insertHotelBooking(HotelBooking hb) throws SQLException;
 	ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException;
 	int cancelHotelBooking(int hotelBookingId) throws SQLException;
-	ArrayList<HotelBooking> display();
+	ArrayList<HotelBooking> display() throws SQLException;
 }
