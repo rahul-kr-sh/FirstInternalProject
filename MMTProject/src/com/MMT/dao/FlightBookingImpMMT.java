@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
 
 public class FlightBookingImpMMT implements FlightBookingDaoMMT{
@@ -37,9 +39,24 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 
 	@Override
 	public FlightBooking searchFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		FlightBooking fb =new FlightBooking();
+		Connection con=DbConnection.dbConnection();
+		//Query
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from FlightBooking where flightbookingid="+flightBookingId);
+		//Process Results
+		while(rs.next()){
+			fb.setFlightBookingId(rs.getString("flightBookingId"));
+			fb.setFlightId(rs.getString("flightId"));
+			fb.setUserId(rs.getString("userId"));
+			fb.setFlightBookingDate(rs.getDate("flightBooikngDate"));
+			fb.setFlag(rs.getBoolean("flage"));
+
+		}
+		return fb;
 	}
+	
 
 	@Override
 	public int insertFlightBooking(FlightBooking fb) throws ClassNotFoundException, SQLException {
