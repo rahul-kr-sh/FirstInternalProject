@@ -18,6 +18,14 @@ public void input(){
 	ob.setPromotionExpiryDate(sc.next());
 	System.out.println("Enter Promotion Minimum Required Amount");
 	ob.setPromotionMinRequiredAmount(sc.nextFloat());
+	System.out.println("Enter Promotion Type");
 	ob.setPromotionType(sc.next());
 }
+public Promotion getOb() {
+	return ob;
+}
+public void setOb(Promotion ob) {
+	this.ob = ob;
+}
+
 }
