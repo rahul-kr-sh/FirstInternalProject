@@ -113,7 +113,22 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	@Override
 	public Promotion searchPromotion(String promotionId) throws SQLException{
 		con=DbConnection.dbConnection();
-		
+		Promotion pro=new Promotion();
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from  Promotion where PROMOTIONID="+promotionId);
+		while(rs.next()){
+			String pid=rs.getString(1);
+			if(pid.equals(promotionId)){
+				pro.setPromotionId(rs.getString(1));
+				pro.setPromotionName(rs.getString(2));
+				pro.setPromotionDiscount(rs.getFloat(3));
+				pro.setPromotionExpiryDate(rs.getDate(4));
+				pro.setPromotionMinRequiredAmount(rs.getFloat(5));
+				pro.setPromotionType(rs.getString(6));
+				con.close();
+				return pro;
+			}
+		}
 		return null;
 	}
 
