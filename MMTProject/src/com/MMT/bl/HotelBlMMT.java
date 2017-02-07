@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import com.MMT.bean.Hotel;
 import com.MMT.bean.HotelBooking;
@@ -25,7 +26,7 @@ public class HotelBlMMT {
 		return H.searchHotel(hotelId);
 	}
 	
-	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ){
+	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
 		Hotel hotel=new Hotel();
 		hotel=H.searchHotel(hotelId);
 		
@@ -60,21 +61,19 @@ public class HotelBlMMT {
 		
 		room.set(index-1, rnew);
 		
-		Date date = new Date();
-		
 		hotel.setHotelRoom(room);
-		
+		long diff = checkOutDate.getTime() - checkInDate.getTime();
 		//hd.updateHotel(hid, hotel);
-		String hbid=(String) (new Date()).getTime();
-		
+		int hbid = 10000 + (int)(Math.random() * 11000); 
+		String id=Integer.toString(hbid);
 		HotelBooking hb=new HotelBooking();
 		hb.setHotelCheckInDate(checkInDate);
 		hb.setHotelCheckOutDate(checkOutDate);
 		hb.setHotelId(hotelId);
-		hb.setHotelBookingId(hbid);
+		hb.setHotelBookingId(id);
 		hb.setRoomNo(hotelRoomNo);
 		hb.setUserId(userId);
-		hb.setStayDuration(stayDuration);
+		hb.setStayDuration((int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 		HB.insertHotelBooking(hb);
 		return true;
 	}
