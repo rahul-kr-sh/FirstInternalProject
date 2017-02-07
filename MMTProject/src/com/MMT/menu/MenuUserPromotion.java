@@ -15,6 +15,7 @@ public class MenuUserPromotion {
 public void choice() throws SQLException{
 	System.out.println("1.Display all Promotions");
 	System.out.println("2.Search Promotions");
+	System.out.println("---------------");
 	int i=sc.nextInt();
 	switch(i){
 	case 1:
