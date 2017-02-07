@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.MMT.bean.User;
-import com.MMT.helper.MyAppendObjectOutputStream;
 
 public class UserDaoImplMMT implements UserDaoMMT {
 
