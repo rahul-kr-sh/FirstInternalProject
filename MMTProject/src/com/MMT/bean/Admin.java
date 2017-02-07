@@ -1,5 +1,5 @@
 package com.MMT.bean;
-
+//SDASD
 public class Admin {
 	private int adminId;
 	private String adminName;
