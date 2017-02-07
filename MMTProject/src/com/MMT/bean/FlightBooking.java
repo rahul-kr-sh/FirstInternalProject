@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class FlightBooking {
 	private String flightBookingId;
-	private int userId;
+	private String userId;
 	private String flightId;
 	private Date flightBookingDate;
 	private boolean flag;
-	public FlightBooking(String flightBookingId, int userId, String flightId, Date flightBookingDate, boolean flag) {
+	public FlightBooking(String flightBookingId, String userId, String flightId, Date flightBookingDate, boolean flag) {
 		super();
 		this.flightBookingId = flightBookingId;
 		this.userId = userId;
@@ -26,10 +26,10 @@ public class FlightBooking {
 	public void setFlightBookingId(String flightBookingId) {
 		this.flightBookingId = flightBookingId;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getFlightId() {

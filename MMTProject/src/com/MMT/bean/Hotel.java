@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Hotel {
-	private int hotelId;
+	private String hotelId;
 	private String hotelName;
 	private String hotelLocation;
 	private String hotelInfo;
 	private ArrayList<HotelRoom> hotelRoom;
-	public Hotel(int hotelId, String hotelName, String hotelLocation, String hotelInfo, ArrayList<HotelRoom> hotelRoom) {
+	public Hotel(String hotelId, String hotelName, String hotelLocation, String hotelInfo, ArrayList<HotelRoom> hotelRoom) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
@@ -17,10 +17,14 @@ public class Hotel {
 		this.hotelInfo = hotelInfo;
 		this.hotelRoom = hotelRoom;
 	}
-	public int getHotelId() {
+	public Hotel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public String getHotelId() {
 		return hotelId;
 	}
-	public void setHotelId(int hotelId) {
+	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
 	}
 	public String getHotelName() {

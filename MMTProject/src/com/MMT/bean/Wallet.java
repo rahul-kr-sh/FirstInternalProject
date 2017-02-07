@@ -1,17 +1,17 @@
 package com.MMT.bean;
 
 public class Wallet {
-	private int userId;
+	private String userId;
 	private double walletBalance;
-	public Wallet(int userId, double walletBalance) {
+	public Wallet(String userId, double walletBalance) {
 		super();
 		this.userId = userId;
 		this.walletBalance = walletBalance;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public double getWalletBalance() {

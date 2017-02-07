@@ -3,13 +3,13 @@ package com.MMT.bean;
 import java.util.Date;
 
 public class Promotion {
-	private int promotionId;
+	private String promotionId;
 	private String promotionName;
 	private float promotionDiscount;
 	private Date promotionExpiryDate;
 	private float promotionMinRequiredAmount;
 	private String promotionType;
-	public Promotion(int promotionId, String promotionName, float promotionDiscount, Date promotionExpiryDate,
+	public Promotion(String promotionId, String promotionName, float promotionDiscount, Date promotionExpiryDate,
 			float promotionMinRequiredAmount, String promotionType) {
 		super();
 		this.promotionId = promotionId;
@@ -23,10 +23,10 @@ public class Promotion {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getPromotionId() {
+	public String getPromotionId() {
 		return promotionId;
 	}
-	public void setPromotionId(int promotionId) {
+	public void setPromotionId(String promotionId) {
 		this.promotionId = promotionId;
 	}
 	public String getPromotionName() {
