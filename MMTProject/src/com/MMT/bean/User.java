@@ -11,26 +11,18 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	private String userWalletId;
 	public User(String userId, String userName, long userPhoneNo, String userEmailId, String userAddress,
-			String userpassword, String userWalletId) {
+			String userPassword) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.userPhoneNo = userPhoneNo;
 		this.userEmailId = userEmailId;
 		this.userAddress = userAddress;
-		this.userPassword = userpassword;
-		this.userWalletId=userWalletId;
+		this.userPassword = userPassword;
 	}
 	public String getUserId() {
 		return userId;
-	}
-	public String getUserWalletId() {
-		return userWalletId;
-	}
-	public void setUserWalletId(String userWalletId) {
-		this.userWalletId = userWalletId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -44,7 +36,7 @@ public class User {
 	public long getUserPhoneNo() {
 		return userPhoneNo;
 	}
-	public void setUserPhoneNo(int userPhoneNo) {
+	public void setUserPhoneNo(long userPhoneNo) {
 		this.userPhoneNo = userPhoneNo;
 	}
 	public String getUserEmailId() {
@@ -59,19 +51,17 @@ public class User {
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
-	public String getUserpassword() {
+	public String getUserPassword() {
 		return userPassword;
 	}
-	public void setUserpassword(String userpassword) {
-		this.userPassword = userpassword;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", userPhoneNo=" + userPhoneNo + ", userEmailId="
-				+ userEmailId + ", userAddress=" + userAddress + ", userpassword=" + userPassword + "]";
+				+ userEmailId + ", userAddress=" + userAddress + ", userPassword=" + userPassword + "]";
 	}
-	
-	
 	
 	
 	

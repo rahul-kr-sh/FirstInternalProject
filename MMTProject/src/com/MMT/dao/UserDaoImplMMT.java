@@ -1,8 +1,9 @@
 package com.MMT.dao;
 
-//New Code Changesdfs
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.MMT.bean.User;
@@ -31,8 +32,28 @@ public class UserDaoImplMMT implements UserDaoMMT {
 
 	@Override
 	public User search(String uid) {
-		// TODO Auto-generated method stub
-		return null;
+		int row;
+		User user=new User();
+		ResultSet rs;
+		Connection con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("select * from mmt_user where USERID=?");
+		
+		rs=pst.executeQuery();
+		while(rs.next()){
+			user.setUserName((rs.getString("USERNAME")));
+			user.setUserPhoneNo(rs.getInt("USERPHONENO"));
+			user.setUserEmailId("USEREMAILID");
+			user.setUserAddress("USERADDRESS");
+			user.setUserWalletId(userWalletId);
+			user.setUserpassword(userpassword);
+			
+			list.add(movie);
+		}
+		
+		
+		row=pst.executeUpdate();
+		con.close();
+		return row;
 	}
 
 	@Override
