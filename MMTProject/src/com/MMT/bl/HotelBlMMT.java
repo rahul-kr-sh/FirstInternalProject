@@ -13,12 +13,17 @@ public class HotelBlMMT {
 	HotelDaoImplMMT H=new HotelDaoImplMMT();
 	HotelBookingDaoImplMMT HB=new HotelBookingDaoImplMMT();
 	
-	public ArrayList<Hotel> searchResult() throws ClassNotFoundException, SQLException{
+	public ArrayList<Hotel> displayHotel() throws ClassNotFoundException, SQLException{
 		return H.displayHotel();
 	}
 	
+	public Hotel searchHotel(String hotelId) throws ClassNotFoundException, IOException, SQLException{
+		return H.searchHotel(hotelId);
+	}
 	
-	
+	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo ){
+		return true;
+	}
 	
 	
 }
