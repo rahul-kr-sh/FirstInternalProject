@@ -3,6 +3,7 @@ package com.MMT.testCases;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,5 +40,12 @@ public class PromotionTestCase {
 	@Test(expected=SQLException.class)
 	public void testupdatePromotion() throws SQLException {
 		assertEquals(1,pdi.updatePromotion("FLY200", pro));
-			}
+	}
+	@Test(expected=SQLException.class)
+	public void testdisplayPromotion() throws SQLException {
+		ArrayList<Promotion> proList=new ArrayList<Promotion>();
+		pdi.insertPromotion(pro);
+		assertEquals(1,pdi.displayPromotion());
+		
+	}
 }
