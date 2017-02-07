@@ -8,7 +8,7 @@ import com.MMT.bean.HotelBooking;
 
 public interface HotelBookingDaoMMT {
 	int insertHotelBooking(HotelBooking hb) throws SQLException;
-	ArrayList<HotelBooking> searchHotelBooking(String uid);
-	int cancelHotelBooking(int hbId);
-	ArrayList<HotelBooking> display();
+	ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException;
+	int cancelHotelBooking(int hotelBookingId) throws SQLException;
+	ArrayList<HotelBooking> display() throws SQLException;
 }
