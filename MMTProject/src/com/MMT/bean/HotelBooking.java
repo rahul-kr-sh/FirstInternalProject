@@ -6,14 +6,15 @@ public class HotelBooking {
 	private String hotelBookingId;
 	private String hotelId;
 	private String userId;
-	public HotelBooking() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	private int roomNo;
 	private Date hotelCheckInDate;
 	private Date hotelCheckOutDate;
 	private int stayDuration;
+	
+	public HotelBooking() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public HotelBooking(String hotelBookingId, String hotelId, String userId, int roomNo, Date hotelCheckInDate,
 			Date hotelCheckOutDate) {
 		super();

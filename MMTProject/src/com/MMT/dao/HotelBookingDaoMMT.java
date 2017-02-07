@@ -9,4 +9,5 @@ public interface HotelBookingDaoMMT {
 	int insertHotelBooking(HotelBooking hb);
 	ArrayList<HotelBooking> searchHotelBooking(String uid);
 	int cancelHotelBooking(int hbId);
+	ArrayList<HotelBooking> display();
 }
