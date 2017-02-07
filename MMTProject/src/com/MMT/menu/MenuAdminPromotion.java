@@ -15,6 +15,7 @@ public class MenuAdminPromotion {
 	PromotionBlMMT pb=new PromotionBlMMT();
 	ArrayList<Promotion> al=new ArrayList<Promotion>();
 	PromotionBlMMT pBl=new PromotionBlMMT();
+	PromotionHelperMMT ph=new PromotionHelperMMT();
 	Scanner sc=new Scanner(System.in);
 public void choice() throws SQLException{
 	System.out.println("1.Display all Promotions");
@@ -36,7 +37,7 @@ public void choice() throws SQLException{
 		System.out.println(pro);
 		break;
 	case 3:
-		PromotionHelperMMT ph=new PromotionHelperMMT();
+		
 		ph.input();
 		Promotion ob=ph.getOb();
 		int j=pb.insertPromotion(ob);
@@ -68,6 +69,15 @@ public void choice() throws SQLException{
 			System.out.println("This Promotion doesn't not exist");
 		}
 		else{
+			ph.input();
+			Promotion ob1=ph.getOb();
+			int j1=pb.insertPromotion(ob1);
+			if(j1==1){
+				System.out.println("New Promotion Inserted");
+			}
+			else{
+				System.out.println("Can't Insert");
+			}
 		int	l=pdi.updatePromotion(h,p1);
 		if(l==1)
 		{System.out.println("Updated");}
