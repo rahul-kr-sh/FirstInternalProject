@@ -14,7 +14,9 @@ public void input(){
 	ob.setPromotionName(sc.next());
 	System.out.println("Enter Promotion Discount");
 	ob.setPromotionDiscount(sc.nextFloat());
+	System.out.println("Enter promotion ExpiryDate");
 	ob.setPromotionExpiryDate(sc.next());
+	System.out.println("Enter Promotion Minimum Required Amount");
 	ob.setPromotionMinRequiredAmount(sc.nextFloat());
 	ob.setPromotionType(sc.next());
 }
