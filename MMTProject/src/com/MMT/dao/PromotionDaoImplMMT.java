@@ -37,7 +37,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 				if(rows>0)
 				{
 					con.close();
-					return rows;
+					return 1;
 				}
 				else 
 				{	con.close();
@@ -56,7 +56,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		if(rows>0)
 		{
 			con.close();
-			return rows;
+			return 1;
 		}
 		else 
 		{	con.close();
@@ -80,7 +80,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		if(rows>0)
 		{
 			con.close();
-			return rows;
+			return 1;
 		}
 		else 
 		{	con.close();
