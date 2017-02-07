@@ -6,10 +6,10 @@ public class Promotion {
 	private String promotionId;
 	private String promotionName;
 	private float promotionDiscount;
-	private Date promotionExpiryDate;
+	private String promotionExpiryDate;
 	private float promotionMinRequiredAmount;
 	private String promotionType;
-	public Promotion(String promotionId, String promotionName, float promotionDiscount, Date promotionExpiryDate,
+	public Promotion(String promotionId, String promotionName, float promotionDiscount, String promotionExpiryDate,
 			float promotionMinRequiredAmount, String promotionType) {
 		super();
 		this.promotionId = promotionId;
@@ -41,10 +41,10 @@ public class Promotion {
 	public void setPromotionDiscount(float promotionDiscount) {
 		this.promotionDiscount = promotionDiscount;
 	}
-	public Date getPromotionExpiryDate() {
+	public String getPromotionExpiryDate() {
 		return promotionExpiryDate;
 	}
-	public void setPromotionExpiryDate(Date promotionExpiryDate) {
+	public void setPromotionExpiryDate(String promotionExpiryDate) {
 		this.promotionExpiryDate = promotionExpiryDate;
 	}
 	public float getPromotionMinRequiredAmount() {
