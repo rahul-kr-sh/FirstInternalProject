@@ -1,5 +1,5 @@
 package com.MMT.dao;
-
+//priyanka
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +24,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		Date flightArrivalTime=f.getFlightArrivalTime();
 		float flightTicketPrice=f.getFlightTicketPrice();
 		int availableSeats=f.getAvailableSeats();
-		
+		//Testing//server
 		//Query
 		Statement stmt=con.createStatement();
 		int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats  values ("+flightCompanyName+","+flightId+","+flightSource+","+flightDestination+","+flightDepartureTime+","+flightArrivalTime+","+flightTicketPrice+","+availableSeats+")");

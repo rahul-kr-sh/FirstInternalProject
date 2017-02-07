@@ -3,13 +3,14 @@ package com.MMT.dao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.MMT.bean.User;
 
 public interface UserDaoMMT {
 	public int insert(User user) throws SQLException ;
-	public User search(String  uid) ;
-	public User delete (String uid) ;
-	public boolean update(String uid, User newUser);
-	public User displayAll();
+	public User search(String  uid) throws SQLException ;
+	public int delete (String uid) throws SQLException ;
+	public int update(String uid, User user) throws SQLException;
+	public List<User> displayAll() throws SQLException;
 }

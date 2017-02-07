@@ -5,9 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.MMT.bean.User;
-import com.MMT.helper.MyAppendObjectOutputStream;
 
 public class UserDaoImplMMT implements UserDaoMMT {
 
@@ -15,13 +16,12 @@ public class UserDaoImplMMT implements UserDaoMMT {
 	public int insert(User user) throws SQLException {
 		int row;
 		Connection con=DbConnection.dbConnection();
-		PreparedStatement pst=con.prepareStatement("insert into movie_list values(?,?,?,?,?,?)");
+		PreparedStatement pst=con.prepareStatement("insert into movie_list values(?,?,?,?,?)");
 		pst.setString(1, user.getUserId());
 		pst.setString(2,user.getUserName());
 		pst.setLong(3,user.getUserPhoneNo());
 		pst.setString(4,user.getUserEmailId());
 		pst.setString(5,user.getUserAddress());
-		pst.setString(6,user.getUserWalletId());
 		
 		
 		row=pst.executeUpdate();
@@ -31,7 +31,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 	}
 
 	@Override
-	public User search(String uid) {
+	public User search(String uid) throws SQLException {
 		int row;
 		User user=new User();
 		ResultSet rs;
@@ -42,35 +42,62 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		while(rs.next()){
 			user.setUserName((rs.getString("USERNAME")));
 			user.setUserPhoneNo(rs.getInt("USERPHONENO"));
-			user.setUserEmailId("USEREMAILID");
-			user.setUserAddress("USERADDRESS");
-			user.setUserWalletId(userWalletId);
-			user.setUserpassword(userpassword);
-			
-			list.add(movie);
+			user.setUserEmailId(rs.getString("USEREMAILID"));
+			user.setUserAddress(rs.getString("USERADDRESS"));
+			user.setUserPassword(rs.getString("userpassword"));	
 		}
-		
-		
+
+		con.close();
+		return user;
+	}
+
+	@Override
+	public int delete(String uid) throws SQLException {
+		int row;
+		Connection con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("delete from mmt_user where USERID=?");
+		pst.setString(1, uid);
 		row=pst.executeUpdate();
 		con.close();
 		return row;
 	}
 
 	@Override
-	public User delete(String uid) {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(String uid, User user) throws SQLException {
+		int row;
+		Connection con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("update mmt_user set USERNAME=?,  USERPHONENO=?, USEREMAILID=?, USERADDRESS=?,USERPASSWORD=? where userid=?");
+		pst.setString(1, user.getUserName());
+		pst.setLong(2, user.getUserPhoneNo());
+		pst.setString(3, user.getUserEmailId());
+		pst.setString(4, user.getUserAddress());
+		pst.setString(5, user.getUserPassword());
+		pst.setString(6, uid);
+		row=pst.executeUpdate();
+		return row;
 	}
 
 	@Override
-	public boolean update(String uid, User newUser) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public User displayAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> displayAll() throws SQLException {
+		User user=new User();
+		List<User> list=new ArrayList<User>();
+		ResultSet rs;
+		Connection con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("select * from mmt_user");
+		rs=pst.executeQuery();
+		while(rs.next()){
+			user.setUserId(rs.getString("USERID"));
+			user.setUserName((rs.getString("USERNAME")));
+			user.setUserPhoneNo((rs.getLong("USERPHONENO")));
+			user.setUserEmailId((rs.getString("USEREMAILID")));
+			user.setUserAddress((rs.getString("USERADDRESS")));
+			user.setUserPassword((rs.getString("USERPASSWORD")));
+			
+			list.add(user);
+		}
+		
+		con.close();
+		
+		return list;
 	}
 }

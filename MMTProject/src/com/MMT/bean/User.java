@@ -7,10 +7,12 @@ public class User {
 	private String userEmailId;
 	private String userAddress;
 	private String userPassword;
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public User(String userId, String userName, long userPhoneNo, String userEmailId, String userAddress,
 			String userPassword) {
 		super();
@@ -61,8 +63,12 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", userPhoneNo=" + userPhoneNo + ", userEmailId="
 				+ userEmailId + ", userAddress=" + userAddress + ", userPassword=" + userPassword + "]";
+
 	}
+
+}	
+
 	
 	
 	
-}
+
