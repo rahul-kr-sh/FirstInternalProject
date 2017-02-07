@@ -36,4 +36,8 @@ public class PromotionTestCase {
 		assertEquals(1,pdi.deletePromotion("FLY200"));
 		
 	}
+	@Test(expected=SQLException.class)
+	public void testupdatePromotion() throws SQLException {
+		assertEquals(1,pdi.updatePromotion("FLY200", pro));
+			}
 }
