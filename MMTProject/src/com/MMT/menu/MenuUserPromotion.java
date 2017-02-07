@@ -7,15 +7,11 @@ import java.util.Scanner;
 import com.MMT.bean.Promotion;
 import com.MMT.bl.PromotionBlMMT;
 
-public class MyMenuPromotion {
+public class MenuUserPromotion {
 	Promotion pro=new Promotion();
 	ArrayList<Promotion> al=new ArrayList<Promotion>();
 	PromotionBlMMT pBl=new PromotionBlMMT();
 	Scanner sc=new Scanner(System.in);
-public void display() throws SQLException{
-	System.out.println("1.Login");
-	choice();
-}
 public void choice() throws SQLException{
 	System.out.println("1.Display all Promotions");
 	System.out.println("2.Search Promotions");
