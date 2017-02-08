@@ -37,7 +37,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 				if(rows>0)
 				{
 					con.close();
-					return 1;
+					return rows;
 				}
 				else 
 				{	con.close();
@@ -56,7 +56,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		if(rows>0)
 		{
 			con.close();
-			return 1;
+			return rows;
 		}
 		else 
 		{	con.close();
@@ -80,7 +80,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		if(rows>0)
 		{
 			con.close();
-			return 1;
+			return rows;
 		}
 		else 
 		{	con.close();
@@ -118,7 +118,6 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		ResultSet rs=stmt.executeQuery("select * from  Promotion where PROMOTIONID="+promotionId);
 		while(rs.next()){
 			String pid=rs.getString(1);
-			if(pid.equals(promotionId)){
 				pro.setPromotionId(rs.getString(1));
 				pro.setPromotionName(rs.getString(2));
 				pro.setPromotionDiscount(rs.getFloat(3));
@@ -127,7 +126,6 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 				pro.setPromotionType(rs.getString(6));
 				con.close();
 				return pro;
-			}
 		}
 		return null;
 	}
