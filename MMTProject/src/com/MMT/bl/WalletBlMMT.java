@@ -34,7 +34,7 @@ public class WalletBlMMT {
 		w=W.displayWallet(userId);
 		double temp=w.getWalletBalance()-value;
 		if(temp<0){
-			//Exception
+			//Exception //Insufficient Funds Add money to wallet
 			return false;
 		}
 		else{
