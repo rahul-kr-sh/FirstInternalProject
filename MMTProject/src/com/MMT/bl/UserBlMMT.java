@@ -53,6 +53,9 @@ public class UserBlMMT {
 		
 		return H.searchHotelBooking(userId);
 	}
+	public User searchUser(String uid) throws SQLException{
+		return new UserDaoImplMMT().search(uid);
+	}
 	
 
 }
