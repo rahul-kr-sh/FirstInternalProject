@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import com.MMT.bean.Flight;
 
@@ -20,9 +20,9 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		String flightId=f.getFlightId();
 		String flightSource=f.getFlightSource();
 		String flightDestination=f.getFlightDestination();
-		Date flightDepartureTime=f.getFlightDepartureTime();
-		Date flightArrivalTime=f.getFlightArrivalTime();
-		float flightTicketPrice=f.getFlightTicketPrice();
+		String flightDepartureTime=f.getFlightDepartureTime();
+		String flightArrivalTime=f.getFlightArrivalTime();
+		double flightTicketPrice=f.getFlightTicketPrice();
 		int availableSeats=f.getAvailableSeats();
 		//Testing//server
 		//Query
@@ -64,9 +64,9 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		String flightId1=newflight.getFlightId();
 		String flightSource=newflight.getFlightSource();
 		String flightDestination=newflight.getFlightDestination();
-		Date flightDepartureTime=newflight.getFlightDepartureTime();
-		Date flightArrivalTime=newflight.getFlightArrivalTime();
-		float flightTicketPrice=newflight.getFlightTicketPrice();
+		String flightDepartureTime=newflight.getFlightDepartureTime();
+		String flightArrivalTime=newflight.getFlightArrivalTime();
+		double flightTicketPrice=newflight.getFlightTicketPrice();
 		int availableSeats=newflight.getAvailableSeats();
 		
 		//Query
@@ -98,9 +98,9 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			f.setFlightId(rs.getString("flightId"));
 			f.setFlightSource(rs.getString("flightSource"));
 			f.setFlightDestination(rs.getString("flightDestination"));
-			f.setFlightDepartureTime(rs.getDate("flightDepartureTime"));
-			f.setFlightArrivalTime(rs.getDate("flightArrivalTime"));
-			f.setFlightTicketPrice(rs.getFloat("flightTicketPrice"));
+			f.setFlightDepartureTime(rs.getString("flightDepartureTime"));
+			f.setFlightArrivalTime(rs.getString("flightArrivalTime"));
+			f.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
 			f.setAvailableSeats(rs.getInt("availableSeats"));
 
 		}
@@ -121,9 +121,9 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			f.setFlightId(rs.getString("flightId"));
 			f.setFlightSource(rs.getString("flightSource"));
 			f.setFlightDestination(rs.getString("flightDestination"));
-			f.setFlightDepartureTime(rs.getDate("flightDepartureTime"));
-			f.setFlightArrivalTime(rs.getDate("flightArrivalTime"));
-			f.setFlightTicketPrice(rs.getFloat("flightTicketPrice"));
+			f.setFlightDepartureTime(rs.getString("flightDepartureTime"));
+			f.setFlightArrivalTime(rs.getString("flightArrivalTime"));
+			f.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
 			f.setAvailableSeats(rs.getInt("availableSeats"));
 			F.add(f);
 		}
