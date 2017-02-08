@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.MMT.bean.Promotion;
@@ -34,6 +35,7 @@ public class PromotionTestCase {
 		assertEquals(1,pdi.insertPromotion(pro));
 		
 	}
+	
 	@Test(expected=SQLException.class)
 	public void testdeletePromotion() throws SQLException {
 		assertEquals(1,pdi.deletePromotion("FLY200"));

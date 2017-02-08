@@ -61,4 +61,43 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 		con.close();
 		return proList;
 	}
+
+	@Override
+	public int insertWallet(Wallet w) throws SQLException {
+		con=DbConnection.dbConnection();
+		String uId=w.getUserId();
+		double userBalance=w.getWalletBalance();
+		Statement stmt=con.createStatement();
+		int rows=stmt.executeUpdate("INSERT INTO Wallet values("+uId+","+userBalance+")");
+		if(rows>0)
+		{
+			con.close();
+			return rows;
+		}
+		else 
+		{	con.close();
+		return 0;
+		}
+		
+		
+	}
+	@Override
+	public int deleteWallet(Wallet w) throws SQLException {
+		con=DbConnection.dbConnection();
+		String uId=w.getUserId();
+		double userBalance=w.getWalletBalance();
+		Statement stmt=con.createStatement();
+		int rows=stmt.executeUpdate("delete from Wallet where USERID=+"+uId);
+		if(rows>0)
+		{
+			con.close();
+			return rows;
+		}
+		else 
+		{	con.close();
+		return 0;
+		}
+		
+		
+	}
 }
