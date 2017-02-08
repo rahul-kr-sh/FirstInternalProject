@@ -213,9 +213,14 @@ public class UserDashboard {
 			int choice = sc.nextInt();
 			if (choice == 1) {
 				boolean paymentStatus = false;
-				ArrayList<Promotion> promo;
+				ArrayList<Promotion> promo=null;
 				
-				promo = Pbl.displayPromotion("Hotel");
+				try {
+					promo = Pbl.displayPromotion("Hotel");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
 				int j = 1;
 				for (Promotion pindex : promo) {
@@ -232,7 +237,13 @@ public class UserDashboard {
 				Promotion pPicked = promoMap.get(promoindex);
 
 				float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
-				float amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+				float amountShort=0;
+				try {
+					amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if (amountShort > 0) {
 					System.out.println("Insufficient Funds!!");
 					System.out.println("Add Rs" + amountShort + " to Wallet!!");
@@ -242,8 +253,18 @@ public class UserDashboard {
 					if (ch1 == 1) {
 						System.out.println("Enter amount you want to add to wallet!!");
 						double amount = sc.nextDouble();
-						Wbl.addWalletMoney(user.getUserId(), amount);
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						try {
+							Wbl.addWalletMoney(user.getUserId(), amount);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("Payment Done!!! ");
 						System.out.println("Confirming HotelRoom Booking!!");
 
