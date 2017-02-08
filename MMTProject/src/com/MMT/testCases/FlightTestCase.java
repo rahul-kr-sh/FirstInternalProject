@@ -39,6 +39,7 @@ public class FlightTestCase {
 	
 	@Test(expected=SQLException.class)
 	public void testInsertFlight() throws SQLException, Exception {
+		//System.out.println("insert");
 		assertEquals(1,fdao.insertFlight(flig));
 	}
 
@@ -52,6 +53,7 @@ public class FlightTestCase {
 
 	@Test(expected=SQLException.class)
 	public void testdisplayFlight() throws SQLException, ClassNotFoundException {
+		//System.out.println("dispaly");
 		fdao.insertFlight(flig);
 		ArrayList<Flight> flightList =fdao.displayFlight();
 		assertEquals(1,flightList.size());

@@ -36,11 +36,13 @@ public class FlightBookingTestCase {
 		
 		@Test(expected=SQLException.class)
 		public void testInsertFlightbooking() throws SQLException, Exception {
+			//System.out.println("insert");
 			assertEquals(1,fbi.insertFlightBooking(fbk));
 		}
 
 		@Test(expected=SQLException.class)
 		public void testdeleteFlightBooking() throws SQLException, ClassNotFoundException {
+			//System.out.println("delete");
 			assertEquals(1,fbi.deleteFlightBooking("FBK1001"));
 			
 		}
