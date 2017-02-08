@@ -54,7 +54,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	}
 
 	@Override
-	public int cancelHotelBooking(int hotelBookingId) throws SQLException {
+	public int cancelHotelBooking(String hotelBookingId) throws SQLException {
 		Connection con=DbConnection.dbConnection();
 		Statement stmt3=con.createStatement();
 		 int rows=stmt3.executeUpdate("delete from HotelBooking where hotelBookingId ="+hotelBookingId);
