@@ -45,7 +45,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Wallet> displayWallet() throws SQLException {
+	public ArrayList<Wallet> displayWalletAll() throws SQLException {
 		Wallet pro=new Wallet();
 		con=DbConnection.dbConnection();
 		

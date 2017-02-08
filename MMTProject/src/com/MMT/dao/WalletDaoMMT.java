@@ -7,5 +7,5 @@ import com.MMT.bean.Wallet;
 public interface WalletDaoMMT {
 	Wallet displayWallet(String userId)throws SQLException ;
 	int updateWallet(String userId,Wallet newWallet)throws SQLException;
-	ArrayList<Wallet> displayWallet() throws SQLException;
+	ArrayList<Wallet> displayWalletAll() throws SQLException;
 }
