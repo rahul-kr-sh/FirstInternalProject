@@ -129,4 +129,27 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		}
 		return F;
 	}
+
+	@Override
+	public Flight searchFlight(String flightSource, String flightDestination)
+			throws ClassNotFoundException, SQLException {
+		Flight f =new Flight();
+		Connection con=DbConnection.dbConnection();
+		//Query
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from Flight where flightSource="+flightSource +"AND flightDestination="+flightDestination);
+		//Process Results
+		while(rs.next()){
+			f.setFlightCompanyName(rs.getString("flightCompanyName"));
+			f.setFlightId(rs.getString("flightId"));
+			f.setFlightSource(rs.getString("flightSource"));
+			f.setFlightDestination(rs.getString("flightDestination"));
+			f.setFlightDepartureTime(rs.getString("flightDepartureTime"));
+			f.setFlightArrivalTime(rs.getString("flightArrivalTime"));
+			f.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
+			f.setAvailableSeats(rs.getInt("availableSeats"));
+
+		}
+		return f;
+	}
 }

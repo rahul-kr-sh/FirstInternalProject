@@ -39,6 +39,10 @@ public class FlightBookingBlMMT {
 	Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException{
 		return F.searchFlight(flightId);
 		}
+	public Flight searchFlight(String flightSource, String flightDestination) throws ClassNotFoundException, SQLException{
+		return F.searchFlight(flightSource, flightDestination);
+		}
+	
 	
 	boolean bookFlight(String userId,String flightId,String flightSource, String flightDestination, int seats) throws ClassNotFoundException, SQLException{
 		String fid=flightId;
