@@ -23,7 +23,7 @@ WalletDaoImplMMT wdi;
 		wl=new Wallet("1",100);
 		wdi=new WalletDaoImplMMT();
 		wdi.insertWallet(wl);
-		wl2=new Wallet("2",200);
+		
 		
 	}
 
@@ -54,9 +54,12 @@ WalletDaoImplMMT wdi;
 	public void testinsertWallet() throws SQLException {
 		wl1=new Wallet("2",200);
 		assertEquals(1, wdi.insertWallet(wl1));
+		wdi.deleteWallet(wl1);
 	}
 	@Test
 	public void testdeleteWallet() throws SQLException {
-		assertEquals(1, wdi.deleteWallet(wl));
+		wl2=new Wallet("3",300);
+		wdi.insertWallet(wl2);
+		assertEquals(1, wdi.deleteWallet(wl2));
 	}
 }
