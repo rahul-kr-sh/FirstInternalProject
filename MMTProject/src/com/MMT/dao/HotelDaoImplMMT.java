@@ -182,4 +182,49 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 		return null;
 	}
 
+
+
+	@Override
+	public ArrayList<Hotel> searchHotel1(String hotelLocation) throws SQLException {
+		ArrayList<Hotel> H=new ArrayList<>();
+		Hotel hotel =new Hotel();
+		Connection con=DbConnection.dbConnection();
+		//Query
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from Hotel where hotelLocation="+hotelLocation);
+		//Process Results
+		while(rs.next()){
+//			int id=rs.getInt("eid");
+			
+			
+			hotel.setHotelId(rs.getString("hotelId"));
+			hotel.setHotelName(rs.getString("hotelName"));
+			hotel.setHotelLocation(rs.getString("hotelLocation"));
+			hotel.setHotelInfo(rs.getString("hotelInfo"));
+//			hotel.setuEmailId(rs.getString("uemail"));
+//			user.setuPassword(rs.getString("upassword"));
+//			user.setuPhoneNumber(rs.getInt("uphoneNumber"));
+			Statement stmt2=con.createStatement();
+			HotelRoom room=new HotelRoom();
+			ArrayList<HotelRoom> rl=new ArrayList<HotelRoom>();
+			ResultSet rs2=stmt.executeQuery("select * from Hoteloom where hotelId= "+rs.getString("hotelId"));
+			while(rs2.next())
+			{
+				room.setHotelRoomNo(rs2.getInt("hotelRoomNo"));
+				room.setHotelRoomType(rs2.getString("hotelRoomType"));
+				room.setHotelRoomPrice(rs2.getDouble("hotelRoomPrice"));
+				room.setHotelRoomStatus(rs2.getString("hotelRoomStatus"));
+				rl.add(room);
+			}
+			hotel.setHotelRoom(rl);;
+			
+			
+			H.add(hotel);
+
+		}
+		
+		
+		return H;
+	}
+
 }

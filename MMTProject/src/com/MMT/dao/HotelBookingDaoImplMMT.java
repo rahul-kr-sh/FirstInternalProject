@@ -52,7 +52,8 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 		}
 		return hb;
 	}
-
+	
+	
 	@Override
 	public int cancelHotelBooking(int hotelBookingId) throws SQLException {
 		Connection con=DbConnection.dbConnection();

@@ -7,14 +7,17 @@ import java.util.Scanner;
 
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
+import com.MMT.bean.Hotel;
 import com.MMT.bean.Promotion;
 import com.MMT.bean.User;
 import com.MMT.bl.FlightBookingBlMMT;
 import com.MMT.bl.PromotionBlMMT;
 import com.MMT.bl.WalletBlMMT;
+import com.MMT.dao.HotelDaoImplMMT;
 
 public class UserDashboard {
 	FlightBookingBlMMT fbl = new FlightBookingBlMMT();
+	HotelDaoImplMMT hbl = new HotelDaoImplMMT();
 	PromotionBlMMT Pbl = new PromotionBlMMT();
 	WalletBlMMT Wbl = new WalletBlMMT();
 	Scanner sc = new Scanner(System.in);
@@ -60,7 +63,7 @@ public class UserDashboard {
 				System.out.println("Press 1 to See Additional Offers!!");
 				int choice = sc.nextInt();
 				if (choice == 1) {
-					boolean paymentStatus=false;
+					boolean paymentStatus = false;
 					ArrayList<Promotion> promo;
 					promo = Pbl.displayPromotion("FLIGHT");
 					LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
@@ -90,51 +93,68 @@ public class UserDashboard {
 							System.out.println("Enter amount you want to add to wallet!!");
 							double amount = sc.nextDouble();
 							Wbl.addWalletMoney(user.getUserId(), amount);
-							paymentStatus=Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 							System.out.println("Payment Done!!! ");
 							System.out.println("Confirming Flight Booking!!");
-							
+
 						} else if (ch1 == 2) {
 							System.out.println("Booking Cancelled due to insufficient funds!!");
 							System.out.println("Booking Cancelled!!");
-							paymentStatus=false;
+							paymentStatus = false;
 
 						} else {
 							System.out.println("Invalid Input");
-							paymentStatus=false;
+							paymentStatus = false;
 						}
-						
-					}
-					else{
-						paymentStatus=Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+
+					} else {
+						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 						System.out.println("Payment Done!!! ");
 						System.out.println("Confirming Flight Booking!!");
 					}
-					
-					
+
 					FlightBooking fb;
-					fb=fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
-					if ((paymentStatus) && (fb!=null)) {
+					fb = fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					if ((paymentStatus) && (fb != null)) {
 						System.out.println("Flight Booking Done");
-						System.out.println("Your Booking ID is: "+fb.getFlightBookingId());
-					}
-					else if(fb==null){
+						System.out.println("Your Booking ID is: " + fb.getFlightBookingId());
+					} else if (fb == null) {
 						System.out.println("Sorry !! Booking Failed");
 					}
 				}
-				
 
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 
 		case 2:
 			// hotelDisplay();
+			System.out.println("Enter Location:");
+			String loc = sc.next();
+			ArrayList<Hotel> hList = new ArrayList<>();
+			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
+			try {
+				hList = hbl.searchHotel1(loc);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			int i = 1;
+			for (Hotel hindex : hList) {
+				hotelMap.put(i++, hindex);
+			}
+			i = 1;
+			for (Hotel h : hList) {
+				System.out.println(i++ + ":" + h);
+			}
+			System.out.println("Pick a Hotel :");
+			int m = sc.nextInt();
+
+			Hotel hpicked = hotelMap.get(m);
+			
 			break;
 		case 3:
 			// flightBookingDisplay();

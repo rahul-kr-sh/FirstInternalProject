@@ -12,5 +12,6 @@ public interface HotelDaoMMT {
 	int updateHotel(String hotelId, Hotel newhotel) throws  SQLException;
 	ArrayList<Hotel> displayHotel() throws  SQLException ;
 	Hotel searchHotel(String hotelId) throws SQLException ;
-
+	//Hotel searchHotel(String hotelLocation) throws SQLException ;
+	ArrayList<Hotel> searchHotel1(String hotelLocation) throws SQLException;
 }
