@@ -9,7 +9,7 @@ public interface FlightBookingDaoMMT {
 	
 	ArrayList<FlightBooking> displayFlightBooking() throws ClassNotFoundException, SQLException;
 	
-	FlightBooking searchFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException;
+	ArrayList<FlightBooking> searchFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException;
 	
 	
 	int insertFlightBooking(FlightBooking fb) throws ClassNotFoundException, SQLException;

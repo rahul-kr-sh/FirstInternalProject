@@ -9,6 +9,7 @@ import java.util.Date;
 
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
+import com.MMT.bean.HotelBooking;
 
 public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 
@@ -38,23 +39,24 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 	
 
 	@Override
-	public FlightBooking searchFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException {
+	public ArrayList<FlightBooking> searchFlightBooking(String userId) throws ClassNotFoundException, SQLException {
 	
 		FlightBooking fb =new FlightBooking();
+		ArrayList<FlightBooking> fList=new ArrayList<FlightBooking>();
 		Connection con=DbConnection.dbConnection();
 		//Query
 		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from FlightBooking where flightbookingid="+flightBookingId);
+		ResultSet rs=stmt.executeQuery("select * from FlightBooking where userId="+userId);
 		//Process Results
 		while(rs.next()){
 			fb.setFlightBookingId(rs.getString("flightBookingId"));
 			fb.setFlightId(rs.getString("flightId"));
 			fb.setUserId(rs.getString("userId"));
 			fb.setFlightBookingDate(rs.getDate("flightBooikngDate"));
-			fb.setFlag(rs.getBoolean("flage"));
-
+			fb.setFlag(rs.getBoolean("flag"));
+			fList.add(fb);
 		}
-		return fb;
+		return fList;
 	}
 	
 
