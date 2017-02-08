@@ -59,6 +59,7 @@ public class UserDashboard {
 				System.out.println("Press 1 to See Additional Offers!!");
 				int choice = sc.nextInt();
 				if (choice == 1) {
+					boolean paymentStatus=false;
 					ArrayList<Promotion> promo;
 					promo = Pbl.displayPromotion("FLIGHT");
 					LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
@@ -78,7 +79,7 @@ public class UserDashboard {
 
 					float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
 					float amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
-					if (Wbl.walletBalance(user.getUserId()) - valueAfterPromotion < 0) {
+					if (amountShort > 0) {
 						System.out.println("Insufficient Funds!!");
 						System.out.println("Add Rs" + amountShort + " to Wallet!!");
 						System.out.println("1. Yes");
@@ -88,21 +89,35 @@ public class UserDashboard {
 							System.out.println("Enter amount you want to add to wallet!!");
 							double amount = sc.nextDouble();
 							Wbl.addWalletMoney(user.getUserId(), amount);
-
+							paymentStatus=Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							System.out.println("Payment Done!!! ");
+							System.out.println("Confirming Flight Booking!!");
+							
 						} else if (ch1 == 2) {
 							System.out.println("Booking Cancelled due to insufficient funds!!");
-							
+							paymentStatus=false;
 
 						} else {
 							System.out.println("Invalid Input");
+							paymentStatus=false;
 						}
-
+						
+					}
+					else{
+						paymentStatus=Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						System.out.println("Payment Done!!! ");
+						System.out.println("Confirming Flight Booking!!");
 					}
 					
+					
+					boolean bookingStatus;
+					bookingStatus=fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					if ((paymentStatus) && (bookingStatus)) {
+						System.out.println("Flight Booking Done");
+		//Here---				System.out.println("Your Booking ID is: "+fbl.);
+					}
 				}
-				if (fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats)) {
-					System.out.println("Booking Done");
-				}
+				
 
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

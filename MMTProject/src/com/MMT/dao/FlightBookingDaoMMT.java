@@ -16,7 +16,7 @@ public interface FlightBookingDaoMMT {
 	
 	int deleteFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException;
 
-	
+	FlightBooking displayFlightBooking()
 
 
 
