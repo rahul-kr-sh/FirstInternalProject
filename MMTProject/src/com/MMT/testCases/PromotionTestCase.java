@@ -57,4 +57,10 @@ public class PromotionTestCase {
 		assertEquals(pro1,pdi.searchPromotion("FLY2001"));
 		
 	}
+	@Test(expected=SQLException.class)
+	public void testdisplayPromotiontype() throws SQLException {
+		pdi.insertPromotion(pro);
+		ArrayList<Promotion> proList1=pdi.displayPromotion("flight");
+		assertEquals(1,proList1.size());
+}
 }
