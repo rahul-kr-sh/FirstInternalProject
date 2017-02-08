@@ -45,10 +45,9 @@ public class HotelBlMMT {
 		return hotelRoom; 
 	}
 	
-	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
+	public HotelBooking bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
 		Hotel hotel=new Hotel();
 		hotel=H.searchHotel(hotelId);
-		
 		ArrayList<HotelRoom> room=new ArrayList<HotelRoom>();
 	
 		room=hotel.getHotelRoom();
@@ -64,7 +63,7 @@ public class HotelBlMMT {
 				index=count;
 				if(r.getHotelRoomStatus().equals("not"))
 				{
-					return false;
+					return null;
 				}
 				else
 				{
@@ -94,7 +93,7 @@ public class HotelBlMMT {
 		hb.setUserId(userId);
 		hb.setStayDuration((int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 		HB.insertHotelBooking(hb);
-		return true;
+		return hb;
 	}
 	
 	
