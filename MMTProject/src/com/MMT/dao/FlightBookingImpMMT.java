@@ -5,11 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
-import com.MMT.bean.Flight;
+
 import com.MMT.bean.FlightBooking;
-import com.MMT.bean.HotelBooking;
+
 
 public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 
@@ -27,7 +26,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 			fb.setFlightBookingId(rs.getString("flightBookingId"));
 			fb.setFlightId(rs.getString("flightId"));
 			fb.setUserId(rs.getString("userId"));
-			fb.setFlightBookingDate(rs.getDate("flightBookingDate"));
+			fb.setFlightBookingId(rs.getString("flightBookingDate"));
 			fb.setFlag(rs.getBoolean("flage"));
 			FB.add(fb);
 			
@@ -52,7 +51,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT{
 			fb.setFlightBookingId(rs.getString("flightBookingId"));
 			fb.setFlightId(rs.getString("flightId"));
 			fb.setUserId(rs.getString("userId"));
-			fb.setFlightBookingDate(rs.getDate("flightBooikngDate"));
+			fb.setFlightBookingId(rs.getString("flightBooikngDate"));
 			fb.setFlag(rs.getBoolean("flag"));
 			fList.add(fb);
 		}
@@ -68,7 +67,7 @@ Connection con=DbConnection.dbConnection();
 		String flightBookingId=fb.getFlightBookingId();
 		String flightId= fb.getFlightId();
 		String userId= fb.getUserId();
-		Date flightBookingDate=fb.getFlightBookingDate();
+		String flightBookingDate=fb.getFlightBookingDate();
 		boolean flage=fb.isFlag();
 		
 		Statement stmt=con.createStatement();

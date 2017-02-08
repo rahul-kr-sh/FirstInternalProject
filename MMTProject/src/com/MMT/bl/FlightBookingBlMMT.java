@@ -2,7 +2,7 @@ package com.MMT.bl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
@@ -56,16 +56,16 @@ public class FlightBookingBlMMT {
 			else{
 				f.setAvailableSeats(f.getAvailableSeats()-rseats);
 				System.out.println("Seats Available!!");
-				Date d=new Date();
+				//Date d=new Date();
 				FlightBooking FBD=new FlightBooking();
 				        
 				int hbid = 10000 + (int)(Math.random() * 11000); 
 				String id=Integer.toString(hbid);
-				Date date=new Date();
+				String date=new String();
 				FBD.setUserId(UId);
 				FBD.setFlightId(fid);
 				FBD.setFlightBookingId(id);
-				FBD.setFlightBookingDate(date);
+				FBD.setFlightBookingId(date);
 				FBD.setFlag(true);
 				FB.insertFlightBooking(FBD);
 				F.updateFlight(fid, f);
