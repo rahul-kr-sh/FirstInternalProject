@@ -26,10 +26,28 @@ public class HotelBlMMT {
 		return H.searchHotel(hotelId);
 	}
 	
-	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
+	public ArrayList<Hotel> searchHotel1(String location) throws SQLException{
+		return H.searchHotel1(location);
+	}
+	
+	public HotelRoom searchHotelRoom(String hotelId, int rno) throws SQLException{
+		Hotel h;
+		h=H.searchHotel(hotelId);
+		
+		ArrayList<HotelRoom> hotelRoomList;
+		hotelRoomList=h.getHotelRoom();
+		HotelRoom hotelRoom=null;
+		for(HotelRoom hr:hotelRoomList){
+			if(hr.getHotelRoomNo()==rno){
+				hotelRoom=hr;
+			}
+		}
+		return hotelRoom; 
+	}
+	
+	public HotelBooking bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
 		Hotel hotel=new Hotel();
 		hotel=H.searchHotel(hotelId);
-		
 		ArrayList<HotelRoom> room=new ArrayList<HotelRoom>();
 	
 		room=hotel.getHotelRoom();
@@ -45,7 +63,7 @@ public class HotelBlMMT {
 				index=count;
 				if(r.getHotelRoomStatus().equals("not"))
 				{
-					return false;
+					return null;
 				}
 				else
 				{
@@ -75,8 +93,21 @@ public class HotelBlMMT {
 		hb.setUserId(userId);
 		hb.setStayDuration((int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 		HB.insertHotelBooking(hb);
-		return true;
+		return hb;
 	}
 	
+	
+	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException{
+		ArrayList<HotelRoom> hr;
+		hr=H.searchHotel(hotelId).getHotelRoom();
+		
+		ArrayList<HotelRoom> HR=new ArrayList<HotelRoom>();
+		for(HotelRoom r:hr){
+			if(r.getHotelRoomStatus().equals("avail")){
+				HR.add(r);
+			}
+		}
+		return HR;
+	}
 	
 }
