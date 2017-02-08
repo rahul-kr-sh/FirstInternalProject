@@ -118,6 +118,9 @@ public class UserDashboard {
 						System.out.println("Flight Booking Done");
 						System.out.println("Your Booking ID is: "+fb.getFlightBookingId());
 					}
+					else if(fb==null){
+						System.out.println("Sorry !! Booking Failed");
+					}
 				}
 				
 
