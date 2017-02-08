@@ -9,23 +9,18 @@ import com.MMT.bean.Wallet;
 
 public class WalletDaoImplMMT implements WalletDaoMMT {
 	Connection con=null;
-	Wallet wl=new Wallet();
+	Wallet wl=null;
 	@Override
 	public Wallet displayWallet(String userId) throws SQLException {
 		con=DbConnection.dbConnection();
+		wl=new Wallet();
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from  WALLET where USERID="+userId);
 		while(rs.next()){
-			String uId=rs.getString(1);
-			if(uId.equals(userId)){
-				double walletBalance=rs.getDouble(2);
-				wl.setUserId(userId);
-				wl.setWalletBalance(walletBalance);
+				wl.setUserId(rs.getString(1));
+				wl.setWalletBalance(rs.getDouble(2));
 				con.close();
-				return wl;
-				
-			}
-			
+				return wl;	
 		}
 		con.close();
 		return null;
@@ -38,15 +33,12 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 		ResultSet rs=stmt.executeQuery("select * from  WALLET where USERID="+userId);
 		while(rs.next()){
 			String uId=rs.getString(1);
-			if(uId.equals(userId)){
 				double oldWalletBalance=rs.getDouble(2);
 				double presentWalletBalance=oldWalletBalance+amtToAddToWallet;
 				int rows=stmt.executeUpdate("update WALLET set WALLETBALANCE="+presentWalletBalance+"where USERID="+userId);
 				if(rows>0){
 					con.close();
 				return rows;}
-			}
-			
 		}
 		con.close();
 		return 0;
