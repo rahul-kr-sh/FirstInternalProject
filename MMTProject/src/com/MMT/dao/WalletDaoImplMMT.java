@@ -27,7 +27,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public int updateWallet(String userId, Double amtToAddToWallet) throws SQLException {
+	public int updateWalletAdd(String userId, Double amtToAddToWallet) throws SQLException {
 		con=DbConnection.dbConnection();
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from  WALLET where USERID="+userId);
@@ -43,5 +43,21 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 		con.close();
 		return 0;
 	}
-
+	@Override
+	public int updateWalletSub(String userId, Double amtToSubToWallet) throws SQLException {
+		con=DbConnection.dbConnection();
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from  WALLET where USERID="+userId);
+		while(rs.next()){
+			String uId=rs.getString(1);
+				double oldWalletBalance=rs.getDouble(2);
+				double presentWalletBalance=oldWalletBalance-amtToSubToWallet;
+				int rows=stmt.executeUpdate("update WALLET set WALLETBALANCE="+presentWalletBalance+"where USERID="+userId);
+				if(rows>0){
+					con.close();
+				return rows;}
+		}
+		con.close();
+		return 0;
+	}
 }
