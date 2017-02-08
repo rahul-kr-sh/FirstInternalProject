@@ -27,11 +27,26 @@ public class AdminTestCase {
 	@Test
 	public void testinsertAdmin() throws SQLException {
 		assertEquals(1,adi.insert(admin)); 
+		adi.delete("admin1");
 	}
 	@Test
 	public void testsearchAdmin() throws SQLException {
+		adi.insert(admin);
 		admin2=adi.search("admin1");
 		assertEquals("admin1",admin2.getAdminId());
+		admin2=null;
+	}
+	@Test
+	public void testdeleteAdmin() throws SQLException {
+		adi.insert(admin);
+		assertEquals(1,adi.delete("admin1")); 
+	}
+	@Test
+	public void testupdateAdmin() throws SQLException {
+		adi.insert(admin);
+		admin2=new Admin("admin1","Deepika",1454567891,"deepika@gmail.com","House no.13","admin1");
+		assertEquals(1,adi.update("admin1",admin2));
+		adi.delete("admin1");
 		admin2=null;
 	}
 }
