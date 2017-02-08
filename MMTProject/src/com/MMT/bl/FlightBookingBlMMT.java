@@ -44,18 +44,19 @@ public class FlightBookingBlMMT {
 		}
 	
 	
-	public boolean bookFlight(String userId,String flightId,String flightSource, String flightDestination, int seats) throws ClassNotFoundException, SQLException{
+	public FlightBooking bookFlight(String userId,String flightId,String flightSource, String flightDestination, int seats) throws ClassNotFoundException, SQLException{
 		String fid=flightId;
 		String UId=userId;
 		boolean flag=false;
 		int rseats=seats;
 		Flight f=F.searchFlight(fid);
 		if(f==null){
-			return flag;
+			return null;
 		}
 		else{
 			if(checkAvailability(f, rseats)!=true){
 				System.out.println("Seats Not Available!!");
+				return null;
 			}
 			else{
 				f.setAvailableSeats(f.getAvailableSeats()-rseats);
@@ -73,10 +74,9 @@ public class FlightBookingBlMMT {
 				FBD.setFlag(true);
 				FB.insertFlightBooking(FBD);
 				F.updateFlight(fid, f);
-				flag=true;
+				return FBD;
 			}
 		}
-		return flag;
 	}
 	
 	

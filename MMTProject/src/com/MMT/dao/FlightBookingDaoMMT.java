@@ -7,7 +7,7 @@ import com.MMT.bean.FlightBooking;
 
 public interface FlightBookingDaoMMT {
 	
-	ArrayList<FlightBooking> displayFlightBooking() throws ClassNotFoundException, SQLException;
+	ArrayList<FlightBooking> displayFlightBooking1() throws ClassNotFoundException, SQLException;
 	
 	ArrayList<FlightBooking> searchFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException;
 	
@@ -16,7 +16,11 @@ public interface FlightBookingDaoMMT {
 	
 	int deleteFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException;
 
-	FlightBooking displayFlightBooking()
+	ArrayList<FlightBooking> displayFlightBooking() throws ClassNotFoundException, SQLException;
+
+//	//FlightBooking displayFlightBooking(String userID){
+//		
+//	}
 
 
 

@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import com.MMT.bean.Flight;
+import com.MMT.bean.FlightBooking;
 import com.MMT.bean.Promotion;
 import com.MMT.bean.User;
 import com.MMT.bl.FlightBookingBlMMT;
@@ -95,6 +96,7 @@ public class UserDashboard {
 							
 						} else if (ch1 == 2) {
 							System.out.println("Booking Cancelled due to insufficient funds!!");
+							System.out.println("Booking Cancelled!!");
 							paymentStatus=false;
 
 						} else {
@@ -110,11 +112,11 @@ public class UserDashboard {
 					}
 					
 					
-					boolean bookingStatus;
-					bookingStatus=fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
-					if ((paymentStatus) && (bookingStatus)) {
+					FlightBooking fb;
+					fb=fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					if ((paymentStatus) && (fb!=null)) {
 						System.out.println("Flight Booking Done");
-		//Here---				System.out.println("Your Booking ID is: "+fbl.);
+						System.out.println("Your Booking ID is: "+fb.getFlightBookingId());
 					}
 				}
 				
