@@ -66,6 +66,7 @@ public class FlightBookingBlMMT {
 				FBD.setFlightId(fid);
 				FBD.setFlightBookingId(id);
 				FBD.setFlightBookingDate(date);
+				FBD.setFlag(true);
 				FB.insertFlightBooking(FBD);
 				F.updateFlight(fid, f);
 				flag=true;
