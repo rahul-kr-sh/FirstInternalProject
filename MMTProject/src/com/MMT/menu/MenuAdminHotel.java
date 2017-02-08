@@ -63,7 +63,7 @@ public class MenuAdminHotel {
 					}
 					else
 					{
-						System.out.println("Flight can not be updated");
+						System.out.println("hotel can not be updated");
 					}
 				} catch (ClassNotFoundException e) {
 					System.out.println("Please try again");
