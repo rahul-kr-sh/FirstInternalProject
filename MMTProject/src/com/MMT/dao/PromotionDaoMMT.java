@@ -9,4 +9,5 @@ public interface PromotionDaoMMT {
 	int updatePromotion(String promotionId,Promotion newPromotion)throws SQLException;
 	ArrayList<Promotion> displayPromotion() throws SQLException;
 	Promotion searchPromotion(String promotionId)throws SQLException ;
+	ArrayList<Promotion> displayPromotion(String promotionType) throws SQLException;
 }
