@@ -1,7 +1,4 @@
 package com.MMT.bean;
-
-import java.util.Date;
-
 public class Promotion {
 	private String promotionId;
 	private String promotionName;
