@@ -20,7 +20,7 @@ public class PromotionTestCase {
 	@Before
 	public void setUp() throws Exception {
 		pdi=new PromotionDaoImplMMT();
-		pro=new Promotion("FLY200","200Off",200.00,"20 Feb 2017",1999.50,"FlightType");
+		pro=new Promotion("FLY2003","200Off",200.00,"20 Feb 2017",1999.50,"FlightType");
 		pro1=new Promotion("FLY2001","200Off",200.00,"20 Feb 2017",1999.50,"FlightType");
 	}
 
@@ -32,24 +32,18 @@ public class PromotionTestCase {
 
 	@Test(expected=SQLException.class)
 	public void testInsertPromotion() throws SQLException {
-		
 		assertEquals(1,pdi.insertPromotion(pro));
-		
 		
 	}
 	
 	@Test(expected=SQLException.class)
 	public void testdeletePromotion() throws SQLException {
-		
 		assertEquals(1,pdi.deletePromotion("FLY200"));
-		
 		
 	}
 	@Test(expected=SQLException.class)
 	public void testupdatePromotion() throws SQLException {
-		
 		assertEquals(1,pdi.updatePromotion("FLY200", pro1));
-		
 	}
 	@Test(expected=SQLException.class)
 	public void testdisplayPromotion() throws SQLException {
