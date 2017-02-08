@@ -64,7 +64,8 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 		{
 			return rows;
 		}
-		else return 0;
+		else 
+			return 0;
 	}
 
 	@Override
