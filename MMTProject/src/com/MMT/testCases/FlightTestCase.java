@@ -71,6 +71,13 @@ public class FlightTestCase {
 		assertEquals(1,fdao.deleteFlight("FLY200"));
 		
 }
+	
+	public void testsearchFlightLocation() throws SQLException, ClassNotFoundException {
+		//System.out.println("dispaly");
+		fdao.insertFlight(flig);
+		ArrayList<Flight> flightList =fdao.searchFlight("Delhi", "Indore");
+		assertEquals(1,flightList.size());
+	}
 }
 
 
