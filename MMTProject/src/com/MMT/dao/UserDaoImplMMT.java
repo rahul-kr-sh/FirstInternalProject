@@ -11,11 +11,11 @@ import java.util.List;
 import com.MMT.bean.User;
 
 public class UserDaoImplMMT implements UserDaoMMT {
-
+	Connection con;
 	@Override
 	public int insert(User user) throws SQLException {
 		int row;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("insert into mmt_user values(?,?,?,?,?,?)");
 		pst.setString(1, user.getUserId());
 		pst.setString(2,user.getUserName());
@@ -36,7 +36,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		
 		User user=new User();
 		ResultSet rs;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("select * from mmt_user where USERID=?");
 		
 		rs=pst.executeQuery();
@@ -55,7 +55,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 	@Override
 	public int delete(String uid) throws SQLException {
 		int row;
-		Connection con=DbConnection.dbConnection();
+		 con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("delete from mmt_user where USERID=?");
 		pst.setString(1, uid);
 		row=pst.executeUpdate();
@@ -66,7 +66,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 	@Override
 	public int update(String uid, User user) throws SQLException {
 		int row;
-		Connection con=DbConnection.dbConnection();
+		 con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("update mmt_user set USERNAME=?,  USERPHONENO=?, USEREMAILID=?, USERADDRESS=?,USERPASSWORD=? where userid=?");
 		pst.setString(1, user.getUserName());
 		pst.setLong(2, user.getUserPhoneNo());
@@ -83,7 +83,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		User user=new User();
 		List<User> list=new ArrayList<User>();
 		ResultSet rs;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("select * from mmt_user");
 		rs=pst.executeQuery();
 		while(rs.next()){

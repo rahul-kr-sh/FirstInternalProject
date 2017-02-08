@@ -29,7 +29,7 @@ public class UserTestCase {
 		userDao.delete("ui1");
 		userDao.delete("ui2");
 		userDao.delete("ui3");
-		userDao.delete("ui4");
+		
 	}
 
 	@Test(expected=SQLException.class)
@@ -37,10 +37,24 @@ public class UserTestCase {
 		assertEquals(1, userDao.insert(user));
 		
 	}
-	@Test()
-	public void searchTest(){
-		assertEquals(user, "ui4");
+	@Test(expected=SQLException.class)
+	public void deleteTest() throws SQLException{
+		assertEquals(1, userDao.delete("ui4"));
 	}
 	
+	@Test(expected=SQLException.class)
+	public void updateTest() throws SQLException{
+		assertEquals(1,userDao.update("ui2",new User("ui2","un5",55,"un@5","add5","up5")));
+	}
+	
+	@Test(expected=SQLException.class)
+	public void searchTest() throws SQLException{
+		assertEquals(user, userDao.search("ui2"));
+	}
+	
+	@Test(expected=SQLException.class)
+	public void displayAllTest() throws SQLException{
+		assertEquals(3, userDao.displayAll().size());
+	}
 
 }
