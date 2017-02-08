@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import com.MMT.bean.Promotion;
 import com.MMT.bean.Wallet;
 
 public class WalletDaoImplMMT implements WalletDaoMMT {
@@ -59,5 +61,23 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 		}
 		con.close();
 		return 0;
+	}
+
+	@Override
+	public ArrayList<Wallet> displayWallet() throws SQLException {
+		Wallet pro=new Wallet();
+		con=DbConnection.dbConnection();
+		
+		ArrayList<Wallet> proList=new ArrayList<Wallet>();
+		
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from Wallet ");
+		while(rs.next()){
+			pro.setUserId(rs.getString(1));
+			pro.setWalletBalance(rs.getDouble(2));
+			proList.add(pro);
+		}
+		con.close();
+		return proList;
 	}
 }
