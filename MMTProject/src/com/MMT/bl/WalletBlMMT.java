@@ -21,7 +21,7 @@ public class WalletBlMMT {
 		return W.displayWalletAll();
 	}
 
-	private boolean addWalletMoney(String userId,Double value) throws SQLException {
+	public boolean addWalletMoney(String userId,Double value) throws SQLException {
 		Wallet w;
 		w=W.displayWallet(userId);
 		w.setWalletBalance(w.getWalletBalance()+value);
@@ -29,7 +29,7 @@ public class WalletBlMMT {
 		return true;
 	}
 	
-	private boolean subtractWalletMoney(String userId,Double value) throws SQLException {
+	public boolean subtractWalletMoney(String userId,Double value) throws SQLException {
 		Wallet w;
 		w=W.displayWallet(userId);
 		double temp=w.getWalletBalance()-value;

@@ -42,6 +42,7 @@ public class PromotionBlMMT {
 		}
 		else{
 			//Make an Exception // Make logic if cart value is less than minimum required amount
+			System.out.println("Cart Value should be greater than "+p.getPromotionMinRequiredAmount());
 			return currentPrice;
 		}
 	}
