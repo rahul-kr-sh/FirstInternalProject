@@ -9,6 +9,7 @@ import com.MMT.bl.AdminBlMMT;
 import com.MMT.bl.UserBlMMT;
 
 public class LoginMenu {
+	AdminDashboard adb=new AdminDashboard();
 	AdminBlMMT Ad=new AdminBlMMT();
 	UserBlMMT Us=new UserBlMMT();
 	UserDashboard ud=new UserDashboard();
@@ -33,6 +34,7 @@ public class LoginMenu {
 					
 					System.out.println(" Successful Admin Login!!");
 					Admin admin=Ad.checkAdminLogin(name, pass);
+					adb.showDashboard(admin);
 				//	adminDisplay();
 					
 					}

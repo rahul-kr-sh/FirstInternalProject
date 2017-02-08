@@ -36,7 +36,7 @@ public class MenuAdminFlight {
 				{
 					System.out.println("Flight could added");
 				}
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				System.out.println("Please try again");
 //				e.printStackTrace();
 			}

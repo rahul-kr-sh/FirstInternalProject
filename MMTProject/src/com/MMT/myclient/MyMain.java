@@ -8,9 +8,9 @@ public class MyMain {
 		
 		System.out.println("Welcome to Flight and Hotel Booking Website");
 		HomePage home=new HomePage();
-		while(true){
+		//while(true){
 			home.HomePageMenu();
-		}
+		//}
 		
 	}
 
