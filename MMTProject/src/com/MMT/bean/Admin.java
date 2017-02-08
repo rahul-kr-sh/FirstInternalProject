@@ -5,12 +5,12 @@ public class Admin {
 	private String adminId;
 	//private String adminName="admin";
 	private String adminName;
-	private int adminPhoneNo;
+	private long adminPhoneNo;
 	private String adminEmailId;
 	private String adminAddress;
 	//private String adminPassword="admin";
 	private String adminPassword;
-	public Admin(String adminId, String adminName, int adminPhoneNo, String adminEmailId, String adminAddress,
+	public Admin(String adminId, String adminName, long adminPhoneNo, String adminEmailId, String adminAddress,
 			String adminPassword) {
 		super();
 		this.adminId = adminId;
@@ -36,10 +36,10 @@ public class Admin {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	public int getAdminPhoneNo() {
+	public long getAdminPhoneNo() {
 		return adminPhoneNo;
 	}
-	public void setAdminPhoneNo(int adminPhoneNo) {
+	public void setAdminPhoneNo(long adminPhoneNo) {
 		this.adminPhoneNo = adminPhoneNo;
 	}
 	public String getAdminEmailId() {
