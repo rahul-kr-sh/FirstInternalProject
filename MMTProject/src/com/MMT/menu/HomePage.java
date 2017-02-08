@@ -20,7 +20,7 @@ public class HomePage {
 			 lm.LoginPage();
 			return;
 		case 2:
-			lm.S
+		
 			return;
 		
 		case 3:
