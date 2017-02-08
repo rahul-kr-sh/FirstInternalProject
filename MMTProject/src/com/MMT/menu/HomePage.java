@@ -14,10 +14,10 @@ public class HomePage {
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
 		int input=sc.nextInt();
-		
+		LoginMenu lm=new LoginMenu();
 		switch(input){
 		case 1:
-			 
+			 lm.LoginPage();
 			return;
 		case 2:
 			return;
