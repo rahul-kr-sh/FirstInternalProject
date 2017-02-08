@@ -1,6 +1,8 @@
 package com.MMT.menu;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import com.MMT.bean.Flight;
@@ -25,20 +27,54 @@ public class UserDashboard {
 		
 		switch(input){
 		case 1:
-			flightDisplay(user);
+			System.out.println("Enter Source:");
+			String source=sc.next();
+			System.out.println("Enter Destination:");
+			String destination=sc.next();
+			ArrayList<Flight> fList;
+			LinkedHashMap<Integer, Flight> flightMap=new LinkedHashMap<Integer,Flight>();
+			try{
+			fList=fbl.searchFlight(source, destination);
+			int i=1;
+			for(Flight findex:fList){
+				flightMap.put(i++, findex);
+			}
+			i=1;
+			for(Flight f:fList){
+				System.out.println(i++ +":"+f);
+			}
+			System.out.println("Pick a flight :");
+			int v=sc.nextInt();
+			
+			Flight fpicked=flightMap.get(v);
+			System.out.println("Enter No of seats:");
+			int seats=sc.nextInt();
+			System.out.println("Checking!!!!");
+			
+			if(fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats)){
+				System.out.println("Booking Done");
+			}
+			
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 			
 		case 2:
-			hotelDisplay();
+			//hotelDisplay();
 			break;
 		case 3:
-			flightBookingDisplay();
+			//flightBookingDisplay();
 			break;
 		case 4:
-			hotelBookingDisplay();
+			//hotelBookingDisplay();
 			break;
 		case 5:
-			addMoneyDisplay();
+			//addMoneyDisplay();
 			break;
 		case 6:
 			System.out.println("Successfully logged out!!!");
@@ -52,38 +88,5 @@ public class UserDashboard {
 	}
 	
 	
-	public void flightDisplay(User user){
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter Source:");
-		String source=sc.next();
-		System.out.println("Enter Destination:");
-		String destination=sc.next();
-		Flight f;
-		try {
-			f=fbl.searchFlight(source,destination);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	public void hotelDisplay(){
-		
-	}
-	
-	public void flightBookingDisplay(){
-		
-		
-	}
-	
-	public void hotelBookingDisplay(){
-		
-	}
-	
-	public void addMoneyDisplay(){
-		
-	}
 }

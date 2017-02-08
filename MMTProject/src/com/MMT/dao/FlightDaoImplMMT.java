@@ -131,9 +131,10 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 	}
 
 	@Override
-	public Flight searchFlight(String flightSource, String flightDestination)
+	public ArrayList<Flight> searchFlight(String flightSource, String flightDestination)
 			throws ClassNotFoundException, SQLException {
 		Flight f =new Flight();
+		ArrayList<Flight> F =new ArrayList<Flight>();
 		Connection con=DbConnection.dbConnection();
 		//Query
 		Statement stmt=con.createStatement();
@@ -148,8 +149,9 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			f.setFlightArrivalTime(rs.getString("flightArrivalTime"));
 			f.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
 			f.setAvailableSeats(rs.getInt("availableSeats"));
+			F.add(f);
 
 		}
-		return f;
+		return F;
 	}
 }

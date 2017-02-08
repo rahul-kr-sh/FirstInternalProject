@@ -32,19 +32,19 @@ public class FlightBookingBlMMT {
 		}
 	}
 	
-	ArrayList<Flight> displayFlight() throws ClassNotFoundException, SQLException{
+	public ArrayList<Flight> displayFlight() throws ClassNotFoundException, SQLException{
 		return F.displayFlight();
 		}
 
-	Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException{
+	public Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException{
 		return F.searchFlight(flightId);
 		}
-	public Flight searchFlight(String flightSource, String flightDestination) throws ClassNotFoundException, SQLException{
+	public ArrayList<Flight> searchFlight(String flightSource, String flightDestination) throws ClassNotFoundException, SQLException{
 		return F.searchFlight(flightSource, flightDestination);
 		}
 	
 	
-	boolean bookFlight(String userId,String flightId,String flightSource, String flightDestination, int seats) throws ClassNotFoundException, SQLException{
+	public boolean bookFlight(String userId,String flightId,String flightSource, String flightDestination, int seats) throws ClassNotFoundException, SQLException{
 		String fid=flightId;
 		String UId=userId;
 		boolean flag=false;
