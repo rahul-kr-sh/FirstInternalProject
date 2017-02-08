@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import com.MMT.bean.Wallet;
 
 public interface WalletDaoMMT {
-	Wallet displayWallet(String userId)throws SQLException ;
-	int updateWallet(String userId,Double amtToAddToWallet)throws SQLException;
+	double displayWallet(String userId)throws SQLException ;
+	double updateWallet(String userId,Double amtToAddToWallet)throws SQLException;
 }
