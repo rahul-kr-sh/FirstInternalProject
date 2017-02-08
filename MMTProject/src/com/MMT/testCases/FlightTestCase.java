@@ -25,8 +25,8 @@ public class FlightTestCase {
 	@Before
 	public void setUp() throws Exception {
 		fdao=new FlightDaoImplMMT();
-		flig=new Flight("AirIndia", "FLY2001", "Delhi", "Indore", "9:00 pm", "12:00 pm", 6700.00, 20);
-		flig1=new Flight("Indigo", "FLY1110", "mumbai", "Delhi", "3:00", "5:50", 5600.00, 23);
+		flig=new Flight("AirIndia", "FLY2001", "Delhi", "Indore", "9:00 am", "12:00 pm", 6700.00, 20);
+		flig1=new Flight("Indigo", "FLY1110", "mumbai", "Delhi", "3:00 pm", "5:50 pm", 5600.00, 23);
 	
 	}
 	
