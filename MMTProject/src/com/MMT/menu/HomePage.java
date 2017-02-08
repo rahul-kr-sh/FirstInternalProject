@@ -26,9 +26,12 @@ public class HomePage {
 			return;
 		
 		case 4:
+			
 			return;
 			
 		case 5:
+			System.out.println("Thank you!!!");
+			System.exit(0);
 			return;
 		
 		default:
