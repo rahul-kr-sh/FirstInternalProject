@@ -9,8 +9,8 @@ public class UserDashboard {
 	public void showDashboard(User user){
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome "+ user.getUserName()+"!!");
-		System.out.println("1. Flight");
-		System.out.println("2. Hotel");
+		System.out.println("1.Search Flight");
+		System.out.println("2. Search Hotel");
 		System.out.println("3. View Past Flight Bookings");
 		System.out.println("4. View Past Hotel Bookings");
 		System.out.println("5. Add Money to Wallet");
@@ -21,19 +21,51 @@ public class UserDashboard {
 		
 		switch(input){
 		case 1:
-			
-			return;
+			flightDisplay();
+			break;
 			
 		case 2:
-			return;
+			hotelDisplay();
+			break;
 		case 3:
-			return;
+			flightBookingDisplay();
+			break;
 		case 4:
-			return;
+			hotelBookingDisplay();
+			break;
 		case 5:
-			return;
+			addMoneyDisplay();
+			break;
 		case 6:
-			return;
+			System.out.println("Successfully logged out!!!");
+			HomePage hp=new HomePage();
+			hp.HomePageMenu();
+			break;
+		default:
+			System.out.println("Invalid Input!!");
+			break;
 		}
+	}
+	
+	
+	public void flightDisplay(){
+		System.out.println("");
+	}
+	
+	public void hotelDisplay(){
+		
+	}
+	
+	public void flightBookingDisplay(){
+		
+		
+	}
+	
+	public void hotelBookingDisplay(){
+		
+	}
+	
+	public void addMoneyDisplay(){
+		
 	}
 }
