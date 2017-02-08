@@ -26,6 +26,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		
 		
 		row=pst.executeUpdate();
+		
 		con.close();
 		return row;
 		

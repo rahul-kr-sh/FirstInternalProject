@@ -32,18 +32,24 @@ public class PromotionTestCase {
 
 	@Test(expected=SQLException.class)
 	public void testInsertPromotion() throws SQLException {
+		
 		assertEquals(1,pdi.insertPromotion(pro));
+		
 		
 	}
 	
 	@Test(expected=SQLException.class)
 	public void testdeletePromotion() throws SQLException {
+		
 		assertEquals(1,pdi.deletePromotion("FLY200"));
+		
 		
 	}
 	@Test(expected=SQLException.class)
 	public void testupdatePromotion() throws SQLException {
+		
 		assertEquals(1,pdi.updatePromotion("FLY200", pro1));
+		
 	}
 	@Test(expected=SQLException.class)
 	public void testdisplayPromotion() throws SQLException {

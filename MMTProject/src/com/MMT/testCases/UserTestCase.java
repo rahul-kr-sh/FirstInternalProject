@@ -13,48 +13,63 @@ import com.MMT.dao.UserDaoImplMMT;
 
 public class UserTestCase {
 	UserDaoImplMMT userDao;
-	User user;
+	User user1;
+	User user2;
 	
 	@Before
 	public void setUp() throws Exception {
 		userDao=new UserDaoImplMMT();
-		user=new User("ui1","un1",11,"un@1","add1","up1");
-		userDao.insert(new User("ui2","un2",22,"un@2","add2","up2"));
-		userDao.insert(new User("ui3","un3",33,"un@3","add3","up3"));
-		userDao.insert(new User("ui4","un4",44,"un@4","add4","up4"));	
+		user1=new User("ui1","un1",11,"un@1","add1","up1");
+		user2=new User("ui2","un2",22,"un@2","add2","up2");
+			
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		userDao.delete("ui1");
-		userDao.delete("ui2");
-		userDao.delete("ui3");
 		
+		user1=null;
+		user2=null;
+		userDao=null;
+		
+	
 	}
 
-	@Test(expected=SQLException.class)
+	@Test
 	public void insertTest() throws SQLException {
-		assertEquals(1, userDao.insert(user));
+		assertEquals(1, userDao.insert(user1));
+		userDao.delete(user1.getUserId());
+		
 		
 	}
 	@Test(expected=SQLException.class)
 	public void deleteTest() throws SQLException{
-		assertEquals(1, userDao.delete("ui4"));
+		userDao.insert(user2);
+		assertEquals(1, userDao.delete(user2.getUserId()));
+		
 	}
 	
 	@Test(expected=SQLException.class)
 	public void updateTest() throws SQLException{
+		userDao.insert(user2);
 		assertEquals(1,userDao.update("ui2",new User("ui2","un5",55,"un@5","add5","up5")));
+		userDao.delete("ui2");
+		
 	}
 	
 	@Test(expected=SQLException.class)
 	public void searchTest() throws SQLException{
-		assertEquals(user, userDao.search("ui2"));
+		userDao.insert(user2);
+		assertEquals(user1, userDao.search("ui2"));
+		userDao.delete("ui2");
+		
 	}
 	
 	@Test(expected=SQLException.class)
 	public void displayAllTest() throws SQLException{
-		assertEquals(3, userDao.displayAll().size());
+		userDao.insert(user2);
+		assertEquals(1, userDao.displayAll().size());
+		userDao.delete("ui2");
+		
 	}
 
 }
