@@ -11,6 +11,7 @@ import com.MMT.bl.UserBlMMT;
 public class LoginMenu {
 	AdminBlMMT Ad=new AdminBlMMT();
 	UserBlMMT Us=new UserBlMMT();
+	UserDashboard ud=new UserDashboard();
 	Scanner sc=new Scanner(System.in);
 	public void LoginPage(){
 		System.out.println("Enter User Name:");
@@ -39,7 +40,8 @@ public class LoginMenu {
 				{
 					System.out.println(" Successful User Login!!");
 					User user = Us.checkLogin(name, pass);
-					//User Display 
+					
+					ud.showDashboard(user);                //User Display 
 				}
 				else{
 					System.out.println("Invalid Credentials");
