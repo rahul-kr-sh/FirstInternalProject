@@ -26,6 +26,25 @@ public class HotelBlMMT {
 		return H.searchHotel(hotelId);
 	}
 	
+	public ArrayList<Hotel> searchHotel1(String location) throws SQLException{
+		return H.searchHotel1(location);
+	}
+	
+	public HotelRoom searchHotelRoom(String hotelId, int rno) throws SQLException{
+		Hotel h;
+		h=H.searchHotel(hotelId);
+		
+		ArrayList<HotelRoom> hotelRoomList;
+		hotelRoomList=h.getHotelRoom();
+		HotelRoom hotelRoom=null;
+		for(HotelRoom hr:hotelRoomList){
+			if(hr.getHotelRoomNo()==rno){
+				hotelRoom=hr;
+			}
+		}
+		return hotelRoom; 
+	}
+	
 	public boolean bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
 		Hotel hotel=new Hotel();
 		hotel=H.searchHotel(hotelId);
@@ -77,6 +96,7 @@ public class HotelBlMMT {
 		HB.insertHotelBooking(hb);
 		return true;
 	}
+	
 	
 	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException{
 		ArrayList<HotelRoom> hr;

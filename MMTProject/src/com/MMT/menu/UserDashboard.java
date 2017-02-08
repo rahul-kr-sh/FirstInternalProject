@@ -1,9 +1,13 @@
 package com.MMT.menu;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
@@ -19,11 +23,12 @@ import com.MMT.dao.HotelDaoImplMMT;
 
 public class UserDashboard {
 	FlightBookingBlMMT fbl = new FlightBookingBlMMT();
-	HotelDaoImplMMT hbl = new HotelDaoImplMMT();
+	//HotelDaoImplMMT hbl = new HotelDaoImplMMT();
 	PromotionBlMMT Pbl = new PromotionBlMMT();
 	WalletBlMMT Wbl = new WalletBlMMT();
 	Scanner sc = new Scanner(System.in);
-	HotelBlMMT Hbl=new HotelBlMMT();
+	HotelBlMMT Hbl = new HotelBlMMT();
+
 	public void showDashboard(User user) {
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
@@ -33,7 +38,7 @@ public class UserDashboard {
 		System.out.println("4. View Past Hotel Bookings");
 		System.out.println("5. Add Money to Wallet");
 		System.out.println("6. Logout");
-		//Comment
+		// Comment
 		System.out.println("Enter a choice: ");
 		int input = sc.nextInt();
 
@@ -139,7 +144,7 @@ public class UserDashboard {
 			ArrayList<Hotel> hList = new ArrayList<>();
 			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 			try {
-				hList = hbl.searchHotel1(loc);
+				hList = Hbl.searchHotel1(loc);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -158,15 +163,52 @@ public class UserDashboard {
 			Hotel hpicked = hotelMap.get(m);
 			ArrayList<HotelRoom> arl;
 			try {
-				arl=Hbl.displayAvailHotelRoom(hpicked.getHotelId());
+				arl = Hbl.displayAvailHotelRoom(hpicked.getHotelId());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Enter RoomID:");
-			int rno=sc.nextInt();
+			int rno = sc.nextInt();
+
+			System.out.println("Enter Check In Date in DD-MM-YYYY");
+			String date = sc.next();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+			Date din = null;
+			try {
+				// Parsing the String
+				din = dateFormat.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			System.out.println("Enter Check Out Date in DD-MM-YYYY");
+			String date1 = sc.next();
+			SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
+			Date dout = null;
+			try {
+				// Parsing the String
+				dout = dateFormat1.parse(date1);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			long diff = dout.getTime() - din.getTime();
+			int duration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 			
+			HotelRoom pickedRoom=null;
+			try {
+				pickedRoom=Hbl.searchHotelRoom(hpicked.getHotelId(), rno);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			float cartValue=(float) (pickedRoom.getHotelRoomPrice()*duration);
+			System.out.println("Total Price to be paid: "+cartValue);
 			
+			// System.out.println("Total Price: "+);
 			break;
 		case 3:
 			// flightBookingDisplay();
