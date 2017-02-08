@@ -19,6 +19,7 @@ import com.MMT.bean.User;
 import com.MMT.bl.FlightBookingBlMMT;
 import com.MMT.bl.HotelBlMMT;
 import com.MMT.bl.PromotionBlMMT;
+import com.MMT.bl.UserBlMMT;
 import com.MMT.bl.WalletBlMMT;
 import com.MMT.dao.HotelDaoImplMMT;
 
@@ -29,7 +30,7 @@ public class UserDashboard {
 	WalletBlMMT Wbl = new WalletBlMMT();
 	Scanner sc = new Scanner(System.in);
 	HotelBlMMT Hbl = new HotelBlMMT();
-
+	UserBlMMT Ubl=new UserBlMMT();
 	public void showDashboard(User user) {
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
