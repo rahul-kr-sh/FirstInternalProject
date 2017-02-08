@@ -24,7 +24,7 @@ public class FlightBookingTestCase {
 		@Before
 		public void setUp() throws Exception {
 			fbi=new FlightBookingImpMMT();
-			fbk=new FlightBooking("FBK1001", "UI100", "FLY2001", "20022017", true);
+			fbk=new FlightBooking("FBK1001", "UI100", "FLY2001", "20 Feb 2017", true);
 			fbk1=new FlightBooking("FBK2001","UI101","FLY2001","20 Feb 2017",true);
 		}
 	

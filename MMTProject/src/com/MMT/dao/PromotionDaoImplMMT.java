@@ -117,7 +117,6 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from  Promotion where PROMOTIONID="+promotionId);
 		while(rs.next()){
-			String pid=rs.getString(1);
 				pro.setPromotionId(rs.getString(1));
 				pro.setPromotionName(rs.getString(2));
 				pro.setPromotionDiscount(rs.getFloat(3));
@@ -128,6 +127,26 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 				return pro;
 		}
 		return null;
+	}
+
+	@Override
+	public ArrayList<Promotion> displayPromotion(String promotionType) throws SQLException {
+		con=DbConnection.dbConnection();
+		Promotion pro=new Promotion();
+		ArrayList<Promotion> proList=new ArrayList<Promotion>();
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery("select * from  Promotion where promotionType="+promotionType);
+		while(rs.next()){
+				pro.setPromotionId(rs.getString(1));
+				pro.setPromotionName(rs.getString(2));
+				pro.setPromotionDiscount(rs.getFloat(3));
+				pro.setPromotionExpiryDate(rs.getString(4));
+				pro.setPromotionMinRequiredAmount(rs.getFloat(5));
+				pro.setPromotionType(rs.getString(6));
+				proList.add(pro);
+		}
+		con.close();
+		return proList;
 	}
 
 }

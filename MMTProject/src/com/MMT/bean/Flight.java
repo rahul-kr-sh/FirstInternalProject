@@ -1,23 +1,26 @@
 package com.MMT.bean;
 
-import java.util.Date;
+
 
 public class Flight {
 	private String flightCompanyName;
 	private String flightId;
 	private String flightSource;
 	private String flightDestination;
-	private Date flightDepartureTime;
-	private Date flightArrivalTime;
-	private float flightTicketPrice;
+	private String flightDepartureTime;
+	private String flightArrivalTime;
+	private double flightTicketPrice;
 	private int availableSeats;
+	
+	
 	
 	
 	public Flight() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public Flight(String flightCompanyName, String flightId, String flightSource, String flightDestination,
-			Date flightDepartureTime, Date flightArrivalTime, float flightTicketPrice, int availableSeats) {
+			String flightDepartureTime, String flightArrivalTime, double flightTicketPrice, int availableSeats) {
 		super();
 		this.flightCompanyName = flightCompanyName;
 		this.flightId = flightId;
@@ -52,22 +55,22 @@ public class Flight {
 	public void setFlightDestination(String flightDestination) {
 		this.flightDestination = flightDestination;
 	}
-	public Date getFlightDepartureTime() {
+	public String getFlightDepartureTime() {
 		return flightDepartureTime;
 	}
-	public void setFlightDepartureTime(Date flightDepartureTime) {
+	public void setFlightDepartureTime(String flightDepartureTime) {
 		this.flightDepartureTime = flightDepartureTime;
 	}
-	public Date getFlightArrivalTime() {
+	public String getFlightArrivalTime() {
 		return flightArrivalTime;
 	}
-	public void setFlightArrivalTime(Date flightArrivalTime) {
+	public void setFlightArrivalTime(String flightArrivalTime) {
 		this.flightArrivalTime = flightArrivalTime;
 	}
-	public float getFlightTicketPrice() {
+	public double getFlightTicketPrice() {
 		return flightTicketPrice;
 	}
-	public void setFlightTicketPrice(float flightTicketPrice) {
+	public void setFlightTicketPrice(double flightTicketPrice) {
 		this.flightTicketPrice = flightTicketPrice;
 	}
 	public int getAvailableSeats() {
