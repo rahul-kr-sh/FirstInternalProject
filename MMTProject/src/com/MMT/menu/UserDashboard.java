@@ -8,9 +8,11 @@ import java.util.Scanner;
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
 import com.MMT.bean.Hotel;
+import com.MMT.bean.HotelRoom;
 import com.MMT.bean.Promotion;
 import com.MMT.bean.User;
 import com.MMT.bl.FlightBookingBlMMT;
+import com.MMT.bl.HotelBlMMT;
 import com.MMT.bl.PromotionBlMMT;
 import com.MMT.bl.WalletBlMMT;
 import com.MMT.dao.HotelDaoImplMMT;
@@ -21,7 +23,7 @@ public class UserDashboard {
 	PromotionBlMMT Pbl = new PromotionBlMMT();
 	WalletBlMMT Wbl = new WalletBlMMT();
 	Scanner sc = new Scanner(System.in);
-
+	HotelBlMMT Hbl=new HotelBlMMT();
 	public void showDashboard(User user) {
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
@@ -154,6 +156,16 @@ public class UserDashboard {
 			int m = sc.nextInt();
 
 			Hotel hpicked = hotelMap.get(m);
+			ArrayList<HotelRoom> arl;
+			try {
+				arl=Hbl.displayAvailHotelRoom(hpicked.getHotelId());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Enter RoomID:");
+			int rno=sc.nextInt();
+			
 			
 			break;
 		case 3:

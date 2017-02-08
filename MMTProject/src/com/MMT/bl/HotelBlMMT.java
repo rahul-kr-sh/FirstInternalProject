@@ -78,5 +78,17 @@ public class HotelBlMMT {
 		return true;
 	}
 	
+	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException{
+		ArrayList<HotelRoom> hr;
+		hr=H.searchHotel(hotelId).getHotelRoom();
+		
+		ArrayList<HotelRoom> HR=new ArrayList<HotelRoom>();
+		for(HotelRoom r:hr){
+			if(r.getHotelRoomStatus().equals("avail")){
+				HR.add(r);
+			}
+		}
+		return HR;
+	}
 	
 }
