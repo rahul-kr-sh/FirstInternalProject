@@ -30,7 +30,7 @@ public class HotelBookingTestCase {
 	HotelBookingDaoImplMMT hbdi;
 	HotelBooking hb;
 	Date date,myDate;
-	ArrayList<HotelBooking> alhb;
+	ArrayList<HotelBooking> alhb,alhb2;
 	@Before
 	public void setUp() throws Exception {
 		hbdi=new HotelBookingDaoImplMMT();
@@ -38,9 +38,9 @@ public class HotelBookingTestCase {
 		myDate = DateUtil.addDays(date, 2);
 		java.sql.Date sqlDate1 = new java.sql.Date(date.getTime());
 		java.sql.Date sqlDate2 = new java.sql.Date(myDate.getTime());
-		hb=new HotelBooking("hbId1","hid1","userid1",1,sqlDate1,sqlDate2,2);
+		hb=new HotelBooking("hbid1","hid1","userid1",1,sqlDate1,sqlDate2,2);
 		alhb=new ArrayList<HotelBooking>();
-		alhb.add(hb);
+		alhb2=new ArrayList<HotelBooking>();
 	}
 
 	@After
@@ -51,22 +51,29 @@ public class HotelBookingTestCase {
 		hb=null;
 		alhb=null;
 	}
-
+	@Ignore
 	@Test
 	public void testInsertHotelBooking() throws SQLException {
 		assertEquals(1, hbdi.insertHotelBooking(hb));
 		
 	}
-	@Ignore
+	
 	@Test
 	public void testsearchHotelBooking() throws SQLException {
 		 hbdi.insertHotelBooking(hb);
-		assertEquals(alhb, hbdi.searchHotelBooking("userid1"));
+		 alhb.add(hb);
+		alhb2=hbdi.searchHotelBooking("userid1");
+		int i=alhb.size();
+		int j=alhb2.size();
+		assertEquals(i, j);
+		hbdi.cancelHotelBooking("hbid1");
 	}
+	@Ignore
 	@Test
 	public void testcancelHotelBooking() throws SQLException {
 		 hbdi.insertHotelBooking(hb);
-		assertEquals(alhb, hbdi.searchHotelBooking("userid1"));
+		 
+		assertEquals(1, hbdi.cancelHotelBooking("hbid1"));
 	}
 
 }
