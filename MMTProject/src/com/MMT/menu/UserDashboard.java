@@ -49,9 +49,17 @@ public class UserDashboard {
 			String source = sc.next();
 			System.out.println("Enter Destination:");
 			String destination = sc.next();
-			ArrayList<Flight> fList;
+			ArrayList<Flight> fList=null;
 			LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
+			try {
 				fList = fbl.searchFlight(source, destination);
+			} catch (ClassNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 				int i = 1;
 				for (Flight findex : fList) {
 					flightMap.put(i++, findex);
@@ -71,8 +79,13 @@ public class UserDashboard {
 				int choice = sc.nextInt();
 				if (choice == 1) {
 					boolean paymentStatus = false;
-					ArrayList<Promotion> promo;
-					promo = Pbl.displayPromotion("FLIGHT");
+					ArrayList<Promotion> promo=null;
+					try {
+						promo = Pbl.displayPromotion("FLIGHT");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
 					int j = 1;
 					for (Promotion pindex : promo) {
@@ -89,7 +102,13 @@ public class UserDashboard {
 					Promotion pPicked = promoMap.get(promoindex);
 
 					float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
-					float amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+					float amountShort=0;
+					try {
+						amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					if (amountShort > 0) {
 						System.out.println("Insufficient Funds!!");
 						System.out.println("Add Rs" + amountShort + " to Wallet!!");
@@ -99,8 +118,18 @@ public class UserDashboard {
 						if (ch1 == 1) {
 							System.out.println("Enter amount you want to add to wallet!!");
 							double amount = sc.nextDouble();
-							Wbl.addWalletMoney(user.getUserId(), amount);
-							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							try {
+								Wbl.addWalletMoney(user.getUserId(), amount);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							try {
+								paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							System.out.println("Payment Done!!! ");
 							System.out.println("Confirming Flight Booking!!");
 
@@ -115,13 +144,26 @@ public class UserDashboard {
 						}
 
 					} else {
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						try {
+							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("Payment Done!!! ");
 						System.out.println("Confirming Flight Booking!!");
 					}
 
-					FlightBooking fb;
-					fb = fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					FlightBooking fb=null;
+					try {
+						fb = fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					if ((paymentStatus) && (fb != null)) {
 						System.out.println("Flight Booking Done");
 						System.out.println("Your Booking ID is: " + fb.getFlightBookingId());
@@ -144,19 +186,19 @@ public class UserDashboard {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			int i = 1;
+			int i1 = 1;
 			for (Hotel hindex : hList) {
-				hotelMap.put(i++, hindex);
+				hotelMap.put(i1++, hindex);
 			}
-			i = 1;
+			i1 = 1;
 			for (Hotel h : hList) {
-				System.out.println(i++ + ":" + h);
+				System.out.println(i1++ + ":" + h);
 			}
 			System.out.println("Pick a Hotel :");
 			int m = sc.nextInt();
 
 			Hotel hpicked = hotelMap.get(m);
-			ArrayList<HotelRoom> arl;
+			ArrayList<HotelRoom> arl=null;
 			try {
 				arl = Hbl.displayAvailHotelRoom(hpicked.getHotelId());
 			} catch (SQLException e) {
@@ -200,12 +242,12 @@ public class UserDashboard {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			float cartValue=(float) (pickedRoom.getHotelRoomPrice()*duration);
-			System.out.println("Total Price to be paid: "+cartValue);
+			float cartValue1=(float) (pickedRoom.getHotelRoomPrice()*duration);
+			System.out.println("Total Price to be paid: "+cartValue1);
 			
 			System.out.println("Press 1 to view Additional Offers!!");
-			int choice = sc.nextInt();
-			if (choice == 1) {
+			int choice1 = sc.nextInt();
+			if (choice1 == 1) {
 				boolean paymentStatus = false;
 				ArrayList<Promotion> promo=null;
 				
@@ -230,7 +272,7 @@ public class UserDashboard {
 
 				Promotion pPicked = promoMap.get(promoindex);
 
-				float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
+				float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue1);
 				float amountShort=0;
 				try {
 					amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
