@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.MMT.bean.FlightBooking;
-import com.MMT.bean.Promotion;
+
 import com.MMT.dao.FlightBookingImpMMT;
 
 
