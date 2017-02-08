@@ -16,6 +16,7 @@ public class Hotel {
 		this.hotelLocation = hotelLocation;
 		this.hotelInfo = hotelInfo;
 		this.hotelRoom = hotelRoom;
+		
 	}
 	public Hotel() {
 		super();

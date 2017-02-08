@@ -1,16 +1,24 @@
 package com.MMT.bean;
 
 public class HotelRoom {
+	private String hotelId;
 	private int hotelRoomNo;
 	private String hotelRoomType;
 	private double hotelRoomPrice;
 	private String hotelRoomStatus;
-	public HotelRoom(int hotelRoomNo, String hotelRoomType, double hotelRoomPrice, String hotelRoomStatus) {
+	public HotelRoom(String hotelId,int hotelRoomNo, String hotelRoomType, double hotelRoomPrice, String hotelRoomStatus) {
 		super();
+		this.hotelId=hotelId;
 		this.hotelRoomNo = hotelRoomNo;
 		this.hotelRoomType = hotelRoomType;
 		this.hotelRoomPrice = hotelRoomPrice;
 		this.hotelRoomStatus = hotelRoomStatus;
+	}
+	public String getHotelId() {
+		return hotelId;
+	}
+	public void setHotelId(String hotelId) {
+		this.hotelId = hotelId;
 	}
 	public HotelRoom() {
 		super();

@@ -14,7 +14,7 @@ import com.MMT.bean.HotelRoom;
 public class HotelDaoImplMMT implements HotelDaoMMT {
 
 	@Override
-	public int insertHotel(Hotel h) throws ClassNotFoundException, SQLException {
+	public int insertHotel(Hotel h) throws SQLException {
 		Connection con=DbConnection.dbConnection();
 		String hotelId=h.getHotelId();
 		String hotelName=h.getHotelName();
@@ -53,7 +53,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 
 
 	@Override
-	public int deleteHotel(String hotelId) throws ClassNotFoundException, SQLException {
+	public int deleteHotel(String hotelId) throws  SQLException {
 		
 		Connection con=DbConnection.dbConnection();
 		Statement stmt3=con.createStatement();
@@ -74,7 +74,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public int updateHotel(String hotelId, Hotel newhotel) throws ClassNotFoundException, SQLException {
+	public int updateHotel(String hotelId, Hotel newhotel) throws  SQLException {
 		
 		Connection con=DbConnection.dbConnection();
 		String hotelId1=newhotel.getHotelId();
@@ -102,7 +102,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Hotel> displayHotel() throws ClassNotFoundException, SQLException {
+	public ArrayList<Hotel> displayHotel() throws  SQLException {
 		Hotel hotel =new Hotel();
 		Connection con=DbConnection.dbConnection();
 		//Query
@@ -141,7 +141,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public Hotel searchHotel(String hotelId) throws ClassNotFoundException, SQLException {
+	public Hotel searchHotel(String hotelId) throws  SQLException {
 		Hotel hotel =new Hotel();
 		Connection con=DbConnection.dbConnection();
 		//Query
