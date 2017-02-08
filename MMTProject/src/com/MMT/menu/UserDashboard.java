@@ -31,7 +31,7 @@ public class UserDashboard {
 		System.out.println("4. View Past Hotel Bookings");
 		System.out.println("5. Add Money to Wallet");
 		System.out.println("6. Logout");
-
+		//Comment
 		System.out.println("Enter a choice: ");
 		int input = sc.nextInt();
 
