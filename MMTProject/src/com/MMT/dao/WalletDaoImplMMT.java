@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.MMT.bean.Promotion;
 import com.MMT.bean.Wallet;
 
 public class WalletDaoImplMMT implements WalletDaoMMT {

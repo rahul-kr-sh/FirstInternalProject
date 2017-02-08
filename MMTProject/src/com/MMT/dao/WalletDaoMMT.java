@@ -2,8 +2,6 @@ package com.MMT.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.MMT.bean.Promotion;
 import com.MMT.bean.Wallet;
 
 public interface WalletDaoMMT {

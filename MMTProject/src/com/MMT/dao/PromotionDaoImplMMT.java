@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-
 import com.MMT.dao.DbConnection.*;
 import com.MMT.bean.HotelRoom;
 import com.MMT.bean.Promotion;

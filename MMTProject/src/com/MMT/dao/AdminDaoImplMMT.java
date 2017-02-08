@@ -18,8 +18,8 @@ public class AdminDaoImplMMT implements AdminDao{
 		pst.setString(1, admin.getAdminId());
 		pst.setString(2,admin.getAdminName());
 		pst.setLong(3,admin.getAdminPhoneNo());
-		pst.setString(5,admin.getAdminEmailId());
-		pst.setString(6,admin.getAdminAddress());
+		pst.setString(4,admin.getAdminEmailId());
+		pst.setString(5,admin.getAdminAddress());
 		pst.setString(6,admin.getAdminPassword());
 		
 		
@@ -33,15 +33,16 @@ public class AdminDaoImplMMT implements AdminDao{
 		
 		ResultSet rs;
 		Connection con=DbConnection.dbConnection();;
-		PreparedStatement pst=con.prepareStatement("select * from admin where USERID=?");
-		
+		PreparedStatement pst=con.prepareStatement("select * from admin where ADMINID=?");
+		pst.setString(1, uid);
 		rs=pst.executeQuery();
 		while(rs.next()){
-			admin.setAdminName((rs.getString("USERNAME")));
-			admin.setAdminPhoneNo(rs.getLong("USERPHONENO"));
-			admin.setAdminEmailId(rs.getString("USEREMAILID"));
-			admin.setAdminAddress(rs.getString("USERADDRESS"));
-			admin.setAdminPassword(rs.getString("userpassword"));	
+			admin.setAdminId((rs.getString("ADMINID")));
+			admin.setAdminName((rs.getString("ADMINNAME")));
+			admin.setAdminPhoneNo(rs.getLong("ADMINPHONENO"));
+			admin.setAdminEmailId(rs.getString("ADMINEMAILID"));
+			admin.setAdminAddress(rs.getString("ADMINADDRESS"));
+			admin.setAdminPassword(rs.getString("ADMINPASSWORD"));	
 		}
 
 		con.close();
