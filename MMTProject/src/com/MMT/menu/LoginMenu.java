@@ -39,7 +39,7 @@ public class LoginMenu {
 				{
 					System.out.println(" Successful User Login!!");
 					User user = Us.checkLogin(name, pass);
-					//User Display
+					//User Display 
 				}
 				else{
 					System.out.println("Invalid Credentials");
