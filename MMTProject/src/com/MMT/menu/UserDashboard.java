@@ -51,7 +51,6 @@ public class UserDashboard {
 			String destination = sc.next();
 			ArrayList<Flight> fList;
 			LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
-			try {
 				fList = fbl.searchFlight(source, destination);
 				int i = 1;
 				for (Flight findex : fList) {
@@ -131,11 +130,6 @@ public class UserDashboard {
 					}
 				}
 
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 			break;
 
 		case 2:
