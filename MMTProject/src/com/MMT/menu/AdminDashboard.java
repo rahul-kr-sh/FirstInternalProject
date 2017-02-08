@@ -47,7 +47,7 @@ public class AdminDashboard {
 			
 		case 5:
 			System.out.println("Enter user id to see details");
-			userBl. //sc.next()
+			System.out.println(userBl.searchUser(sc.next())); //sc.next()
 			return;
 		
 		default:
