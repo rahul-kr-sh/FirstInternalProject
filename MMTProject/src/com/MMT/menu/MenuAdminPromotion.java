@@ -1,5 +1,6 @@
 package com.MMT.menu;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,20 +28,45 @@ public void choice() throws SQLException{
 	switch(i){
 	case 1:
 		
-		promotionList=promotionBL.displayPromotion();
+		try {
+			promotionList=promotionBL.displayPromotion();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(promotionList);
 		break;
 	case 2:
 		System.out.println("Enter the Promotion ID");
 		String promotionId=sc.next();
-		promotion=promotionBL.searchPromotion(promotionId);
+		try {
+			promotion=promotionBL.searchPromotion(promotionId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(promotion);
 		break;
 	case 3:
 		
 		promotionHelper.input();
 		Promotion ob=promotionHelper.getOb();
-		int j=promotionBl.insertPromotion(ob);
+		int j=0;
+		try {
+			j = promotionBl.insertPromotion(ob);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(j==1){
 			System.out.println("New Promotion Inserted");
 		}
@@ -51,7 +77,16 @@ public void choice() throws SQLException{
 	case 4:
 		System.out.println("Enter Promotion Id");
 		String pId=sc.next();
-		int k=promotionBL.deletePromotion(pId);
+		int k=0;
+		try {
+			k = promotionBL.deletePromotion(pId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(k==1){
 			System.out.println("Promotion "+pId+" is Deleted" );
 		}
@@ -62,8 +97,16 @@ public void choice() throws SQLException{
 	case 5:
 		System.out.println("Enter the Promotion ID whose Information you want to update");
 		String h=promotion.getPromotionId();
-		Promotion p1;
-		p1=promotionDao.searchPromotion(h);
+		Promotion p1=null;
+		try {
+			p1=promotionDao.searchPromotion(h);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(p1==null)
 		{
 			System.out.println("This Promotion doesn't not exist");
@@ -72,7 +115,16 @@ public void choice() throws SQLException{
 		else{
 			promotionHelper.input();
 			Promotion ob1=promotionHelper.getOb();
-		int	l=promotionDao.updatePromotion(h,ob1);
+		int l=0;
+		try {
+			l = promotionDao.updatePromotion(h,ob1);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(l==1)
 		{System.out.println("Updated");}
 		else

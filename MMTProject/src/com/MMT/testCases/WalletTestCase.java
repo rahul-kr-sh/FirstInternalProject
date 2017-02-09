@@ -2,6 +2,7 @@ package com.MMT.testCases;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.After;
@@ -35,28 +36,28 @@ WalletDaoImplMMT wdi;
 	}
 
 	@Test
-	public void testdisplayWallet() throws SQLException {
+	public void testdisplayWallet() throws SQLException, ClassNotFoundException, IOException {
 		wl1=wdi.displayWallet("1");
 		assertEquals("1",wl.getUserId());
 	}
 	
 	@Test
-	public void testupdateWallet() throws SQLException {
+	public void testupdateWallet() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1, wdi.updateWallet("1",wl));
 	}
 	@Test
-	public void testdisplayWalletAll() throws SQLException {
+	public void testdisplayWalletAll() throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<Wallet> proList=wdi.displayWalletAll();
 		assertEquals(1, proList.size());
 	}
 	@Test
-	public void testinsertWallet() throws SQLException {
+	public void testinsertWallet() throws SQLException, ClassNotFoundException, IOException {
 		wl1=new Wallet("2",200);
 		assertEquals(1, wdi.insertWallet(wl1));
 		wdi.deleteWallet(wl1);
 	}
 	@Test
-	public void testdeleteWallet() throws SQLException {
+	public void testdeleteWallet() throws SQLException, ClassNotFoundException, IOException {
 		wl2=new Wallet("3",300);
 		wdi.insertWallet(wl2);
 		assertEquals(1, wdi.deleteWallet(wl2));

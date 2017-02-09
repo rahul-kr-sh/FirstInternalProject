@@ -1,5 +1,6 @@
 package com.MMT.bl;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,18 +11,18 @@ import com.MMT.dao.WalletDaoMMT;
 public class WalletBlMMT {
 	private WalletDaoMMT walletDao = new WalletDaoImplMMT();
 
-	public float walletBalance(String userId) throws SQLException {
+	public float walletBalance(String userId) throws SQLException, ClassNotFoundException, IOException {
 		Wallet w;
 
 		w = walletDao.displayWallet(userId);
 		return (float) w.getWalletBalance();
 	}
 
-	public ArrayList<Wallet> displayAll() throws SQLException {
+	public ArrayList<Wallet> displayAll() throws SQLException, ClassNotFoundException, IOException {
 		return walletDao.displayWalletAll();
 	}
 
-	public boolean addWalletMoney(String userId,Double value) throws SQLException {
+	public boolean addWalletMoney(String userId,Double value) throws SQLException, ClassNotFoundException, IOException {
 		Wallet w;
 		w=walletDao.displayWallet(userId);
 		w.setWalletBalance(w.getWalletBalance()+value);
@@ -29,7 +30,7 @@ public class WalletBlMMT {
 		return true;
 	}
 	
-	public boolean subtractWalletMoney(String userId,Double value) throws SQLException {
+	public boolean subtractWalletMoney(String userId,Double value) throws SQLException, ClassNotFoundException, IOException {
 		Wallet w;
 		w=walletDao.displayWallet(userId);
 		double temp=w.getWalletBalance()-value;

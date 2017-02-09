@@ -2,6 +2,7 @@ package com.MMT.testCases;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,19 +67,19 @@ public class HotelBookingTestCase {
 	}
 	
 	@Test
-	public void testInsertHotelBooking() throws SQLException {
+	public void testInsertHotelBooking() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1, hbdi.insertHotelBooking(hb));
 		//hbdi.cancelHotelBooking("hbid1");
 	}
 	@Test
-	public void testdisplayHotelBooking() throws SQLException {
+	public void testdisplayHotelBooking() throws SQLException, ClassNotFoundException, IOException {
 		 hbdi.insertHotelBooking(hb5);
 		 al2=hbdi.display();
 		 assertEquals(1, al1.size());
 	}
 	
 	@Test
-	public void testsearchHotelBooking() throws SQLException {
+	public void testsearchHotelBooking() throws SQLException, ClassNotFoundException, IOException {
 		 hbdi.insertHotelBooking(hb2);
 		 alhb.add(hb2);
 		alhb2=hbdi.searchHotelBooking("userid2");

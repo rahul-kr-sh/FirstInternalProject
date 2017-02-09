@@ -1,5 +1,6 @@
 package com.MMT.menu;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,13 +21,29 @@ public void choice() throws SQLException{
 	switch(i){
 	case 1:
 		
-		promotionList=promotionBL.displayPromotion();
+		try {
+			promotionList=promotionBL.displayPromotion();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(promotionList);
 		break;
 	case 2:
 		System.out.println("Enter the Promotion ID");
 		String promotionId=sc.next();
-		promotion=promotionBL.searchPromotion(promotionId);
+		try {
+			promotion=promotionBL.searchPromotion(promotionId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(promotion);
 		break;
 	default:

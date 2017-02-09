@@ -18,7 +18,7 @@ public class HotelBlMMT {
 	HotelDaoImplMMT hotelDao=new HotelDaoImplMMT();
 	HotelBookingDaoImplMMT hotelBookingDao=new HotelBookingDaoImplMMT();
 	
-	public ArrayList<Hotel> displayHotel() throws ClassNotFoundException, SQLException{
+	public ArrayList<Hotel> displayHotel() throws ClassNotFoundException, SQLException, IOException{
 		return hotelDao.displayHotel();
 	}
 	
@@ -26,11 +26,11 @@ public class HotelBlMMT {
 		return hotelDao.searchHotel(hotelId);
 	}
 	
-	public ArrayList<Hotel> searchHotel1(String location) throws SQLException{
+	public ArrayList<Hotel> searchHotel1(String location) throws SQLException, ClassNotFoundException, IOException{
 		return hotelDao.searchHotel1(location);
 	}
 	
-	public HotelRoom searchHotelRoom(String hotelId, int rno) throws SQLException{
+	public HotelRoom searchHotelRoom(String hotelId, int rno) throws SQLException, ClassNotFoundException, IOException{
 		Hotel h;
 		h=hotelDao.searchHotel(hotelId);
 		
@@ -45,7 +45,7 @@ public class HotelBlMMT {
 		return hotelRoom; 
 	}
 	
-	public HotelBooking bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
+	public HotelBooking bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException, IOException{
 		Hotel hotel=new Hotel();
 		hotel=hotelDao.searchHotel(hotelId);
 		ArrayList<HotelRoom> room=new ArrayList<HotelRoom>();
@@ -97,7 +97,7 @@ public class HotelBlMMT {
 	}
 	
 	
-	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException{
+	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException, ClassNotFoundException, IOException{
 		ArrayList<HotelRoom> hr;
 		hr=hotelDao.searchHotel(hotelId).getHotelRoom();
 		

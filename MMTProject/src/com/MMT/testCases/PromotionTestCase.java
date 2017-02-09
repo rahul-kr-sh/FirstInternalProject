@@ -2,6 +2,7 @@ package com.MMT.testCases;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -31,34 +32,34 @@ public class PromotionTestCase {
 	}
 
 	@Test(expected=SQLException.class)
-	public void testInsertPromotion() throws SQLException {
+	public void testInsertPromotion() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,pdi.insertPromotion(pro));
 		
 	}
 	
 	@Test(expected=SQLException.class)
-	public void testdeletePromotion() throws SQLException {
+	public void testdeletePromotion() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,pdi.deletePromotion("FLY200"));
 		
 	}
 	@Test(expected=SQLException.class)
-	public void testupdatePromotion() throws SQLException {
+	public void testupdatePromotion() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,pdi.updatePromotion("FLY200", pro1));
 	}
 	@Test(expected=SQLException.class)
-	public void testdisplayPromotion() throws SQLException {
+	public void testdisplayPromotion() throws SQLException, ClassNotFoundException, IOException {
 		pdi.insertPromotion(pro);
 		ArrayList<Promotion> proList=pdi.displayPromotion();
 		assertEquals(1,proList.size());
 	}
 	@Test(expected=SQLException.class)
-	public void testsearchPromotion() throws SQLException {
+	public void testsearchPromotion() throws SQLException, ClassNotFoundException, IOException {
 		pdi.insertPromotion(pro1);
 		assertEquals(pro1,pdi.searchPromotion("FLY2001"));
 		
 	}
 	@Test(expected=SQLException.class)
-	public void testdisplayPromotiontype() throws SQLException {
+	public void testdisplayPromotiontype() throws SQLException, ClassNotFoundException, IOException {
 		pdi.insertPromotion(pro);
 		ArrayList<Promotion> proList1=pdi.displayPromotion("flight");
 		assertEquals(1,proList1.size());

@@ -1,5 +1,7 @@
 package com.MMT.testCases;
 import static org.junit.Assert.*;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.After;
@@ -55,32 +57,32 @@ public class HotelTestCase {
 	}
 
 	@Test
-	public void testinsertHotel() throws  SQLException {
+	public void testinsertHotel() throws  SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,adi.insertHotel(h));
 		adi.deleteHotel("1");
 	}
 	@Test
-	public void testdeleteHotel() throws  SQLException {
+	public void testdeleteHotel() throws  SQLException, ClassNotFoundException, IOException {
 		adi.insertHotel(h);
 		assertEquals(1,adi.deleteHotel("1"));
 		
 	}
 	@Test
-	public void testupdateHotel() throws  SQLException {
+	public void testupdateHotel() throws  SQLException, ClassNotFoundException, IOException {
 		adi.insertHotel(h);
 		assertEquals(1,adi.updateHotel("1", newHotel));
 		adi.deleteHotel("1");
 		adi.deleteHotel("2");
 	}
 	@Test
-	public void testdisplayHotel() throws  SQLException {
+	public void testdisplayHotel() throws  SQLException, ClassNotFoundException, IOException {
 		adi.insertHotel(h);
 		assertEquals(1, adi.displayHotel().size());
 		adi.deleteHotel("1");
 	}
 	@Ignore
 	@Test
-	public void testsearchHotel() throws  SQLException {
+	public void testsearchHotel() throws  SQLException, ClassNotFoundException, IOException {
 		adi.insertHotel(newHotel);
 		hCheck=adi.searchHotel("2");
 		assertEquals(2,hCheck.getHotelId());

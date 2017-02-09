@@ -1,5 +1,6 @@
 package com.MMT.menu;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -48,7 +49,15 @@ public class AdminDashboard {
 			
 		case 5:
 			System.out.println("Enter user id to see details");
-			System.out.println(userBl.searchUser(sc.next())); //sc.next()
+			try {
+				System.out.println(userBl.searchUser(sc.next()));
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //sc.next()
 			return;
 		
 		default:
@@ -76,7 +85,7 @@ public class AdminDashboard {
 			 
 			 try {
 				adminBl.searchAdmin(admin.getAdminId());
-			} catch (SQLException e) {
+			} catch (SQLException | ClassNotFoundException | IOException e) {
 				System.out.println("No record Found");
 //				e.printStackTrace();
 			}
@@ -92,6 +101,12 @@ public class AdminDashboard {
 			} catch (SQLException e) {
 				System.out.println("Please enter correct details");
 //				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return;
 		
@@ -105,6 +120,12 @@ public class AdminDashboard {
 			} catch (SQLException e) {
 				System.out.println("Please try another one");
 //				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return;
 		
@@ -120,6 +141,12 @@ public class AdminDashboard {
 			} catch (SQLException e) {
 				System.out.println("Admin could not be delete.");
 //				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} 
 		    return ;
 		case 5:showDashboard(admin);

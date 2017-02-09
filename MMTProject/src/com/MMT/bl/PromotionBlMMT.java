@@ -1,4 +1,5 @@
 package com.MMT.bl;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -8,27 +9,27 @@ import com.MMT.dao.PromotionDaoMMT;
 public class PromotionBlMMT {
 	private PromotionDaoMMT promotionDao=new PromotionDaoImplMMT();
 	
-	public int insertPromotion(Promotion p)throws SQLException {
+	public int insertPromotion(Promotion p)throws SQLException, ClassNotFoundException, IOException {
 		return promotionDao.insertPromotion(p);
 	}
 	
-	public int deletePromotion(String promotionId)throws SQLException {
+	public int deletePromotion(String promotionId)throws SQLException, ClassNotFoundException, IOException {
 		return promotionDao.deletePromotion(promotionId);
 	}
 	
-	public int updatePromotion(String pId, Promotion newp) throws SQLException{
+	public int updatePromotion(String pId, Promotion newp) throws SQLException, ClassNotFoundException, IOException{
 		return promotionDao.updatePromotion(pId,newp);
 	}
 	
-	public ArrayList<Promotion> displayPromotion()throws SQLException {
+	public ArrayList<Promotion> displayPromotion()throws SQLException, ClassNotFoundException, IOException {
 		return promotionDao.displayPromotion();
 	}
 	
-	public ArrayList<Promotion> displayPromotion(String promotionType)throws SQLException {
+	public ArrayList<Promotion> displayPromotion(String promotionType)throws SQLException, ClassNotFoundException, IOException {
 		return promotionDao.displayPromotion(promotionType);
 	}
 	
-	public Promotion searchPromotion(String promotionId) throws SQLException{
+	public Promotion searchPromotion(String promotionId) throws SQLException, ClassNotFoundException, IOException{
 		return promotionDao.searchPromotion(promotionId);
 	}
 	

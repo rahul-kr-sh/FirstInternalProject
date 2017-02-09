@@ -3,6 +3,7 @@ package com.MMT.testCases;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class FlightBookingTestCase {
 		}
 
 		@Test(expected=SQLException.class)
-		public void testdeleteFlightBooking() throws SQLException, ClassNotFoundException {
+		public void testdeleteFlightBooking() throws SQLException, ClassNotFoundException, IOException {
 			//System.out.println("delete");
 			assertEquals(1,fbi.deleteFlightBooking("FBK1001"));
 			
@@ -49,7 +50,7 @@ public class FlightBookingTestCase {
 		//priyanka
 		
 		@Test(expected=SQLException.class)
-		public void testdisplayFlightBooking() throws SQLException, ClassNotFoundException {
+		public void testdisplayFlightBooking() throws SQLException, ClassNotFoundException, IOException {
 			fbi.insertFlightBooking(fbk);
 			ArrayList<FlightBooking> bookingList =fbi.displayFlightBooking();
 			assertEquals(1,bookingList.size());
@@ -59,7 +60,7 @@ public class FlightBookingTestCase {
 		
 		
 		@Test(expected=SQLException.class)
-		public void testsearchFlightBooking() throws SQLException, ClassNotFoundException {
+		public void testsearchFlightBooking() throws SQLException, ClassNotFoundException, IOException {
 			fbi.insertFlightBooking(fbk);
 			ArrayList<FlightBooking> bookingList =fbi.searchFlightBooking("FBK2001");
 			assertEquals(1,bookingList.size());

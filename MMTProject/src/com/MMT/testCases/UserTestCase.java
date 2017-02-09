@@ -2,6 +2,7 @@ package com.MMT.testCases;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import org.junit.After;
@@ -35,21 +36,21 @@ public class UserTestCase {
 	}
 
 	@Test
-	public void insertTest() throws SQLException {
+	public void insertTest() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1, userDao.insert(user1));
 		userDao.delete(user1.getUserId());
 		
 		
 	}
 	@Test(expected=SQLException.class)
-	public void deleteTest() throws SQLException{
+	public void deleteTest() throws SQLException, ClassNotFoundException, IOException{
 		userDao.insert(user2);
 		assertEquals(1, userDao.delete(user2.getUserId()));
 		
 	}
 	
 	@Test(expected=SQLException.class)
-	public void updateTest() throws SQLException{
+	public void updateTest() throws SQLException, ClassNotFoundException, IOException{
 		userDao.insert(user2);
 		assertEquals(1,userDao.update("ui2",new User("ui2","un5",55,"un@5","add5","up5")));
 		userDao.delete("ui2");
@@ -57,7 +58,7 @@ public class UserTestCase {
 	}
 	
 	@Test(expected=SQLException.class)
-	public void searchTest() throws SQLException{
+	public void searchTest() throws SQLException, ClassNotFoundException, IOException{
 		userDao.insert(user2);
 		assertEquals(user1, userDao.search("ui2"));
 		userDao.delete("ui2");
@@ -65,7 +66,7 @@ public class UserTestCase {
 	}
 	
 	@Test(expected=SQLException.class)
-	public void displayAllTest() throws SQLException{
+	public void displayAllTest() throws SQLException, ClassNotFoundException, IOException{
 		userDao.insert(user2);
 		assertEquals(1, userDao.displayAll().size());
 		userDao.delete("ui2");

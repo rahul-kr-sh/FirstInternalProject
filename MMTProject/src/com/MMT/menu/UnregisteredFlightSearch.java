@@ -1,5 +1,6 @@
 package com.MMT.menu;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -31,7 +32,12 @@ public class UnregisteredFlightSearch {
 		ArrayList<Flight> fList = null;
 		LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 		try {
-			fList = flightBookingBL.searchFlight(source, destination);
+			try {
+				fList = flightBookingBL.searchFlight(source, destination);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (ClassNotFoundException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -78,6 +84,12 @@ public class UnregisteredFlightSearch {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 		} else if (in == 2) {
 			homepage.HomePageMenu();
@@ -92,6 +104,12 @@ public class UnregisteredFlightSearch {
 			try {
 				promo = promotionBl.displayPromotion("FLIGHT");
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -117,6 +135,12 @@ public class UnregisteredFlightSearch {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			if (amountShort > 0) {
 				System.out.println("Insufficient Funds!!");
@@ -132,10 +156,22 @@ public class UnregisteredFlightSearch {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					try {
 						paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -160,6 +196,12 @@ public class UnregisteredFlightSearch {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				System.out.println("Payment Done!!! ");
 				System.out.println("Confirming Flight Booking!!");
@@ -173,6 +215,9 @@ public class UnregisteredFlightSearch {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -42,7 +42,7 @@ public class UserBlMMT {
 
 	}
 
-	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException {
+	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException, IOException {
 
 		return flightBookingDao.searchFlightBooking(userId);
 	}

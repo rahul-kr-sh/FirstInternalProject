@@ -54,7 +54,12 @@ public class UserDashboard {
 			ArrayList<Flight> fList = null;
 			LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 			try {
-				fList = flightBookingBL.searchFlight(source, destination);
+				try {
+					fList = flightBookingBL.searchFlight(source, destination);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (ClassNotFoundException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -88,6 +93,12 @@ public class UserDashboard {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
 				int j = 1;
@@ -111,6 +122,12 @@ public class UserDashboard {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				if (amountShort > 0) {
 					System.out.println("Insufficient Funds!!");
@@ -126,11 +143,23 @@ public class UserDashboard {
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 						try {
 							paymentStatus = walletBL.subtractWalletMoney(user.getUserId(),
 									(double) valueAfterPromotion);
 						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -155,6 +184,12 @@ public class UserDashboard {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					System.out.println("Payment Done!!! ");
 					System.out.println("Confirming Flight Booking!!");
@@ -162,8 +197,13 @@ public class UserDashboard {
 
 				FlightBooking fb = null;
 				try {
-					fb = flightBookingBL.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination,
-							seats);
+					try {
+						fb = flightBookingBL.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination,
+								seats);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -194,6 +234,12 @@ public class UserDashboard {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			int i1 = 1;
 			for (Hotel hindex : hList) {
@@ -211,6 +257,12 @@ public class UserDashboard {
 			try {
 				arl = hotelBL.displayAvailHotelRoom(hpicked.getHotelId());
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -250,6 +302,12 @@ public class UserDashboard {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			float cartValue1 = (float) (pickedRoom.getHotelRoomPrice() * duration);
 			System.out.println("Total Price to be paid: " + cartValue1);
@@ -265,6 +323,12 @@ public class UserDashboard {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
 				int j = 1;
@@ -288,6 +352,12 @@ public class UserDashboard {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				if (amountShort > 0) {
 					System.out.println("Insufficient Funds!!");
@@ -303,11 +373,23 @@ public class UserDashboard {
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 						try {
 							paymentStatus = walletBL.subtractWalletMoney(user.getUserId(),
 									(double) valueAfterPromotion);
 						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -332,6 +414,12 @@ public class UserDashboard {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					System.out.println("Payment Done!!! ");
 					System.out.println("Confirming Hotel Booking!!");
@@ -339,7 +427,12 @@ public class UserDashboard {
 
 				HotelBooking hb = null;
 				try {
-					hb = hotelBL.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
+					try {
+						hb = hotelBL.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -363,7 +456,12 @@ public class UserDashboard {
 			ArrayList<FlightBooking> fb = null;
 
 			try {
-				fb = userBL.pastFbooking(user.getUserId());
+				try {
+					fb = userBL.pastFbooking(user.getUserId());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -397,6 +495,12 @@ public class UserDashboard {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 			System.out.println("Enter Amount you want to add to wallet:");
@@ -407,12 +511,24 @@ public class UserDashboard {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			if (flag) {
 				System.out.println("Money added to wallet");
 				try {
 					System.out.println("Your updated wallet balance is " + walletBL.walletBalance(user.getUserId()));
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -3,6 +3,7 @@
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class FlightTestCase {
 	}
 
 	@Test(expected=SQLException.class)
-	public void testupdateFlight() throws SQLException, ClassNotFoundException {
+	public void testupdateFlight() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,fdao.updateFlight("FLY200", flig));
 	
 	}
@@ -52,7 +53,7 @@ public class FlightTestCase {
 	
 
 	@Test(expected=SQLException.class)
-	public void testdisplayFlight() throws SQLException, ClassNotFoundException {
+	public void testdisplayFlight() throws SQLException, ClassNotFoundException, IOException {
 		//System.out.println("dispaly");
 		fdao.insertFlight(flig);
 		ArrayList<Flight> flightList =fdao.displayFlight();
@@ -60,19 +61,19 @@ public class FlightTestCase {
 	}
 	
 	@Test(expected=SQLException.class)
-	public void testsearchFlight() throws SQLException, ClassNotFoundException {
+	public void testsearchFlight() throws SQLException, ClassNotFoundException, IOException {
 		fdao.insertFlight(flig);
 		assertEquals(flig,fdao.searchFlight("FLY2001"));
 	
 	}
 	
 	@Test(expected=SQLException.class)
-	public void testdeleteFlight() throws SQLException, ClassNotFoundException {
+	public void testdeleteFlight() throws SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,fdao.deleteFlight("FLY200"));
 		
 }
 	
-	public void testsearchFlightLocation() throws SQLException, ClassNotFoundException {
+	public void testsearchFlightLocation() throws SQLException, ClassNotFoundException, IOException {
 		//System.out.println("dispaly");
 		fdao.insertFlight(flig);
 		ArrayList<Flight> flightList =fdao.searchFlight("Delhi", "Indore");

@@ -21,23 +21,23 @@ public class AdminBlMMT {
 		return hoteldao.insertHotel(h);
 	}
 
-	public int insertFlight(Flight f) throws ClassNotFoundException, SQLException {
+	public int insertFlight(Flight f) throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.insertFlight(f);
 	}
 
-	public int deleteHotel(String hotelId) throws ClassNotFoundException, SQLException {
+	public int deleteHotel(String hotelId) throws ClassNotFoundException, SQLException, IOException {
 		return hoteldao.deleteHotel(hotelId);
 	}
 
-	public int deleteFlight(String flightId) throws ClassNotFoundException, SQLException {
+	public int deleteFlight(String flightId) throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.deleteFlight(flightId);
 	}
 
-	public int modifyHotel(String hotelId, Hotel newhotel) throws ClassNotFoundException, SQLException {
+	public int modifyHotel(String hotelId, Hotel newhotel) throws ClassNotFoundException, SQLException, IOException {
 		return hoteldao.updateHotel(hotelId, newhotel);
 	}
 
-	public int modifyFlight(String flightId, Flight newflight) throws ClassNotFoundException, SQLException {
+	public int modifyFlight(String flightId, Flight newflight) throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.updateFlight(flightId, newflight);
 	}
 

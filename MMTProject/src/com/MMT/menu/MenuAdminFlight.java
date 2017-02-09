@@ -1,5 +1,6 @@
 package com.MMT.menu;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -59,6 +60,9 @@ public class MenuAdminFlight {
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
 //				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			
@@ -75,6 +79,9 @@ public class MenuAdminFlight {
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
 //				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			
@@ -93,6 +100,9 @@ public class MenuAdminFlight {
 		} catch (ClassNotFoundException e) {
 			System.out.println("Please try again");
 //			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 			
 			
@@ -101,6 +111,9 @@ public class MenuAdminFlight {
 			try {
 				flightBookingBlMMT.displayFlight();
 			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -1,5 +1,6 @@
 package com.MMT.bl;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,21 +27,21 @@ public class FlightBookingBlMMT {
 		}
 	}
 
-	public ArrayList<Flight> displayFlight() throws ClassNotFoundException, SQLException {
+	public ArrayList<Flight> displayFlight() throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.displayFlight();
 	}
 
-	public Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException {
+	public Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.searchFlight(flightId);
 	}
 
 	public ArrayList<Flight> searchFlight(String flightSource, String flightDestination)
-			throws ClassNotFoundException, SQLException {
+			throws ClassNotFoundException, SQLException, IOException {
 		return flightdao.searchFlight(flightSource, flightDestination);
 	}
 
 	public FlightBooking bookFlight(String userId, String flightId, String flightSource, String flightDestination,
-			int seats) throws ClassNotFoundException, SQLException {
+			int seats) throws ClassNotFoundException, SQLException, IOException {
 		String fid = flightId;
 		String UId = userId;
 		boolean flag = false;
