@@ -14,7 +14,7 @@ public class LoginMenu {
 	AdminBlMMT adminBl=new AdminBlMMT();
 	UserBlMMT userBl=new UserBlMMT();
 	UserDashboard userDashboard=new UserDashboard();
-	
+	HomePage homePage = new HomePage();
 	Scanner sc=new Scanner(System.in);
 	public void LoginPage(){
 		System.out.println("Enter User Name:");
@@ -49,7 +49,7 @@ public class LoginMenu {
 				}
 				else{
 					System.out.println("Invalid Credentials");
-					return;
+					homePage.HomePageMenu();
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
