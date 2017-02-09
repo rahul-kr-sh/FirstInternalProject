@@ -38,10 +38,13 @@ public class MenuAdminFlight {
 				}
 				else
 				{
-					System.out.println("Flight could added");
+					System.out.println("Flight could not be added");
+					choice(admin);
+
 				}
 			} catch (Exception e) {
 				System.out.println("Flight Already Exists!!");
+				choice(admin);
 			//e.printStackTrace();
 			}
 			break;
@@ -55,17 +58,27 @@ public class MenuAdminFlight {
 				
 				if(adminBl.modifyFlight(fId, flight)>0){
 					System.out.println("Successfully updated");
+					choice(admin);
+
 				}
 				else
 				{
-					System.out.println("Flight could updated");
+					System.out.println("Flight could not be updated");
+					choice(admin);
+
 				}
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
+				choice(admin);
+
 //				e.printStackTrace();
 			} catch (IOException e) {
+
 				// TODO Auto-generated catch block
+
 				e.printStackTrace();
+				choice(admin);
+
 			}
 			break;
 			
@@ -76,15 +89,23 @@ public class MenuAdminFlight {
 				if(flight!=null){
 					System.out.println(flight);
 				}
-				else 
+				else {
 					System.out.println("Please enter correct flight id");
+					choice(admin);
+
+				}
+					
 				
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
+				choice(admin);
+
 //				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				choice(admin);
+
 			}
 			
 			break;
@@ -95,17 +116,25 @@ public class MenuAdminFlight {
 			
 			if(adminBl.deleteFlight(sc.next())>0){
 				System.out.println("Successfully deleted");
+				choice(admin);
+
 			}
 			else
 			{
-				System.out.println("Flight could deleted");
+				System.out.println("Flight could not be deleted");
+				choice(admin);
+
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("Please try again");
+			choice(admin);
+
 //			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			choice(admin);
+
 		}
 			
 			break;
@@ -113,12 +142,18 @@ public class MenuAdminFlight {
 		case 5:
 			try {
 				flightBookingBlMMT.displayFlight();
+				choice(admin);
+
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				choice(admin);
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				choice(admin);
+
 			}
 			break;
 		case 6:
@@ -127,6 +162,8 @@ public class MenuAdminFlight {
 			
 		default :
 			System.out.println("Invalid choice");
+			choice(admin);
+
 			break;
 			
 		}
