@@ -13,22 +13,22 @@ import com.MMT.bean.Wallet;
 
 public class WalletDaoImplMMT implements WalletDaoMMT {
 	Connection con = null;
-	Wallet wl = null;
+	// Wallet wl = null;
 
 	@Override
 	public Wallet displayWallet(String userId) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
-		wl = new Wallet();
-		
+		Wallet newWallet = new Wallet();
+
 		ResultSet rs;
-		PreparedStatement pst=con.prepareStatement("select * from wallet where UserId=?");
+		PreparedStatement pst = con.prepareStatement("select * from wallet where UserId=?");
 		pst.setString(1, userId);
-		rs=pst.executeQuery();
-		while (rs.next()) {
-			wl.setUserId(rs.getString(1));
-			wl.setWalletBalance(rs.getDouble(2));
+		rs = pst.executeQuery();
+		if (rs.next()) {
+			newWallet.setUserId(rs.getString(1));
+			newWallet.setWalletBalance(rs.getDouble(2));
 			con.close();
-			return wl;
+			return newWallet;
 		}
 		con.close();
 		return null;
@@ -37,18 +37,15 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	@Override
 	public int updateWallet(String userId, Wallet newWallet) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from  WALLET where USERID=" + userId);
-		while (rs.next()) {
-			double newBalance = newWallet.getWalletBalance();
-			int rows = stmt.executeUpdate("update WALLET set WALLETBALANCE=" + newBalance + "where USERID=" + userId);
-			if (rows > 0) {
-				con.close();
-				return rows;
-			}
-		}
+		int row = 0;
+		PreparedStatement pst = con.prepareStatement("update wallet SET walletBalance=? where userId=?");
+
+		pst.setDouble(1, newWallet.getWalletBalance());
+		pst.setString(2, userId);
+		row = pst.executeUpdate();
+
 		con.close();
-		return 0;
+		return row;
 	}
 
 	@Override
@@ -70,41 +67,31 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public int insertWallet(Wallet w) throws SQLException, ClassNotFoundException, IOException {
-		con=DbConnection.dbConnection();
-		String uId=w.getUserId();
-		double userBalance=w.getWalletBalance();
-		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("INSERT INTO Wallet values("+uId+","+userBalance+")");
-		if(rows>0)
-		{
-			con.close();
-			return rows;
-		}
-		else 
-		{	con.close();
-		return 0;
-		}
-		
-		
+	public int insertWallet(Wallet wallet) throws SQLException, ClassNotFoundException, IOException {
+		con = DbConnection.dbConnection();
+		int row = 0;
+
+		PreparedStatement pst = con.prepareStatement("insert into wallet values(?,?)");
+		pst.setString(1, wallet.getUserId());
+		pst.setDouble(2, wallet.getWalletBalance());
+		row = pst.executeUpdate();
+		return row;
 	}
+
 	@Override
 	public int deleteWallet(Wallet w) throws SQLException, ClassNotFoundException, IOException {
-		con=DbConnection.dbConnection();
-		String uId=w.getUserId();
-		double userBalance=w.getWalletBalance();
-		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("delete from Wallet where USERID=+"+uId);
-		if(rows>0)
-		{
+		con = DbConnection.dbConnection();
+		String uId = w.getUserId();
+		double userBalance = w.getWalletBalance();
+		Statement stmt = con.createStatement();
+		int rows = stmt.executeUpdate("delete from Wallet where USERID=+" + uId);
+		if (rows > 0) {
 			con.close();
 			return rows;
+		} else {
+			con.close();
+			return 0;
 		}
-		else 
-		{	con.close();
-		return 0;
-		}
-		
-		
+
 	}
 }

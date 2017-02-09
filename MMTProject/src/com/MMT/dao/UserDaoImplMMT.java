@@ -17,7 +17,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 	public int insert(User user) throws SQLException, ClassNotFoundException, IOException {
 		int row;
 		con=DbConnection.dbConnection();
-		PreparedStatement pst=con.prepareStatement("insert into mmt_user values(?,?,?,?,?,?)");
+		PreparedStatement pst = con.prepareStatement("insert into mmt_user values(?,?,?,?,?,?)");
 		pst.setString(1, user.getUserId());
 		pst.setString(2,user.getUserName());
 		pst.setLong(3,user.getUserPhoneNo());

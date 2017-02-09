@@ -8,16 +8,18 @@ import java.util.ArrayList;
 import com.MMT.bean.FlightBooking;
 import com.MMT.bean.HotelBooking;
 import com.MMT.bean.User;
+import com.MMT.bean.Wallet;
 import com.MMT.dao.FlightBookingImpMMT;
 import com.MMT.dao.HotelBookingDaoImplMMT;
 import com.MMT.dao.UserDaoImplMMT;
+import com.MMT.dao.WalletDaoImplMMT;
 
 public class UserBlMMT {
 	private HotelBookingDaoImplMMT hotelBookingDao = new HotelBookingDaoImplMMT();
 	private FlightBookingImpMMT flightBookingDao = new FlightBookingImpMMT();
 	private UserDaoImplMMT userDao = new UserDaoImplMMT();
+
 	public User checkLogin(String username, String password) throws SQLException, ClassNotFoundException, IOException {
-		
 
 		User user = (User) userDao.search(username);
 		if (user == null) {
@@ -34,6 +36,12 @@ public class UserBlMMT {
 		if (userDao.search(user.getUserId()) == null) {
 
 			userDao.insert(user);
+			WalletDaoImplMMT walletDao = new WalletDaoImplMMT();
+			Wallet wallet = new Wallet();
+			wallet.setUserId(user.getUserId());
+			wallet.setWalletBalance(0);
+
+			walletDao.insertWallet(wallet);
 			return true;
 		} else {
 			System.out.println("User Name already taken.Please select another user name.");
@@ -42,7 +50,8 @@ public class UserBlMMT {
 
 	}
 
-	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException, IOException {
+	public ArrayList<FlightBooking> pastFbooking(String userId)
+			throws ClassNotFoundException, SQLException, IOException {
 
 		return flightBookingDao.searchFlightBooking(userId);
 	}
