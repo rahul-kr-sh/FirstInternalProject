@@ -21,7 +21,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 			con = DbConnection.dbConnection();
 			// Query
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from FlightBooking");
+			ResultSet rs = stmt.executeQuery("select * from FLIGHTBOOKING");
 
 			while (rs.next()) {
 				fb.setFlightBookingId(rs.getString("flightBookingId"));
@@ -51,7 +51,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		ResultSet rs;
 		con = DbConnection.dbConnection();
 		// Query
-		PreparedStatement pst = con.prepareStatement("select * from FlightBooking where userId=?");
+		PreparedStatement pst = con.prepareStatement("select * from FLIGHTBOOKING where userId=?");
 		pst.setString(1, userId);
 		rs = pst.executeQuery();
 		while (rs.next()) {
@@ -76,10 +76,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		con = DbConnection.dbConnection();
 		int row = 0;
 		Statement stmt = con.createStatement();
-		// int rows=stmt.executeUpdate("insert into FlightBooking(
-		// flightBookingid,flightId,userId,flightBookingDate,flage values
-		// ("+flightBookingId+","+flightId+","+userId+","+flightBookingDate+","+flage+")");
-		// Process Results
+	
 		PreparedStatement pst = con.prepareStatement("insert into FLIGHTBOOKING values(?,?,?,?,?)");
 		pst.setString(1, fb.getFlightBookingId());
 		pst.setString(2, fb.getUserId());
@@ -100,7 +97,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		con = DbConnection.dbConnection();
 
 		Statement stmt = con.createStatement();
-		int rows = stmt.executeUpdate("delete from FlightBooking where flightBookingId =" + flightBookingId);
+		int rows = stmt.executeUpdate("delete from FLIGHTBOOKING where flightBookingId =" + flightBookingId);
 		// Process Results
 
 		con.close();
@@ -112,5 +109,6 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

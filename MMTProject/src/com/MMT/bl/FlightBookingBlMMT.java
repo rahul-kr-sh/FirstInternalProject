@@ -60,12 +60,13 @@ public class FlightBookingBlMMT {
 				FlightBooking FBD = new FlightBooking();
 
 				int hbid = 10000 + (int) (Math.random() * 11000);
-				System.out.println("Random No"+hbid);
+				//System.out.println("Random No"+hbid);
 				String id = Integer.toString(hbid);
 				String date = new String();
 				FBD.setUserId(UId);
 				FBD.setFlightId(fid);
 				FBD.setFlightBookingId(id);
+				System.out.println("BOOiinh IDs "+FBD.getFlightBookingId());
 				FBD.setFlightBookingId(date);
 				FBD.setFlag(true);
 				flightBookingDao.insertFlightBooking(FBD);

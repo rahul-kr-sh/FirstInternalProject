@@ -460,6 +460,9 @@ public class UserDashboard {
 			try {
 				try {
 					fb = userBL.pastFbooking(user.getUserId());
+					System.out.println(fb);
+					showDashboard(user);
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -479,6 +482,8 @@ public class UserDashboard {
 			ArrayList<HotelBooking> hb = null;
 			try {
 				hb = userBL.pastHbooking(user.getUserId());
+				System.out.println(hb);
+				showDashboard(user);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -494,6 +499,7 @@ public class UserDashboard {
 		case 5:
 			try {
 				System.out.println("Your current wallet Balance is " + walletBL.walletBalance(user.getUserId()));
+				// showDashboard(user);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -523,8 +529,8 @@ public class UserDashboard {
 			if (flag) {
 				System.out.println("Money added to wallet");
 				try {
-					int bal=(int) walletBL.walletBalance(user.getUserId());
-					System.out.println("Your updated wallet balance is " +bal);
+					int bal = (int) walletBL.walletBalance(user.getUserId());
+					System.out.println("Your updated wallet balance is " + bal);
 					showDashboard(user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -541,12 +547,12 @@ public class UserDashboard {
 			}
 			// addMoneyDisplay();
 			break;
-			
+
 		case 6:
 			System.out.println(userBL.displayUserProfile(user.getUserId()));
-			System.out.println("Aailable Balance is: "+userBL.userWalletBalance(user.getUserId()));
+			System.out.println("Aailable Balance is: " + userBL.userWalletBalance(user.getUserId()));
 			showDashboard(user);
-		
+
 		case 7:
 			System.out.println("Successfully logged out!!!");
 			HomePage hp = new HomePage();
