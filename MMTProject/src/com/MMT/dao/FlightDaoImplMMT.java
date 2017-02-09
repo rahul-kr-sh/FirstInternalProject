@@ -28,7 +28,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		//Testing//server
 		//Query
 		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats)  values ('"+flightCompanyName+"','"+flightId+"','"+flightSource+"','"+flightDestination+"','"+flightDepartureTime+"','"+flightArrivalTime+"',"+flightTicketPrice+","+availableSeats+")");
+		int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats)  values ("+flightCompanyName+","+flightId+","+flightSource+","+flightDestination+","+flightDepartureTime+","+flightArrivalTime+","+flightTicketPrice+","+availableSeats+")");
 		System.out.println("Inserted");
 		//Process Results
 		
