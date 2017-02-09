@@ -21,13 +21,12 @@ import com.MMT.bl.WalletBlMMT;
 
 public class UnregisteredHotelSearch {
 	Scanner sc=new Scanner(System.in);
-	UserBlMMT Us=new UserBlMMT();
-	HotelBlMMT Hbl = new HotelBlMMT();
-	UserBlMMT Ubl = new UserBlMMT();
-	PromotionBlMMT Pbl = new PromotionBlMMT();
-	WalletBlMMT Wbl = new WalletBlMMT();
-	UserDashboard Udb=new UserDashboard();
-	HomePage HP=new HomePage();
+	UserBlMMT userBL=new UserBlMMT();
+	HotelBlMMT hotelBL = new HotelBlMMT();
+	PromotionBlMMT promotionBL = new PromotionBlMMT();
+	WalletBlMMT walletBL = new WalletBlMMT();
+	UserDashboard userDashboard=new UserDashboard();
+	HomePage homepage=new HomePage();
 	public void showDashboard(){
 		User user=null;
 		System.out.println("Enter Location:");
@@ -35,7 +34,7 @@ public class UnregisteredHotelSearch {
 		ArrayList<Hotel> hList = new ArrayList<>();
 		LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 		try {
-			hList = Hbl.searchHotel1(loc);
+			hList = hotelBL.searchHotel1(loc);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,7 +53,7 @@ public class UnregisteredHotelSearch {
 		Hotel hpicked = hotelMap.get(m);
 		ArrayList<HotelRoom> arl = null;
 		try {
-			arl = Hbl.displayAvailHotelRoom(hpicked.getHotelId());
+			arl = hotelBL.displayAvailHotelRoom(hpicked.getHotelId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,7 +90,7 @@ public class UnregisteredHotelSearch {
 
 		HotelRoom pickedRoom = null;
 		try {
-			pickedRoom = Hbl.searchHotelRoom(hpicked.getHotelId(), rno);
+			pickedRoom = hotelBL.searchHotelRoom(hpicked.getHotelId(), rno);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,9 +114,9 @@ public class UnregisteredHotelSearch {
 				System.out.println("THE PASSWORD FIELD IS BLANK!!!");
 			} else
 				try {
-					if(Us.checkLogin(name, pass)!=null){
+					if(userBL.checkLogin(name, pass)!=null){
 						System.out.println(" Successful User Login!!");
-						user = Us.checkLogin(name, pass);
+						user = userBL.checkLogin(name, pass);
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -125,10 +124,10 @@ public class UnregisteredHotelSearch {
 				}
 		}
 		else if(in==2){
-			HP.HomePageMenu();
+			homepage.HomePageMenu();
 		}
 		else {
-			HP.HomePageMenu();
+			homepage.HomePageMenu();
 		}
 		
 		System.out.println("Press 1 to view Additional Offers!!");
@@ -138,7 +137,7 @@ public class UnregisteredHotelSearch {
 			ArrayList<Promotion> promo = null;
 
 			try {
-				promo = Pbl.displayPromotion("Hotel");
+				promo = promotionBL.displayPromotion("Hotel");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -158,10 +157,10 @@ public class UnregisteredHotelSearch {
 
 			Promotion pPicked = promoMap.get(promoindex);
 
-			float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue1);
+			float valueAfterPromotion = promotionBL.applyPromotion(pPicked, user.getUserId(), (float) cartValue1);
 			float amountShort = 0;
 			try {
-				amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+				amountShort = valueAfterPromotion - walletBL.walletBalance(user.getUserId());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -176,13 +175,13 @@ public class UnregisteredHotelSearch {
 					System.out.println("Enter amount you want to add to wallet!!");
 					double amount = sc.nextDouble();
 					try {
-						Wbl.addWalletMoney(user.getUserId(), amount);
+						walletBL.addWalletMoney(user.getUserId(), amount);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -194,17 +193,17 @@ public class UnregisteredHotelSearch {
 					System.out.println("Booking Cancelled due to insufficient funds!!");
 					System.out.println("Booking Cancelled!!");
 					paymentStatus = false;
-					Udb.showDashboard(user);
+					userDashboard.showDashboard(user);
 
 				} else {
 					System.out.println("Invalid Input");
 					paymentStatus = false;
-					Udb.showDashboard(user);
+					userDashboard.showDashboard(user);
 				}
 
 			} else {
 				try {
-					paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+					paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -215,7 +214,7 @@ public class UnregisteredHotelSearch {
 
 			HotelBooking hb = null;
 			try {
-				hb = Hbl.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
+				hb = hotelBL.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -227,10 +226,10 @@ public class UnregisteredHotelSearch {
 			if ((paymentStatus) && (hb != null)) {
 				System.out.println("Hotel Booking Done");
 				System.out.println("Your Booking ID is: " + hb.getHotelBookingId());
-				Udb.showDashboard(user);
+				userDashboard.showDashboard(user);
 			} else if (hb == null) {
 				System.out.println("Sorry !! Booking Failed");
-				Udb.showDashboard(user);
+				userDashboard.showDashboard(user);
 			}
 		}
 		
