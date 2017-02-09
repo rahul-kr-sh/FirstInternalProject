@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.MMT.bean.Admin;
 import com.MMT.bean.Flight;
 import com.MMT.bl.AdminBlMMT;
 import com.MMT.bl.FlightBookingBlMMT;
@@ -12,10 +13,11 @@ import com.MMT.helper.FlightHelper;
 public class MenuAdminFlight {
 	Flight flight=new Flight();
 	AdminBlMMT adminBl= new AdminBlMMT();
+	AdminDashboard adminDashboard = new AdminDashboard();
 	FlightBookingBlMMT flightBookingBlMMT=new FlightBookingBlMMT();
 	FlightHelper flightHelper=new FlightHelper();
 	Scanner sc=new Scanner(System.in);
-	public void choice() throws SQLException{
+	public void choice(Admin admin) throws SQLException{
 		System.out.println("1.	Insert New Flight");//
 		System.out.println("2.	Update Existing Flight");//
 		System.out.println("3.	Search Flight");
@@ -32,6 +34,7 @@ public class MenuAdminFlight {
 			try {
 				if(adminBl.insertFlight(flight)>0){
 					System.out.println("Successfully added");
+					choice(admin);
 				}
 				else
 				{
@@ -41,7 +44,7 @@ public class MenuAdminFlight {
 				System.out.println("Please try again");
 //				e.printStackTrace();
 			}
-			return ;
+			break;
 		case 2:
 			System.out.println("Enter Flight id to be update");
 			String fId=sc.next();
@@ -64,7 +67,7 @@ public class MenuAdminFlight {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			break;
 			
 		case 3:
 			System.out.println("Enter Flight id to be search");
@@ -84,7 +87,7 @@ public class MenuAdminFlight {
 				e.printStackTrace();
 			}
 			
-			
+			break;
 			
 		case 4:
 			System.out.println("Enter Flight id to be delete");
@@ -105,7 +108,7 @@ public class MenuAdminFlight {
 			e.printStackTrace();
 		}
 			
-			
+			break;
 			
 		case 5:
 			try {
@@ -117,12 +120,14 @@ public class MenuAdminFlight {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return ;
-//		case 6:
+			break;
+		case 6:
+			adminDashboard.showDashboard(admin);
+			break;
 			
 		default :
 			System.out.println("Invalid choice");
-			
+			break;
 			
 		}
 	}

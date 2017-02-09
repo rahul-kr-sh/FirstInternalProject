@@ -43,6 +43,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		pst.setString(1, uid);
 		rs=pst.executeQuery();
 		if(rs.next()){
+			user.setUserId((rs.getString("USERID")));
 			user.setUserName((rs.getString("USERNAME")));
 			user.setUserPhoneNo(rs.getInt("USERPHONENO"));
 			user.setUserEmailId(rs.getString("USEREMAILID"));

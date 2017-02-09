@@ -38,7 +38,7 @@ public class AdminDashboard {
 		
 		case 3:
 			MenuAdminFlight menuAdminFlight=new MenuAdminFlight();
-			menuAdminFlight.choice();
+			menuAdminFlight.choice(admin);
 			return;
 		
 		case 4:
