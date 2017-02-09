@@ -3,6 +3,7 @@ package com.MMT.dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,28 +17,32 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 
 	@Override
 	public int insertHotel(Hotel h) throws SQLException, ClassNotFoundException, IOException {
+		
+		int rows,rows2 = 0;
 		Connection con=DbConnection.dbConnection();
-		String hotelId=h.getHotelId();
-		String hotelName=h.getHotelName();
-		String hotelLocation=h.getHotelLocation();
-		String hotelInfo=h.getHotelInfo();
-	
-		//Query
-		Statement stmt=con.createStatement();
-		//System.out.println("b4 insert hotel");
-		int rows=stmt.executeUpdate("INSERT INTO Hotel (hotelId,hotelName,hotelLocation,hotelInfo) VALUES ("+hotelId+",'"+hotelName+"','"+hotelLocation+"','"+hotelInfo+"')");
-		//Process Results
-		//System.out.println("a4 insert hotel");
+		PreparedStatement pst=con.prepareStatement("insert into hotel values(?,?,?,?)");
+		pst.setString(1, h.getHotelId());
+		pst.setString(2, h.getHotelName());
+		pst.setString(3, h.getHotelLocation());
+		pst.setString(4, h.getHotelInfo());
+		
+		rows=pst.executeUpdate();
+		System.out.println(rows);
 		
 		ArrayList<HotelRoom> rl=h.getHotelRoom();
-		int rows2=0;
+		
 		
 		for(HotelRoom room:rl)
 		{
-			Statement stmt2=con.createStatement();
-			//System.out.println("b4 insert room");
-			rows2=stmt2.executeUpdate("INSERT INTO HotelRoom (hotelId,hotelRoomNo,hotelRoomType,hotelRoomPrice,hotelRoomStatus) VALUES ("+hotelId+","+room.getHotelRoomNo()+",'"+room.getHotelRoomType()+"',"+room.getHotelRoomPrice()+",'"+room.getHotelRoomStatus()+"')");
-			//System.out.println("a4 insert room");
+			
+			PreparedStatement pst1=con.prepareStatement("insert into hotelroom values(?,?,?,?,?)");
+			pst1.setString(1, room.getHotelId());
+			pst1.setInt(2, room.getHotelRoomNo());
+			pst1.setString(3, room.getHotelRoomType());
+			pst1.setDouble(4, room.getHotelRoomPrice());
+			pst1.setString(5, room.getHotelRoomStatus());
+			 rows2 = pst1.executeUpdate();
+			
 		}
 		if(rows>0 && rows2>0)
 		{
@@ -56,22 +61,21 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	@Override
 	public int deleteHotel(String hotelId) throws  SQLException, ClassNotFoundException, IOException {
 		
+		int rows,rows2;
 		Connection con=DbConnection.dbConnection();
-		Statement stmt3=con.createStatement();
-		 int rows3=stmt3.executeUpdate("delete from HotelRoom where hotelId ="+hotelId);
-	
-		 
-		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("delete from Hotel where hotelId ="+hotelId);
-		//Process Results
-		
-			
-		
-		if(rows>0&rows3>0)
+		PreparedStatement pst=con.prepareStatement("delete from hotel where HOTELID=?");
+		PreparedStatement pst1=con.prepareStatement("delete from hotelROOM where HOTELID=?");
+		rows=pst.executeUpdate();
+		rows2=pst1.executeUpdate();
+		if(rows>0 && rows2>0)
 		{
+			con.close();
 			return rows;
 		}
-		else return 0;
+		else 
+			{
+			con.close();
+			return 0;}
 	}
 
 	@Override
