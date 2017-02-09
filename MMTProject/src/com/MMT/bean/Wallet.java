@@ -5,6 +5,7 @@ public class Wallet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	private String userId;
 	private double walletBalance;
 	public Wallet(String userId, double walletBalance) {
