@@ -15,11 +15,12 @@ import com.MMT.bean.HotelBooking;
 
 
 public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
+	Connection con;
 
 	@Override
 	public int insertHotelBooking(HotelBooking hb) throws SQLException, ClassNotFoundException, IOException {
 		int row;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("insert into HotelBooking values(?,?,?,?,?,?,?)");
 		pst.setString(1, hb.getHotelBookingId());
 		pst.setString(2, hb.getHotelId());
@@ -33,6 +34,8 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 		pst.setDate(6, sqlDate2 );
 		pst.setInt(7, hb.getStayDuration());
 		row=pst.executeUpdate();
+		System.out.println("----------");
+		System.out.println("DAO"+hb);
 		con.close();
 		return row;
 	}
@@ -41,10 +44,11 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	public ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
 		HotelBooking h;
-		Connection con=DbConnection.dbConnection();
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from HotelBooking where userId like '"+userId+"'");
-		//Process Results
+		ResultSet rs;
+		con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("select * from hotelbooking where userId=?");
+		pst.setString(1, userId);
+		rs=pst.executeQuery();
 		while(rs.next()){
 			h=new HotelBooking();;
 			h.setHotelBookingId(rs.getString("hotelBookingId"));
@@ -55,6 +59,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 			h.setHotelCheckOutDate(rs.getDate("hotelCheckOutDate"));
 			h.setStayDuration(rs.getInt("stayDuration"));
 			hb.add(h);
+			//System.out.println("DAO "+h);
 		}
 		return hb;
 	}
@@ -62,7 +67,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	
 	@Override
 	public int cancelHotelBooking(String hotelBookingId) throws SQLException, ClassNotFoundException, IOException {
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		Statement stmt3=con.createStatement();
 		 int rows=stmt3.executeUpdate("delete from HotelBooking where hotelBookingId ="+hotelBookingId);
 	
@@ -79,7 +84,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	public ArrayList<HotelBooking> display() throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
 		HotelBooking h=new HotelBooking();
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		//Query
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from HotelBooking");

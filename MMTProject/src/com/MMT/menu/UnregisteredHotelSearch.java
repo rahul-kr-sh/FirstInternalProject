@@ -184,7 +184,7 @@ public class UnregisteredHotelSearch {
 			ArrayList<Promotion> promo = null;
 
 			try {
-				promo = promotionBL.displayPromotion("Hotel");
+				promo = promotionBL.displayPromotion("HOTEL");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -92,6 +92,7 @@ public class HotelBlMMT {
 		hb.setRoomNo(hotelRoomNo);
 		hb.setUserId(userId);
 		hb.setStayDuration((int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+		System.out.println("skljds: "+hb);
 		hotelBookingDao.insertHotelBooking(hb);
 		return hb;
 	}
