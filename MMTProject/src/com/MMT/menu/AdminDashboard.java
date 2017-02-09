@@ -97,7 +97,13 @@ public class AdminDashboard {
 		case 1:
 			 
 			 try {
-				adminBl.searchAdmin(admin.getAdminId());
+				Admin admin2=adminBl.searchAdmin(admin.getAdminId());
+				System.out.println("Admin ID : "+admin2.getAdminId());
+				System.out.println("Admin Name : "+admin2.getAdminName());
+				System.out.println("Admin PhoneNumber : "+admin2.getAdminPhoneNo());
+				System.out.println("Admin EmailID : "+admin2.getAdminEmailId());
+				System.out.println("Admin Address : "+admin2.getAdminAddress());
+				adminProfileChoice();
 			} catch (SQLException | ClassNotFoundException | IOException e) {
 				System.out.println("No record Found");
 //				e.printStackTrace();
