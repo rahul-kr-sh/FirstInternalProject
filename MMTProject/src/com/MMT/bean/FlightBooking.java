@@ -47,8 +47,8 @@ public class FlightBooking {
 	public boolean isFlag() {
 		return flag;
 	}
-	public void setFlag(boolean flag) {
-		this.flag = flag;
+	public void setFlag(boolean string) {
+		this.flag = string;
 	}
 	@Override
 	public String toString() {
