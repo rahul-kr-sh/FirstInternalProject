@@ -17,7 +17,7 @@ public class MenuAdminFlight {
 	FlightBookingBlMMT flightBookingBlMMT=new FlightBookingBlMMT();
 	FlightHelper flightHelper=new FlightHelper();
 	Scanner sc=new Scanner(System.in);
-	public void choice(Admin admin) throws SQLException{
+	public void choice(Admin admin) throws SQLException, ClassNotFoundException, IOException{
 		System.out.println("1.	Insert New Flight");//
 		System.out.println("2.	Update Existing Flight");//
 		System.out.println("3.	Search Flight");

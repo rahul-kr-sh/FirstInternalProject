@@ -15,7 +15,7 @@ public class AdminDashboard {
 	UserBlMMT userBl=new UserBlMMT();
 	HomePage homePage = new HomePage();
 	Admin admin;
-	public void showDashboard(Admin admin) throws SQLException{
+	public void showDashboard(Admin admin) throws SQLException, ClassNotFoundException, IOException{
 		this.admin=admin;
 		adminBl=new AdminBlMMT();
 		System.out.println("-------------Admin HomePage--------------");
@@ -34,7 +34,8 @@ public class AdminDashboard {
 			 adminProfileChoice();
 			return;
 		case 2:
-			//hoteladminProfile
+			MenuAdminHotel menuAdminHotel= new MenuAdminHotel ();
+			menuAdminHotel.choice();
 			return;
 		
 		case 3:
@@ -81,7 +82,7 @@ public class AdminDashboard {
 	}
 	
 	
-	void adminProfileChoice() throws SQLException{
+	void adminProfileChoice() throws SQLException, ClassNotFoundException, IOException{
 		System.out.println("-------------Admin HomePage--------------");
 		System.out.println("Welcome "+ admin.getAdminName());
 		System.out.println("1.	Display Profile");

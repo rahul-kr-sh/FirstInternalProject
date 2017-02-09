@@ -21,7 +21,7 @@ public class MenuAdminPromotion {
 	AdminDashboard adminDashboard = new AdminDashboard();
 	Scanner sc = new Scanner(System.in);
 
-	public void choice(Admin admin) throws SQLException {
+	public void choice(Admin admin) throws SQLException, ClassNotFoundException, IOException {
 		System.out.println("1.Display all Promotions");
 		System.out.println("2.Search Promotions");
 		System.out.println("3.Insert Promotion");
