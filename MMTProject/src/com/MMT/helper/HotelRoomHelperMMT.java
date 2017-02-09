@@ -10,6 +10,7 @@ public class HotelRoomHelperMMT {
 	Scanner sc=new Scanner(System.in);
 	ArrayList<HotelRoom> arrayListHotelRoom=new ArrayList<HotelRoom>();
 public void input(){
+	
 	System.out.println("Enter Hotel ID");
 	hotelRoom.setHotelId(sc.next());
 	System.out.println("Enter Hotel Room No: :");

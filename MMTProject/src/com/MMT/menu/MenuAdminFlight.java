@@ -44,8 +44,9 @@ public class MenuAdminFlight {
 				}
 			} catch (Exception e) {
 				System.out.println("Flight Already Exists!!");
+				e.printStackTrace();
 				choice(admin);
-			//e.printStackTrace();
+			
 			}
 			break;
 		case 2:
