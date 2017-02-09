@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import com.MMT.bean.FlightBooking;
 
 public class FlightBookingImpMMT implements FlightBookingDaoMMT {
+	Connection con;
 
 	@Override
 	public ArrayList<FlightBooking> displayFlightBooking() throws ClassNotFoundException, SQLException, IOException {
 		{
 			ArrayList<FlightBooking> FB = new ArrayList<FlightBooking>();
 			FlightBooking fb = new FlightBooking();
-			Connection con = DbConnection.dbConnection();
+			con = DbConnection.dbConnection();
 			// Query
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from FlightBooking");
@@ -47,11 +48,12 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 
 		FlightBooking fb = new FlightBooking();
 		ArrayList<FlightBooking> fList = new ArrayList<FlightBooking>();
-		Connection con = DbConnection.dbConnection();
+		ResultSet rs;
+		con = DbConnection.dbConnection();
 		// Query
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from FlightBooking where userId=" + userId);
-		// Process Results
+		PreparedStatement pst = con.prepareStatement("select * from FlightBooking where userId=?");
+		pst.setString(1, userId);
+		rs = pst.executeQuery();
 		while (rs.next()) {
 			fb.setFlightBookingId(rs.getString("flightBookingId"));
 			fb.setFlightId(rs.getString("flightId"));
@@ -60,8 +62,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 
 			String status = "false";
 			if (rs.getString("flag").equals("true"))
-				;
-			status = "true";
+				status = "true";
 
 			fb.setFlag(true);
 			fList.add(fb);
@@ -72,7 +73,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 	@Override
 	public int insertFlightBooking(FlightBooking fb) throws ClassNotFoundException, SQLException, IOException {
 
-		Connection con = DbConnection.dbConnection();
+		con = DbConnection.dbConnection();
 		int row = 0;
 		Statement stmt = con.createStatement();
 		// int rows=stmt.executeUpdate("insert into FlightBooking(
@@ -96,7 +97,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 	@Override
 	public int deleteFlightBooking(String flightBookingId) throws ClassNotFoundException, SQLException, IOException {
 
-		Connection con = DbConnection.dbConnection();
+		con = DbConnection.dbConnection();
 
 		Statement stmt = con.createStatement();
 		int rows = stmt.executeUpdate("delete from FlightBooking where flightBookingId =" + flightBookingId);
