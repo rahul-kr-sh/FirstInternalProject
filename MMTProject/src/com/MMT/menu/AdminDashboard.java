@@ -13,6 +13,7 @@ public class AdminDashboard {
 	AdminBlMMT adminBl;
 	AdminHelperMMT adminHelper;
 	UserBlMMT userBl=new UserBlMMT();
+	HomePage homePage = new HomePage();
 	Admin admin;
 	public void showDashboard(Admin admin) throws SQLException{
 		this.admin=admin;
@@ -24,7 +25,7 @@ public class AdminDashboard {
 		System.out.println("3.	Flight Profile");
 		System.out.println("4.	Promotion Pofile");
 		System.out.println("5.	User Profile");
-		System.out.println("5.	Logout.");
+		System.out.println("6.	Logout.");
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
 		int input=sc.nextInt();
@@ -43,7 +44,7 @@ public class AdminDashboard {
 		
 		case 4:
 			MenuAdminPromotion menuAdminPromotion=new MenuAdminPromotion();
-			menuAdminPromotion.choice();
+			menuAdminPromotion.choice(admin);
 			return ;
 			
 			
@@ -51,6 +52,7 @@ public class AdminDashboard {
 			System.out.println("Enter user id to see details");
 			try {
 				System.out.println(userBl.searchUser(sc.next()));
+				showDashboard(admin);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -60,6 +62,17 @@ public class AdminDashboard {
 			} //sc.next()
 			return;
 		
+		case 6:
+			try {
+				homePage.HomePageMenu();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		default:
 			System.out.println("Invalid Input");
 			
