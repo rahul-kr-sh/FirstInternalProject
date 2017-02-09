@@ -3,6 +3,7 @@ package com.MMT.bl;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.MMT.bean.Flight;
 import com.MMT.bean.FlightBooking;
@@ -62,12 +63,14 @@ public class FlightBookingBlMMT {
 				int hbid = 10000 + (int) (Math.random() * 11000);
 				//System.out.println("Random No"+hbid);
 				String id = Integer.toString(hbid);
-				String date = new String();
+				Date date=new Date();
 				FBD.setUserId(UId);
 				FBD.setFlightId(fid);
 				FBD.setFlightBookingId(id);
-				System.out.println("BOOiinh IDs "+FBD.getFlightBookingId());
-				FBD.setFlightBookingId(date);
+				//System.out.println("BOOiinh IDs "+FBD.getFlightBookingId());
+			//	System.out.println("Date: "+FBD.getFlightBookingDate());
+				//System.out.println("BL fbd object:"+FBD);
+				FBD.setFlightBookingDate(date);
 				FBD.setFlag(true);
 				flightBookingDao.insertFlightBooking(FBD);
 				flightdao.updateFlight(fid, f);

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.MMT.bean.FlightBooking;
 
@@ -30,13 +31,16 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 				fb.setFlightBookingId(rs.getString("flightBookingDate"));
 
 				String status = "false";
-				if (rs.getString("flag").equals("true"))
-					;
-				status = "true";
+				if (rs.getString("flag").equals("true")){
+					status = "true";
 
-				fb.setFlag(true);
+					fb.setFlag(true);
+				}
+		
+				
 
 			}
+			con.close();
 
 			return FB;
 		}
@@ -58,7 +62,9 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 			fb.setFlightBookingId(rs.getString("flightBookingId"));
 			fb.setFlightId(rs.getString("flightId"));
 			fb.setUserId(rs.getString("userId"));
-			fb.setFlightBookingId(rs.getString("flightBooikngDate"));
+			Date d = rs.getDate(4);
+		//	java.sql.Date sqlDate1 = new java.sql.Date(d.getTime());
+			fb.setFlightBookingDate(d);
 
 			String status = "false";
 			if (rs.getString("flag").equals("true")) {
@@ -69,6 +75,8 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 
 			fList.add(fb);
 		}
+		con.close();
+
 		return fList;
 	}
 
@@ -78,12 +86,14 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		con = DbConnection.dbConnection();
 		int row = 0;
 		// Statement stmt = con.createStatement();
-		System.out.println("DAOPrint:"+fb);
+		//System.out.println("DAOPrint:"+fb);
 		PreparedStatement pst = con.prepareStatement("insert into FLIGHTBOOKING values(?,?,?,?,?)");
 		pst.setString(1, fb.getFlightBookingId());
 		pst.setString(2, fb.getUserId());
 		pst.setString(3, fb.getFlightId());
-		pst.setString(4, fb.getFlightBookingDate());
+		Date d = fb.getFlightBookingDate();
+		java.sql.Date sqlDate1 = new java.sql.Date(d.getTime());
+		pst.setDate(4,sqlDate1 );
 		String status = "false";
 		if (fb.isFlag()) {
 			status = "true";

@@ -1,14 +1,14 @@
 package com.MMT.bean;
 
-
+import java.util.Date;
 
 public class FlightBooking {
 	private String flightBookingId;
 	private String userId;
 	private String flightId;
-	private String flightBookingDate;
+	private Date flightBookingDate;
 	private boolean flag;
-	public FlightBooking(String flightBookingId, String userId, String flightId, String flightbookingDate , boolean flag) {
+	public FlightBooking(String flightBookingId, String userId, String flightId, Date flightbookingDate , boolean flag) {
 		super();
 		this.flightBookingId = flightBookingId;
 		this.userId = userId;
@@ -38,10 +38,10 @@ public class FlightBooking {
 	public void setFlightId(String flightId) {
 		this.flightId = flightId;
 	}
-	public String getFlightBookingDate() {
+	public Date getFlightBookingDate() {
 		return flightBookingDate;
 	}
-	public void setFlightBookingDate(String flightBookingDate) {
+	public void setFlightBookingDate(Date flightBookingDate) {
 		this.flightBookingDate = flightBookingDate;
 	}
 	public boolean isFlag() {

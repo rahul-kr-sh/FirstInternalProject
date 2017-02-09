@@ -2,6 +2,7 @@ package com.MMT.menu;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.MMT.bean.Admin;
@@ -89,6 +90,7 @@ public class MenuAdminFlight {
 				flight=flightBookingBlMMT.searchFlight(sc.next());
 				if(flight!=null){
 					System.out.println(flight);
+					choice(admin);
 				}
 				else {
 					System.out.println("Please enter correct flight id");
@@ -142,7 +144,10 @@ public class MenuAdminFlight {
 			
 		case 5:
 			try {
-				flightBookingBlMMT.displayFlight();
+				ArrayList<Flight> fList=flightBookingBlMMT.displayFlight();
+				for(Flight f:fList){
+					System.out.println(f);
+				}
 				choice(admin);
 
 			} catch (ClassNotFoundException e) {

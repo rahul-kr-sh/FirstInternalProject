@@ -31,6 +31,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		pst.setDouble(7, flight.getFlightTicketPrice());
 		pst.setInt(8, flight.getAvailableSeats());
 		row=pst.executeUpdate();
+		con.close();
 		return row;
 	}
 
@@ -44,6 +45,8 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		
 		if(rows>0)
 		{
+			con.close();
+
 			return rows;
 		}
 		else return 0;
@@ -94,19 +97,22 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			flight.setAvailableSeats(rs.getInt("availableSeats"));
 
 		}
+		con.close();
+
 		return flight;
 	}
 
 	@Override
 	public ArrayList<Flight> displayFlight() throws ClassNotFoundException, SQLException, IOException {
 		ArrayList<Flight> F =new ArrayList<Flight>();
-		Flight f=new Flight();
-		Connection con=DbConnection.dbConnection();
+		Flight f;
+		con=DbConnection.dbConnection();
 		//Query
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from Flight");
 		//Process Results
 		while(rs.next()){
+			f=new Flight();
 			f.setFlightCompanyName(rs.getString("flightCompanyName"));
 			f.setFlightId(rs.getString("flightId"));
 			f.setFlightSource(rs.getString("flightSource"));
@@ -117,6 +123,8 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			f.setAvailableSeats(rs.getInt("availableSeats"));
 			F.add(f);
 		}
+		con.close();
+
 		return F;
 	}
 
@@ -125,7 +133,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			throws ClassNotFoundException, SQLException, IOException {
 		Flight f =new Flight();
 		ArrayList<Flight> F =new ArrayList<Flight>();
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		//Query
 		PreparedStatement pst;
 		 pst=con.prepareStatement("select * from Flight where flightSource=? AND flightDestination=?");
@@ -145,6 +153,8 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 			F.add(f);
 
 		}
+		con.close();
+
 		return F;
 	}
 }
