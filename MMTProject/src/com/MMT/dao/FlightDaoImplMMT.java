@@ -52,30 +52,25 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 	@Override
 	public int updateFlight(String flightId, Flight newflight) throws ClassNotFoundException, SQLException, IOException {
 		Connection con=DbConnection.dbConnection();
-		
-		String flightCompanyName=newflight.getFlightCompanyName();
-		String flightId1=newflight.getFlightId();
-		String flightSource=newflight.getFlightSource();
-		String flightDestination=newflight.getFlightDestination();
-		String flightDepartureTime=newflight.getFlightDepartureTime();
-		String flightArrivalTime=newflight.getFlightArrivalTime();
-		double flightTicketPrice=newflight.getFlightTicketPrice();
-		int availableSeats=newflight.getAvailableSeats();
-		
+		int row=0;
 		//Query
-		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("update Flight set flightCompanyName="+flightCompanyName+", flightId="+flightId1+",flightSource="+flightSource+",flightDestination="+flightDestination+",flightDepartureTime="+flightDepartureTime+",flightArrivalTime="+flightArrivalTime+",flightTicketPrice="+flightTicketPrice+",availableSeats="+availableSeats);
-		 //rows=stmt.executeUpdate("insert into User (address,email,uid,name,pass,phoneNo values ("+address+","+email+","+uid+","+name+","+pass+","+phoneNo+")");
-		//Process Results
+		//Statement stmt=con.createStatement();
 		
-		if(rows>0)
-		{
-			con.close();
-			return rows;
-		}
-		else 
-		{	con.close();
-		return 0;}
+		PreparedStatement pst=con.prepareStatement("update flight set FlightCompanyName=?,  flightId=?, flightSource=?, flightDestination=?,flightDepartureTime=?,flightArrivalTime=?,flightTicketPrice=? ,availableSeats=? where flightId=?");
+		
+		pst.setString(1, newflight.getFlightCompanyName());
+		pst.setString(2, newflight.getFlightId());
+		pst.setString(3, newflight.getFlightSource());
+		pst.setString(4, newflight.getFlightDestination());
+		pst.setString(5, newflight.getFlightDepartureTime());
+		pst.setString(6, newflight.getFlightArrivalTime());
+		pst.setDouble(7, newflight.getFlightTicketPrice());
+		pst.setInt(8, newflight.getAvailableSeats());
+		pst.setString(9, flightId);
+		row=pst.executeUpdate();
+		
+		con.close();
+		return row;
 	}
 
 	@Override
