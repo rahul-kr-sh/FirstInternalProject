@@ -25,13 +25,12 @@ import com.MMT.bl.WalletBlMMT;
 import com.MMT.dao.HotelDaoImplMMT;
 
 public class UserDashboard {
-	FlightBookingBlMMT fbl = new FlightBookingBlMMT();
-	// HotelDaoImplMMT hbl = new HotelDaoImplMMT();
-	PromotionBlMMT Pbl = new PromotionBlMMT();
-	WalletBlMMT Wbl = new WalletBlMMT();
+	FlightBookingBlMMT flightBookingBL = new FlightBookingBlMMT();
+	PromotionBlMMT promotionBL = new PromotionBlMMT();
+	WalletBlMMT walletBL = new WalletBlMMT();
 	Scanner sc = new Scanner(System.in);
-	HotelBlMMT Hbl = new HotelBlMMT();
-	UserBlMMT Ubl = new UserBlMMT();
+	HotelBlMMT hotelBL = new HotelBlMMT();
+	UserBlMMT userBL = new UserBlMMT();
 
 	public void showDashboard(User user) {
 		System.out.println("-------------User Dashboard-----------");
@@ -55,7 +54,7 @@ public class UserDashboard {
 			ArrayList<Flight> fList = null;
 			LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 			try {
-				fList = fbl.searchFlight(source, destination);
+				fList = flightBookingBL.searchFlight(source, destination);
 			} catch (ClassNotFoundException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -85,7 +84,7 @@ public class UserDashboard {
 				boolean paymentStatus = false;
 				ArrayList<Promotion> promo = null;
 				try {
-					promo = Pbl.displayPromotion("FLIGHT");
+					promo = promotionBL.displayPromotion("FLIGHT");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -105,10 +104,10 @@ public class UserDashboard {
 
 				Promotion pPicked = promoMap.get(promoindex);
 
-				float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
+				float valueAfterPromotion = promotionBL.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
 				float amountShort = 0;
 				try {
-					amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+					amountShort = valueAfterPromotion - walletBL.walletBalance(user.getUserId());
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -123,13 +122,13 @@ public class UserDashboard {
 						System.out.println("Enter amount you want to add to wallet!!");
 						double amount = sc.nextDouble();
 						try {
-							Wbl.addWalletMoney(user.getUserId(), amount);
+							walletBL.addWalletMoney(user.getUserId(), amount);
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						try {
-							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -151,7 +150,7 @@ public class UserDashboard {
 
 				} else {
 					try {
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -162,7 +161,7 @@ public class UserDashboard {
 
 				FlightBooking fb = null;
 				try {
-					fb = fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+					fb = flightBookingBL.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -189,7 +188,7 @@ public class UserDashboard {
 			ArrayList<Hotel> hList = new ArrayList<>();
 			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 			try {
-				hList = Hbl.searchHotel1(loc);
+				hList = hotelBL.searchHotel1(loc);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -208,7 +207,7 @@ public class UserDashboard {
 			Hotel hpicked = hotelMap.get(m);
 			ArrayList<HotelRoom> arl = null;
 			try {
-				arl = Hbl.displayAvailHotelRoom(hpicked.getHotelId());
+				arl = hotelBL.displayAvailHotelRoom(hpicked.getHotelId());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -245,7 +244,7 @@ public class UserDashboard {
 
 			HotelRoom pickedRoom = null;
 			try {
-				pickedRoom = Hbl.searchHotelRoom(hpicked.getHotelId(), rno);
+				pickedRoom = hotelBL.searchHotelRoom(hpicked.getHotelId(), rno);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -260,7 +259,7 @@ public class UserDashboard {
 				ArrayList<Promotion> promo = null;
 
 				try {
-					promo = Pbl.displayPromotion("Hotel");
+					promo = promotionBL.displayPromotion("Hotel");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -280,10 +279,10 @@ public class UserDashboard {
 
 				Promotion pPicked = promoMap.get(promoindex);
 
-				float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue1);
+				float valueAfterPromotion = promotionBL.applyPromotion(pPicked, user.getUserId(), (float) cartValue1);
 				float amountShort = 0;
 				try {
-					amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+					amountShort = valueAfterPromotion - walletBL.walletBalance(user.getUserId());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -298,13 +297,13 @@ public class UserDashboard {
 						System.out.println("Enter amount you want to add to wallet!!");
 						double amount = sc.nextDouble();
 						try {
-							Wbl.addWalletMoney(user.getUserId(), amount);
+							walletBL.addWalletMoney(user.getUserId(), amount);
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						try {
-							paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+							paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -326,7 +325,7 @@ public class UserDashboard {
 
 				} else {
 					try {
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -337,7 +336,7 @@ public class UserDashboard {
 
 				HotelBooking hb = null;
 				try {
-					hb = Hbl.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
+					hb = hotelBL.bookHotel(user.getUserId(), hpicked.getHotelId(), rno, din, dout);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -361,7 +360,7 @@ public class UserDashboard {
 			ArrayList<FlightBooking> fb = null;
 
 			try {
-				fb = Ubl.pastFbooking(user.getUserId());
+				fb = userBL.pastFbooking(user.getUserId());
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -376,7 +375,7 @@ public class UserDashboard {
 			System.out.println("Your Past Hotel Bookings are------");
 			ArrayList<HotelBooking> hb = null;
 			try {
-				hb = Ubl.pastHbooking(user.getUserId());
+				hb = userBL.pastHbooking(user.getUserId());
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -391,7 +390,7 @@ public class UserDashboard {
 			break;
 		case 5:
 			try {
-				System.out.println("Your current wallet Balance is " + Wbl.walletBalance(user.getUserId()));
+				System.out.println("Your current wallet Balance is " + walletBL.walletBalance(user.getUserId()));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -401,7 +400,7 @@ public class UserDashboard {
 			double amt = sc.nextDouble();
 			boolean flag=false;
 			try {
-				flag=Wbl.addWalletMoney(user.getUserId(), amt);
+				flag=walletBL.addWalletMoney(user.getUserId(), amt);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -409,7 +408,7 @@ public class UserDashboard {
 			if(flag){
 				System.out.println("Money added to wallet");
 				try {
-					System.out.println("Your updated wallet balance is "+Wbl.walletBalance(user.getUserId()));
+					System.out.println("Your updated wallet balance is "+walletBL.walletBalance(user.getUserId()));
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
