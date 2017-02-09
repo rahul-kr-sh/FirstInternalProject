@@ -36,6 +36,7 @@ public class HomePage {
 			 if(trueFalse==true)
 			 {
 				 System.out.println("SignUp Successful!!");
+				 homePageMenu();
 			 }
 			 else
 			 {
