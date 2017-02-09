@@ -80,24 +80,26 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 
 	@Override
 	public Flight searchFlight(String flightId) throws ClassNotFoundException, SQLException, IOException {
-		Flight f =new Flight();
+		Flight flight =new Flight();
 		Connection con=DbConnection.dbConnection();
-		//Query
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Flight where flightId="+flightId);
-		//Process Results
-		while(rs.next()){
-			f.setFlightCompanyName(rs.getString("flightCompanyName"));
-			f.setFlightId(rs.getString("flightId"));
-			f.setFlightSource(rs.getString("flightSource"));
-			f.setFlightDestination(rs.getString("flightDestination"));
-			f.setFlightDepartureTime(rs.getString("flightDepartureTime"));
-			f.setFlightArrivalTime(rs.getString("flightArrivalTime"));
-			f.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
-			f.setAvailableSeats(rs.getInt("availableSeats"));
+	
+		
+		PreparedStatement pst=con.prepareStatement("select * from Flight where flightId=?");
+		
+		pst.setString(1, flightId);
+		ResultSet rs=pst.executeQuery();
+		if(rs.next()){
+			flight.setFlightCompanyName(rs.getString("flightCompanyName"));
+			flight.setFlightId(rs.getString("flightId"));
+			flight.setFlightSource(rs.getString("flightSource"));
+			flight.setFlightDestination(rs.getString("flightDestination"));
+			flight.setFlightDepartureTime(rs.getString("flightDepartureTime"));
+			flight.setFlightArrivalTime(rs.getString("flightArrivalTime"));
+			flight.setFlightTicketPrice(rs.getDouble("flightTicketPrice"));
+			flight.setAvailableSeats(rs.getInt("availableSeats"));
 
 		}
-		return f;
+		return flight;
 	}
 
 	@Override
