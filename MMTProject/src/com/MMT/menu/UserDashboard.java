@@ -78,6 +78,7 @@ public class UserDashboard {
 			System.out.println("Enter No of seats:");
 			int seats = sc.nextInt();
 			double cartValue = fpicked.getFlightTicketPrice() * seats;
+			System.out.println("Total Amount to be paid:" +cartValue);
 			System.out.println("Press 1 to See Additional Offers!!");
 			int choice = sc.nextInt();
 			if (choice == 1) {
@@ -172,6 +173,7 @@ public class UserDashboard {
 				if ((paymentStatus) && (fb != null)) {
 					System.out.println("Flight Booking Done");
 					System.out.println("Your Booking ID is: " + fb.getFlightBookingId());
+					showDashboard(user);
 				} else if (fb == null) {
 					System.out.println("Sorry !! Booking Failed");
 					showDashboard(user);

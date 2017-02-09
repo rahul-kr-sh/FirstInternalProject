@@ -13,6 +13,7 @@ public class LoginMenu {
 	AdminBlMMT Ad=new AdminBlMMT();
 	UserBlMMT Us=new UserBlMMT();
 	UserDashboard ud=new UserDashboard();
+	
 	Scanner sc=new Scanner(System.in);
 	public void LoginPage(){
 		System.out.println("Enter User Name:");
