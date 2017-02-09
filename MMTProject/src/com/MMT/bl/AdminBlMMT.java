@@ -41,11 +41,11 @@ public class AdminBlMMT {
 		return flightdao.updateFlight(flightId, newflight);
 	}
 
-	public Admin searchAdmin(String adminId) throws SQLException {
+	public Admin searchAdmin(String adminId) throws SQLException, ClassNotFoundException, IOException {
 		return admindao.search(adminId);
 	}
 
-	public boolean addAdmin(Admin admin) throws SQLException {
+	public boolean addAdmin(Admin admin) throws SQLException, ClassNotFoundException, IOException {
 		if (admindao.search(admin.getAdminName()) == null) {
 
 			admindao.insert(admin);
@@ -56,18 +56,21 @@ public class AdminBlMMT {
 		}
 	}
 
-	public int removeAdmin(String adminId) throws SQLException {
+	public int removeAdmin(String adminId) throws SQLException, ClassNotFoundException, IOException {
 		return admindao.delete(adminId);
 	}
 
-	public int modifyAdmin(String adminId, Admin admin) throws SQLException {
+	public int modifyAdmin(String adminId, Admin admin) throws SQLException, ClassNotFoundException, IOException {
 		return admindao.update(adminId, admin);
 	}
 
-	public Admin checkAdminLogin(String username, String password) throws SQLException {
-
+	public Admin checkAdminLogin(String username, String password) throws SQLException, ClassNotFoundException, IOException {
+		
 		Admin admin = (Admin) admindao.search(username);
-		if (admin.getAdminId().equals(username) && admin.getAdminPassword().equals(password)) {
+		if(admin==null){
+			return null;
+		}
+		else if (admin!=null && (admin.getAdminId().equals(username) && admin.getAdminPassword().equals(password))){
 			return admin;
 		}
 		return null;

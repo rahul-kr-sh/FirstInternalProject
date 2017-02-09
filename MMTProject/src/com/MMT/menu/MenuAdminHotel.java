@@ -8,7 +8,7 @@ import com.MMT.bean.HotelBooking;
 import com.MMT.bl.AdminBlMMT;
 import com.MMT.bl.HotelBlMMT;
 import com.MMT.dao.HotelBookingDaoImplMMT;
-import com.MMT.helper.HotelHelper;
+import com.MMT.helper.HotelHelperMMT;
 
 public class MenuAdminHotel {
 
@@ -17,7 +17,7 @@ public class MenuAdminHotel {
 		Hotel hotel=new Hotel();
 		AdminBlMMT adminBl= new AdminBlMMT();
 		HotelBooking hotelBookingBlMMT=new HotelBooking();
-		HotelHelper hotelhelper=new HotelHelper();
+		HotelHelperMMT hotelhelper=new HotelHelperMMT();
 		Scanner sc=new Scanner(System.in);
 		public void choice() throws SQLException{
 			System.out.println("1.	Insert New Hotel_Detail");//
@@ -74,7 +74,7 @@ public class MenuAdminHotel {
 			case 3:
 				System.out.println("Enter Hotel id to be search");
 				try {
-					hotel=hotelBookingBlMMT,
+					hotel=hotelBookingBlMMT;
 					if(hotel!=null){
 						System.out.println(hotel);
 					}

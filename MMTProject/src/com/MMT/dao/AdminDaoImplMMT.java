@@ -1,5 +1,6 @@
 package com.MMT.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +10,9 @@ import com.MMT.bean.Admin;
 
 
 public class AdminDaoImplMMT implements AdminDao{
-	Admin admin=new Admin();
+	
 	@Override
-	public int insert(Admin admin) throws SQLException {
+	public int insert(Admin admin) throws SQLException, ClassNotFoundException, IOException {
 		int row;
 		Connection con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("insert into admin values(?,?,?,?,?,?)");
@@ -29,28 +30,30 @@ public class AdminDaoImplMMT implements AdminDao{
 	}
 
 	@Override
-	public Admin search(String uid) throws SQLException {
-		
+	public Admin search(String uid) throws SQLException, ClassNotFoundException, IOException {
+		Admin admin=new Admin();
 		ResultSet rs;
 		Connection con=DbConnection.dbConnection();;
 		PreparedStatement pst=con.prepareStatement("select * from admin where ADMINID=?");
 		pst.setString(1, uid);
 		rs=pst.executeQuery();
-		while(rs.next()){
+		if(rs.next()){
+			
 			admin.setAdminId((rs.getString("ADMINID")));
 			admin.setAdminName((rs.getString("ADMINNAME")));
 			admin.setAdminPhoneNo(rs.getLong("ADMINPHONENO"));
 			admin.setAdminEmailId(rs.getString("ADMINEMAILID"));
 			admin.setAdminAddress(rs.getString("ADMINADDRESS"));
 			admin.setAdminPassword(rs.getString("ADMINPASSWORD"));	
+			return admin;
 		}
 
 		con.close();
-		return admin;
+		return null;
 	}
 
 	@Override
-	public int delete(String uid) throws SQLException {
+	public int delete(String uid) throws SQLException, ClassNotFoundException, IOException {
 		
 		int row;
 		Connection con=DbConnection.dbConnection();
@@ -62,7 +65,7 @@ public class AdminDaoImplMMT implements AdminDao{
 	}
 
 	@Override
-	public int update(String uid, Admin admin) throws SQLException {
+	public int update(String uid, Admin admin) throws SQLException, ClassNotFoundException, IOException {
 		int row;
 		Connection con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("update admin set ADMINNAME=?,  ADMINPHONENO=?, 	ADMINEMAILID=?, ADMINADDRESS=?,ADMINPASSWORD=? where ADMINID	=?");

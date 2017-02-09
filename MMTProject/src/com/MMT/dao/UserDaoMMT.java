@@ -8,9 +8,9 @@ import java.util.List;
 import com.MMT.bean.User;
 
 public interface UserDaoMMT {
-	public int insert(User user) throws SQLException ;
-	public User search(String  uid) throws SQLException ;
-	public int delete (String uid) throws SQLException ;
-	public int update(String uid, User user) throws SQLException;
-	public List<User> displayAll() throws SQLException;
+	public int insert(User user) throws SQLException, ClassNotFoundException, IOException ;
+	public User search(String  uid) throws SQLException, ClassNotFoundException, IOException ;
+	public int delete (String uid) throws SQLException, ClassNotFoundException, IOException ;
+	public int update(String uid, User user) throws SQLException, ClassNotFoundException, IOException;
+	public List<User> displayAll() throws SQLException, ClassNotFoundException, IOException;
 }

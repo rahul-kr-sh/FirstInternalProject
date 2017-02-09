@@ -15,24 +15,25 @@ import com.MMT.dao.UserDaoImplMMT;
 public class UserBlMMT {
 	private HotelBookingDaoImplMMT hotelBookingDao = new HotelBookingDaoImplMMT();
 	private FlightBookingImpMMT flightBookingDao = new FlightBookingImpMMT();
+	private UserDaoImplMMT userDao = new UserDaoImplMMT();
+	public User checkLogin(String username, String password) throws SQLException, ClassNotFoundException, IOException {
+		
 
-	public User checkLogin(String username, String password) throws SQLException {
-		UserDaoImplMMT udi = new UserDaoImplMMT();
-
-		User user = (User) udi.search(username);
-		if (user.getUserId().equals(username) && user.getUserPassword().equals(password)) {
+		User user = (User) userDao.search(username);
+		if (user == null) {
+			return null;
+		} else if (user != null && (user.getUserId().equals(username) && user.getUserPassword().equals(password))) {
 			return user;
 		}
 
 		return null;
 	}
 
-	public boolean register(User user) throws SQLException {
-		UserDaoImplMMT udi = new UserDaoImplMMT();
+	public boolean register(User user) throws SQLException, ClassNotFoundException, IOException {
 
-		if (udi.search(user.getUserId()) == null) {
+		if (userDao.search(user.getUserId()) == null) {
 
-			udi.insert(user);
+			userDao.insert(user);
 			return true;
 		} else {
 			System.out.println("User Name already taken.Please select another user name.");
@@ -40,22 +41,20 @@ public class UserBlMMT {
 		}
 
 	}
-	
-	
-	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException
-	{
-		
+
+	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException {
+
 		return flightBookingDao.searchFlightBooking(userId);
 	}
-	
-	public ArrayList<HotelBooking> pastHbooking(String userId) throws ClassNotFoundException, IOException, SQLException
-	{
-		
+
+	public ArrayList<HotelBooking> pastHbooking(String userId)
+			throws ClassNotFoundException, IOException, SQLException {
+
 		return hotelBookingDao.searchHotelBooking(userId);
 	}
-	public User searchUser(String uid) throws SQLException{
+
+	public User searchUser(String uid) throws SQLException, ClassNotFoundException, IOException {
 		return new UserDaoImplMMT().search(uid);
 	}
-	
 
 }
