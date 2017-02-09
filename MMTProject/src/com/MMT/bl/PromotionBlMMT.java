@@ -6,30 +6,30 @@ import com.MMT.bean.Promotion;
 import com.MMT.dao.PromotionDaoImplMMT;
 import com.MMT.dao.PromotionDaoMMT;
 public class PromotionBlMMT {
-	private PromotionDaoMMT ed=new PromotionDaoImplMMT();
+	private PromotionDaoMMT promotionDao=new PromotionDaoImplMMT();
 	
 	public int insertPromotion(Promotion p)throws SQLException {
-		return ed.insertPromotion(p);
+		return promotionDao.insertPromotion(p);
 	}
 	
 	public int deletePromotion(String promotionId)throws SQLException {
-		return ed.deletePromotion(promotionId);
+		return promotionDao.deletePromotion(promotionId);
 	}
 	
 	public int updatePromotion(String pId, Promotion newp) throws SQLException{
-		return ed.updatePromotion(pId,newp);
+		return promotionDao.updatePromotion(pId,newp);
 	}
 	
 	public ArrayList<Promotion> displayPromotion()throws SQLException {
-		return ed.displayPromotion();
+		return promotionDao.displayPromotion();
 	}
 	
 	public ArrayList<Promotion> displayPromotion(String promotionType)throws SQLException {
-		return ed.displayPromotion(promotionType);
+		return promotionDao.displayPromotion(promotionType);
 	}
 	
 	public Promotion searchPromotion(String promotionId) throws SQLException{
-		return ed.searchPromotion(promotionId);
+		return promotionDao.searchPromotion(promotionId);
 	}
 	
 	public float applyPromotion(Promotion p, String userId, float TicketPrice){

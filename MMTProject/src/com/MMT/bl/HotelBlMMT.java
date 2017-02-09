@@ -15,24 +15,24 @@ import com.MMT.dao.HotelDaoImplMMT;
 
 
 public class HotelBlMMT {
-	HotelDaoImplMMT H=new HotelDaoImplMMT();
-	HotelBookingDaoImplMMT HB=new HotelBookingDaoImplMMT();
+	HotelDaoImplMMT hotelDao=new HotelDaoImplMMT();
+	HotelBookingDaoImplMMT hotelBookingDao=new HotelBookingDaoImplMMT();
 	
 	public ArrayList<Hotel> displayHotel() throws ClassNotFoundException, SQLException{
-		return H.displayHotel();
+		return hotelDao.displayHotel();
 	}
 	
 	public Hotel searchHotel(String hotelId) throws ClassNotFoundException, IOException, SQLException{
-		return H.searchHotel(hotelId);
+		return hotelDao.searchHotel(hotelId);
 	}
 	
 	public ArrayList<Hotel> searchHotel1(String location) throws SQLException{
-		return H.searchHotel1(location);
+		return hotelDao.searchHotel1(location);
 	}
 	
 	public HotelRoom searchHotelRoom(String hotelId, int rno) throws SQLException{
 		Hotel h;
-		h=H.searchHotel(hotelId);
+		h=hotelDao.searchHotel(hotelId);
 		
 		ArrayList<HotelRoom> hotelRoomList;
 		hotelRoomList=h.getHotelRoom();
@@ -47,7 +47,7 @@ public class HotelBlMMT {
 	
 	public HotelBooking bookHotel(String userId, String hotelId, int hotelRoomNo, Date checkInDate, Date checkOutDate ) throws SQLException, ClassNotFoundException{
 		Hotel hotel=new Hotel();
-		hotel=H.searchHotel(hotelId);
+		hotel=hotelDao.searchHotel(hotelId);
 		ArrayList<HotelRoom> room=new ArrayList<HotelRoom>();
 	
 		room=hotel.getHotelRoom();
@@ -92,14 +92,14 @@ public class HotelBlMMT {
 		hb.setRoomNo(hotelRoomNo);
 		hb.setUserId(userId);
 		hb.setStayDuration((int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-		HB.insertHotelBooking(hb);
+		hotelBookingDao.insertHotelBooking(hb);
 		return hb;
 	}
 	
 	
 	public ArrayList<HotelRoom> displayAvailHotelRoom(String hotelId) throws SQLException{
 		ArrayList<HotelRoom> hr;
-		hr=H.searchHotel(hotelId).getHotelRoom();
+		hr=hotelDao.searchHotel(hotelId).getHotelRoom();
 		
 		ArrayList<HotelRoom> HR=new ArrayList<HotelRoom>();
 		for(HotelRoom r:hr){
