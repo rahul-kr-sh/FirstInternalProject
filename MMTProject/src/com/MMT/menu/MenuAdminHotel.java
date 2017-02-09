@@ -42,16 +42,16 @@ public class MenuAdminHotel {
 				hotelhelper.input();
 				Hotel hotel;
 				hotel=hotelhelper.getHotel();
-				HotelDaoImplMMT hotelDaoImplOb=new HotelDaoImplMMT();
-				hotelDaoImplOb.insertHotel(hotel);
+				AdminBlMMT adminBl=new AdminBlMMT();
+				int i1=adminBl.insertHotel(hotel);
 				try {
-					if(adminBl.insertHotel(hotel)>0){
+					if(i1>0){
 						System.out.println("Successfully added");
 						choice(); 
 					}
 					else
 					{
-						System.out.println("Hote can't be added");
+						System.out.println("Hotel can't be added");
 						choice() ;
 					}
 				} catch (Exception e) {
