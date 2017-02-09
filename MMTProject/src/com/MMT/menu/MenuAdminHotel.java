@@ -105,9 +105,10 @@ public class MenuAdminHotel {
 				
 			case 4:
 				System.out.println("Enter hotel id to be delete");
+				String hotelIdInput=sc.next();
 			try{
 				
-				if(adminBl.deleteFlight(sc.next())>0){
+				if(adminBl.deleteHotel(hotelIdInput)>0){
 					System.out.println("Successfully deleted");
 					choice(admin); 
 				}

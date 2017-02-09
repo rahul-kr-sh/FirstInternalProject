@@ -64,7 +64,9 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 		int rows,rows2;
 		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("delete from hotel where HOTELID=?");
+		pst.setString(1, hotelId);
 		PreparedStatement pst1=con.prepareStatement("delete from hotelROOM where HOTELID=?");
+		pst1.setString(1, hotelId);
 		rows=pst.executeUpdate();
 		rows2=pst1.executeUpdate();
 		if(rows>0 && rows2>0)
@@ -81,21 +83,59 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	@Override
 	public int updateHotel(String hotelId, Hotel newhotel) throws  SQLException, ClassNotFoundException, IOException {
 		
-		con=DbConnection.dbConnection();
-		String hotelId1=newhotel.getHotelId();
-		String hotelName=newhotel.getHotelName();
-		String hotelLocation=newhotel.getHotelLocation();
-		String hotelInfo=newhotel.getHotelInfo();
+//		con=DbConnection.dbConnection();
+//		String hotelId1=newhotel.getHotelId();
+//		String hotelName=newhotel.getHotelName();
+//		String hotelLocation=newhotel.getHotelLocation();
+//		String hotelInfo=newhotel.getHotelInfo();
+//		
+//		//Query
+//		Statement stmt=con.createStatement();
+//		//System.out.println("b4 update");
+//		//System.out.println(newhotel);
+//		int rows=stmt.executeUpdate("update hotel set hotelId= '"+hotelId1+"' ,hotelName ='"+hotelName+"',hotelLocation='"+hotelLocation+"' ,hotelInfo ='"+hotelInfo+"' where hotelId="+hotelId);
+//		 //rows=stmt.executeUpdate("insert into User (address,email,uid,name,pass,phoneNo values ("+address+","+email+","+uid+","+name+","+pass+","+phoneNo+")");
+//		//Process Results
+//		//System.out.println("a4 update");
+//		if(rows>0)
+//		{
+//			con.close();
+//			return rows;
+//		}
+//		else 
+//		{	con.close();
+//		return 0;
+//		}
 		
-		//Query
-		Statement stmt=con.createStatement();
-		//System.out.println("b4 update");
-		//System.out.println(newhotel);
-		int rows=stmt.executeUpdate("update hotel set hotelId= '"+hotelId1+"' ,hotelName ='"+hotelName+"',hotelLocation='"+hotelLocation+"' ,hotelInfo ='"+hotelInfo+"' where hotelId="+hotelId);
-		 //rows=stmt.executeUpdate("insert into User (address,email,uid,name,pass,phoneNo values ("+address+","+email+","+uid+","+name+","+pass+","+phoneNo+")");
-		//Process Results
-		//System.out.println("a4 update");
-		if(rows>0)
+		int rows,rows2 = 0;
+		con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("update hotel set hotelId= ? ,hotelName =?,hotelLocation=?,hotelInfo =? where hotelId=?");
+		pst.setString(1, newhotel.getHotelId());
+		pst.setString(2, newhotel.getHotelName());
+		pst.setString(3, newhotel.getHotelLocation());
+		pst.setString(4, newhotel.getHotelInfo());
+		pst.setString(5, hotelId);
+		
+		rows=pst.executeUpdate();
+		//System.out.println(rows);
+		
+		ArrayList<HotelRoom> rl=newhotel.getHotelRoom();
+		
+		
+		for(HotelRoom room:rl)
+		{
+			
+			PreparedStatement pst1=con.prepareStatement("update hotelroom set hotelId=?, hotelRoomNo=?, hotelRoomType=?, hotelRoomPrice=?,hotelRoomStatus=? where hotelId=?");
+			pst1.setString(1, room.getHotelId());
+			pst1.setInt(2, room.getHotelRoomNo());
+			pst1.setString(3, room.getHotelRoomType());
+			pst1.setDouble(4, room.getHotelRoomPrice());
+			pst1.setString(5, room.getHotelRoomStatus());
+			pst1.setString(6, hotelId);
+			 rows2 = pst1.executeUpdate();
+			
+		}
+		if(rows>0 && rows2>0)
 		{
 			con.close();
 			return rows;
@@ -104,15 +144,16 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 		{	con.close();
 		return 0;
 		}
+		
 	}
 
 	@Override
 	public ArrayList<Hotel> displayHotel() throws  SQLException, ClassNotFoundException, IOException {
-		Hotel hotel =new Hotel();
+		Hotel hotel;
 		con=DbConnection.dbConnection();
 		//Query
 		ArrayList<Hotel> hotList=new ArrayList<Hotel>();
-		HotelRoom room=new HotelRoom(); 
+		HotelRoom room;
 
 		//Statement stmt=con.createStatement();
 		//ResultSet rs=stmt.executeQuery("select * from Hotel ");
@@ -121,7 +162,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 		PreparedStatement pst=con.prepareStatement("select * from hotel");
 		rs=pst.executeQuery();
 		while(rs.next()){
-			
+			hotel =new Hotel();
 			hotel.setHotelId(rs.getString("hotelId"));
 			hotel.setHotelName(rs.getString("hotelName"));
 			hotel.setHotelLocation(rs.getString("hotelLocation"));
@@ -135,6 +176,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 			//ResultSet rs2=stmt.executeQuery("select * from  HotelRoom where hotelId= "+rs.getString("hotelId"));
 			while(rs2.next())
 			{
+				room=new HotelRoom(); 
 				room.setHotelRoomNo(rs2.getInt("hotelRoomNo"));
 				room.setHotelRoomType(rs2.getString("hotelRoomType"));
 				room.setHotelRoomPrice(rs2.getDouble("hotelRoomPrice"));
