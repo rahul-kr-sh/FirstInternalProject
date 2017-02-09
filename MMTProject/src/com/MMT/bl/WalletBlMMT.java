@@ -15,13 +15,20 @@ public class WalletBlMMT {
 		Wallet w;
 
 		w = walletDao.displayWallet(userId);
-		return (float) w.getWalletBalance();
+		//System.out.println(w.getWalletBalance());
+		if(w==null){
+			return 0;
+		}
+		else{
+			return (float) w.getWalletBalance();
+		}
+		
 	}
 
 	public ArrayList<Wallet> displayAll() throws SQLException, ClassNotFoundException, IOException {
 		return walletDao.displayWalletAll();
 	}
-
+	
 	public boolean addWalletMoney(String userId,Double value) throws SQLException, ClassNotFoundException, IOException {
 		Wallet w;
 		w=walletDao.displayWallet(userId);
