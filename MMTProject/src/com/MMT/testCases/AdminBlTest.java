@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.MMT.bean.Flight;
@@ -19,7 +20,7 @@ import com.MMT.bl.AdminBlMMT;
 
 public class AdminBlTest {
 	AdminBlMMT abl=new AdminBlMMT();
-	Flight f;
+	Flight f,newF;
 	HotelRoom rm01;
 	 HotelRoom rm02;
 	 HotelRoom rm03;
@@ -33,6 +34,7 @@ public class AdminBlTest {
 	public void setUp() throws Exception {
 		//f=new Flight("IndiGo","1","NewDelhi","Bangalore","18:40","21:20",8901,100);
 		f=new Flight("AirIndia", "FLY2001","Delhi","Indore","3:00pm","5:00pm",6700.00,20);
+		newF=new Flight("GoAir", "FLY2002","Mumbai","Indore","3:00pm","5:00pm",6900.00,20);
 		 rm01=new HotelRoom("1",1,"Deluxe",3000,"Avail");
 			rm02=new HotelRoom("1",2,"Cabana",4000,"Avail");
 			 rm03=new HotelRoom("1",3,"Studio",5000,"Avail");
@@ -82,12 +84,24 @@ public class AdminBlTest {
 		assertEquals(1,abl.modifyHotel("1", newHotel));
 		abl.deleteHotel("1");
 		}
+	
+	@Ignore
 	@Test
 	public void testInsertFlight() throws  SQLException, ClassNotFoundException, IOException {
 		assertEquals(1,abl.insertFlight(f));
-		//abl.deleteFlight( "FLY2001");
+		abl.deleteFlight( "FLY2001");
 	}
-	
-
-}
+	@Ignore
+	@Test
+	public void testdeleteFlight() throws  SQLException, ClassNotFoundException, IOException {
+		abl.insertFlight(f);
+		assertEquals(1,abl.deleteFlight("FLY2001"));
+		
+	}
+	@Ignore
+	@Test
+	public void testmodifyFlight() throws  SQLException, ClassNotFoundException, IOException {
+		abl.insertFlight(f);
+		assertEquals(1,abl.modifyFlight("FLY2001",newF));
+}}
 
