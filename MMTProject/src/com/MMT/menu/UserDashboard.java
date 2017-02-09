@@ -140,10 +140,12 @@ public class UserDashboard {
 						System.out.println("Booking Cancelled due to insufficient funds!!");
 						System.out.println("Booking Cancelled!!");
 						paymentStatus = false;
+						showDashboard(user);
 
 					} else {
 						System.out.println("Invalid Input");
 						paymentStatus = false;
+						showDashboard(user);
 					}
 
 				} else {
@@ -172,6 +174,7 @@ public class UserDashboard {
 					System.out.println("Your Booking ID is: " + fb.getFlightBookingId());
 				} else if (fb == null) {
 					System.out.println("Sorry !! Booking Failed");
+					showDashboard(user);
 				}
 			}
 
@@ -311,10 +314,12 @@ public class UserDashboard {
 						System.out.println("Booking Cancelled due to insufficient funds!!");
 						System.out.println("Booking Cancelled!!");
 						paymentStatus = false;
+						showDashboard(user);
 
 					} else {
 						System.out.println("Invalid Input");
 						paymentStatus = false;
+						showDashboard(user);
 					}
 
 				} else {
@@ -344,6 +349,7 @@ public class UserDashboard {
 					System.out.println("Your Booking ID is: " + hb.getHotelBookingId());
 				} else if (hb == null) {
 					System.out.println("Sorry !! Booking Failed");
+					showDashboard(user);
 				}
 			}
 			// System.out.println("Total Price: "+);
@@ -422,5 +428,6 @@ public class UserDashboard {
 			break;
 		}
 	}
+
 
 }
