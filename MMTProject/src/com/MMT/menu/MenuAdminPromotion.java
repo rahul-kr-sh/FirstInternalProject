@@ -10,12 +10,12 @@ import com.MMT.dao.PromotionDaoImplMMT;
 import com.MMT.helper.PromotionHelperMMT;
 
 public class MenuAdminPromotion {
-	Promotion pro=new Promotion();
-	PromotionDaoImplMMT pdi=new PromotionDaoImplMMT();
-	PromotionBlMMT pb=new PromotionBlMMT();
-	ArrayList<Promotion> al=new ArrayList<Promotion>();
-	PromotionBlMMT pBl=new PromotionBlMMT();
-	PromotionHelperMMT ph=new PromotionHelperMMT();
+	Promotion promotion=new Promotion();
+	PromotionDaoImplMMT promotionDao=new PromotionDaoImplMMT();
+	PromotionBlMMT promotionBl=new PromotionBlMMT();
+	ArrayList<Promotion> promotionList=new ArrayList<Promotion>();
+	PromotionBlMMT promotionBL=new PromotionBlMMT();
+	PromotionHelperMMT promotionHelper=new PromotionHelperMMT();
 	Scanner sc=new Scanner(System.in);
 public void choice() throws SQLException{
 	System.out.println("1.Display all Promotions");
@@ -27,20 +27,20 @@ public void choice() throws SQLException{
 	switch(i){
 	case 1:
 		
-		al=pBl.displayPromotion();
-		System.out.println(al);
+		promotionList=promotionBL.displayPromotion();
+		System.out.println(promotionList);
 		break;
 	case 2:
 		System.out.println("Enter the Promotion ID");
 		String promotionId=sc.next();
-		pro=pBl.searchPromotion(promotionId);
-		System.out.println(pro);
+		promotion=promotionBL.searchPromotion(promotionId);
+		System.out.println(promotion);
 		break;
 	case 3:
 		
-		ph.input();
-		Promotion ob=ph.getOb();
-		int j=pb.insertPromotion(ob);
+		promotionHelper.input();
+		Promotion ob=promotionHelper.getOb();
+		int j=promotionBl.insertPromotion(ob);
 		if(j==1){
 			System.out.println("New Promotion Inserted");
 		}
@@ -51,7 +51,7 @@ public void choice() throws SQLException{
 	case 4:
 		System.out.println("Enter Promotion Id");
 		String pId=sc.next();
-		int k=pBl.deletePromotion(pId);
+		int k=promotionBL.deletePromotion(pId);
 		if(k==1){
 			System.out.println("Promotion "+pId+" is Deleted" );
 		}
@@ -61,18 +61,18 @@ public void choice() throws SQLException{
 		break;
 	case 5:
 		System.out.println("Enter the Promotion ID whose Information you want to update");
-		String h=pro.getPromotionId();
+		String h=promotion.getPromotionId();
 		Promotion p1;
-		p1=pdi.searchPromotion(h);
+		p1=promotionDao.searchPromotion(h);
 		if(p1==null)
 		{
 			System.out.println("This Promotion doesn't not exist");
 			choice();
 		}
 		else{
-			ph.input();
-			Promotion ob1=ph.getOb();
-		int	l=pdi.updatePromotion(h,ob1);
+			promotionHelper.input();
+			Promotion ob1=promotionHelper.getOb();
+		int	l=promotionDao.updatePromotion(h,ob1);
 		if(l==1)
 		{System.out.println("Updated");}
 		else
