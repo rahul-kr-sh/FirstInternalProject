@@ -15,7 +15,7 @@ import com.MMT.helper.HotelHelperMMT;
 public class MenuAdminHotel {
 
 	
-	public class MenuAdminFlight {
+	
 		Hotel hotel=new Hotel();
 		HotelBlMMT hotelBl=new HotelBlMMT();
 		AdminBlMMT adminBl= new AdminBlMMT();
@@ -119,4 +119,4 @@ public class MenuAdminHotel {
 	}
 
 
-}
+
