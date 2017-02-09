@@ -149,10 +149,32 @@ public class UnregisteredHotelSearch {
 				}
 		}
 		else if(in==2){
-			homepage.HomePageMenu();
+			try {
+				homepage.HomePageMenu();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
-			homepage.HomePageMenu();
+			try {
+				homepage.HomePageMenu();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println("Press 1 to view Additional Offers!!");

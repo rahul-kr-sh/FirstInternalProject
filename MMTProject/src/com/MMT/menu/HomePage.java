@@ -1,9 +1,15 @@
 package com.MMT.menu;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.MMT.bean.User;
+import com.MMT.bl.UserBlMMT;
+import com.MMT.helper.SignupHelper;
+
 public class HomePage {
-	public void HomePageMenu(){
+	public void HomePageMenu() throws ClassNotFoundException, SQLException, IOException{
 		System.out.println("-------------HomePage--------------");
 		
 		System.out.println("1.Login");
@@ -22,7 +28,11 @@ public class HomePage {
 			loginMenu.LoginPage();
 			break;
 		case 2:
-		
+			SignupHelper signUp=new SignupHelper();
+			signUp.input();
+			User user=signUp.getUs();
+			 UserBlMMT userBL=new  UserBlMMT();
+			 userBL.register(user);
 			break;
 		
 		case 3:
