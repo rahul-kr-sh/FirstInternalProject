@@ -201,6 +201,7 @@ public class UserDashboard {
 					try {
 						fb = flightBookingBL.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination,
 								seats);
+						System.out.println(fb);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -522,7 +523,9 @@ public class UserDashboard {
 			if (flag) {
 				System.out.println("Money added to wallet");
 				try {
-					System.out.println("Your updated wallet balance is " + walletBL.walletBalance(user.getUserId()));
+					int bal=(int) walletBL.walletBalance(user.getUserId());
+					System.out.println("Your updated wallet balance is " +bal);
+					showDashboard(user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
