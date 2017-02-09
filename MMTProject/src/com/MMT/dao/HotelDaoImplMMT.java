@@ -1,5 +1,6 @@
 package com.MMT.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import com.MMT.bean.HotelRoom;
 public class HotelDaoImplMMT implements HotelDaoMMT {
 
 	@Override
-	public int insertHotel(Hotel h) throws SQLException {
+	public int insertHotel(Hotel h) throws SQLException, ClassNotFoundException, IOException {
 		Connection con=DbConnection.dbConnection();
 		String hotelId=h.getHotelId();
 		String hotelName=h.getHotelName();
@@ -53,7 +54,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 
 
 	@Override
-	public int deleteHotel(String hotelId) throws  SQLException {
+	public int deleteHotel(String hotelId) throws  SQLException, ClassNotFoundException, IOException {
 		
 		Connection con=DbConnection.dbConnection();
 		Statement stmt3=con.createStatement();
@@ -74,7 +75,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public int updateHotel(String hotelId, Hotel newhotel) throws  SQLException {
+	public int updateHotel(String hotelId, Hotel newhotel) throws  SQLException, ClassNotFoundException, IOException {
 		
 		Connection con=DbConnection.dbConnection();
 		String hotelId1=newhotel.getHotelId();
@@ -102,7 +103,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Hotel> displayHotel() throws  SQLException {
+	public ArrayList<Hotel> displayHotel() throws  SQLException, ClassNotFoundException, IOException {
 		Hotel hotel =new Hotel();
 		Connection con=DbConnection.dbConnection();
 		//Query
@@ -141,7 +142,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	}
 
 	@Override
-	public Hotel searchHotel(String hotelId) throws  SQLException {
+	public Hotel searchHotel(String hotelId) throws  SQLException, ClassNotFoundException, IOException {
 		Hotel hotel =new Hotel();
 		Connection con=DbConnection.dbConnection();
 		//Query
@@ -185,7 +186,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 
 
 	@Override
-	public ArrayList<Hotel> searchHotel1(String hotelLocation) throws SQLException {
+	public ArrayList<Hotel> searchHotel1(String hotelLocation) throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<Hotel> H=new ArrayList<>();
 		Hotel hotel =new Hotel();
 		Connection con=DbConnection.dbConnection();

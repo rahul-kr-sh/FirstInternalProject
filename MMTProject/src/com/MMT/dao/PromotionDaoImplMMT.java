@@ -1,5 +1,6 @@
 package com.MMT.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	
 	Connection con=null;
 	@Override
-	public int insertPromotion(Promotion p)throws SQLException {
+	public int insertPromotion(Promotion p)throws SQLException, ClassNotFoundException, IOException {
 		con=DbConnection.dbConnection();
 		
 		String promotionId=p.getPromotionId();
@@ -48,7 +49,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	}
 
 	@Override
-	public int deletePromotion(String promotionId)throws SQLException {
+	public int deletePromotion(String promotionId)throws SQLException, ClassNotFoundException, IOException {
 		con=DbConnection.dbConnection();
 		Statement stmt=con.createStatement();
 		int rows=stmt.executeUpdate("delete from PROMOTION where PROMOTIONID ="+promotionId);
@@ -63,7 +64,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		}
 	}
 	@Override
-	public int updatePromotion(String pId, Promotion newp) throws SQLException{
+	public int updatePromotion(String pId, Promotion newp) throws SQLException, ClassNotFoundException, IOException{
 		con=DbConnection.dbConnection();
 		String promotionId=newp.getPromotionId();
 		String promotionName=newp.getPromotionName();
@@ -88,7 +89,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Promotion> displayPromotion()throws SQLException {
+	public ArrayList<Promotion> displayPromotion()throws SQLException, ClassNotFoundException, IOException {
 		Promotion pro=new Promotion();
 		con=DbConnection.dbConnection();
 		
@@ -110,7 +111,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	}
 
 	@Override
-	public Promotion searchPromotion(String promotionId) throws SQLException{
+	public Promotion searchPromotion(String promotionId) throws SQLException, ClassNotFoundException, IOException{
 		con=DbConnection.dbConnection();
 		Promotion pro=new Promotion();
 		Statement stmt=con.createStatement();
@@ -129,7 +130,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Promotion> displayPromotion(String promotionType) throws SQLException {
+	public ArrayList<Promotion> displayPromotion(String promotionType) throws SQLException, ClassNotFoundException, IOException {
 		con=DbConnection.dbConnection();
 		Promotion pro=new Promotion();
 		ArrayList<Promotion> proList=new ArrayList<Promotion>();

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import com.MMT.bean.HotelBooking;
 
 public interface HotelBookingDaoMMT {
-	int insertHotelBooking(HotelBooking hb) throws SQLException;
-	ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException;
-	int cancelHotelBooking(String hotelBookingId) throws SQLException;
-	ArrayList<HotelBooking> display() throws SQLException;
+	int insertHotelBooking(HotelBooking hb) throws SQLException, ClassNotFoundException, IOException;
+	ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException, ClassNotFoundException, IOException;
+	int cancelHotelBooking(String hotelBookingId) throws SQLException, ClassNotFoundException, IOException;
+	ArrayList<HotelBooking> display() throws SQLException, ClassNotFoundException, IOException;
 }

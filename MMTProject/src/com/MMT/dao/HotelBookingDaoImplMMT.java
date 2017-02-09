@@ -1,5 +1,6 @@
 package com.MMT.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -16,7 +17,7 @@ import com.MMT.bean.HotelBooking;
 public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 
 	@Override
-	public int insertHotelBooking(HotelBooking hb) throws SQLException {
+	public int insertHotelBooking(HotelBooking hb) throws SQLException, ClassNotFoundException, IOException {
 		int row;
 		Connection con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("insert into HotelBooking values(?,?,?,?,?,?,?)");
@@ -33,7 +34,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	}
 
 	@Override
-	public ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException {
+	public ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
 		HotelBooking h=new HotelBooking();
 		Connection con=DbConnection.dbConnection();
@@ -55,7 +56,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	
 	
 	@Override
-	public int cancelHotelBooking(String hotelBookingId) throws SQLException {
+	public int cancelHotelBooking(String hotelBookingId) throws SQLException, ClassNotFoundException, IOException {
 		Connection con=DbConnection.dbConnection();
 		Statement stmt3=con.createStatement();
 		 int rows=stmt3.executeUpdate("delete from HotelBooking where hotelBookingId ="+hotelBookingId);
@@ -70,7 +71,7 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	}
 
 	@Override
-	public ArrayList<HotelBooking> display() throws SQLException {
+	public ArrayList<HotelBooking> display() throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
 		HotelBooking h=new HotelBooking();
 		Connection con=DbConnection.dbConnection();

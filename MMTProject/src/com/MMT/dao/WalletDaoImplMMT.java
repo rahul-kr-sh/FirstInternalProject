@@ -1,5 +1,6 @@
 package com.MMT.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	Wallet wl = null;
 
 	@Override
-	public Wallet displayWallet(String userId) throws SQLException {
+	public Wallet displayWallet(String userId) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
 		wl = new Wallet();
 		Statement stmt = con.createStatement();
@@ -28,7 +29,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public int updateWallet(String userId, Wallet newWallet) throws SQLException {
+	public int updateWallet(String userId, Wallet newWallet) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from  WALLET where USERID=" + userId);
@@ -45,7 +46,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public ArrayList<Wallet> displayWalletAll() throws SQLException {
+	public ArrayList<Wallet> displayWalletAll() throws SQLException, ClassNotFoundException, IOException {
 		Wallet pro = new Wallet();
 		con = DbConnection.dbConnection();
 
@@ -63,7 +64,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	}
 
 	@Override
-	public int insertWallet(Wallet w) throws SQLException {
+	public int insertWallet(Wallet w) throws SQLException, ClassNotFoundException, IOException {
 		con=DbConnection.dbConnection();
 		String uId=w.getUserId();
 		double userBalance=w.getWalletBalance();
@@ -82,7 +83,7 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 		
 	}
 	@Override
-	public int deleteWallet(Wallet w) throws SQLException {
+	public int deleteWallet(Wallet w) throws SQLException, ClassNotFoundException, IOException {
 		con=DbConnection.dbConnection();
 		String uId=w.getUserId();
 		double userBalance=w.getWalletBalance();
