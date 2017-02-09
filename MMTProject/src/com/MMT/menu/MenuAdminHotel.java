@@ -7,10 +7,13 @@ import java.util.Scanner;
 
 import com.MMT.bean.Hotel;
 import com.MMT.bean.HotelBooking;
+import com.MMT.bean.HotelRoom;
 import com.MMT.bl.AdminBlMMT;
 import com.MMT.bl.HotelBlMMT;
 import com.MMT.dao.HotelBookingDaoImplMMT;
+import com.MMT.dao.HotelDaoImplMMT;
 import com.MMT.helper.HotelHelperMMT;
+import com.MMT.helper.HotelRoomHelperMMT;
 
 public class MenuAdminHotel {
 
@@ -23,10 +26,10 @@ public class MenuAdminHotel {
 		HotelHelperMMT hotelhelper=new HotelHelperMMT();
 		Scanner sc=new Scanner(System.in);
 		public void choice() throws SQLException, IOException, ClassNotFoundException{
-			System.out.println("1.	Insert New Hotel_Detail");//
-			System.out.println("2.	Update Existing Hotel");//
+			System.out.println("1.	Insert New Hotel_Detail");
+			System.out.println("2.	Update Existing Hotel");
 			System.out.println("3.	Search Hotel");
-			System.out.println("4.	Delete Hotel");//
+			System.out.println("4.	Delete Hotel");
 			System.out.println("5.	Display All Hotel");
 			System.out.println("6.	Go back Main Menu");
 			System.out.println("Pick a option from Menu");
@@ -37,7 +40,10 @@ public class MenuAdminHotel {
 			case 1:
 			{
 				hotelhelper.input();
+				Hotel hotel;
 				hotel=hotelhelper.getHotel();
+				HotelDaoImplMMT hotelDaoImplOb=new HotelDaoImplMMT();
+				hotelDaoImplOb.insertHotel(hotel);
 				try {
 					if(adminBl.insertHotel(hotel)>0){
 						System.out.println("Successfully added");
