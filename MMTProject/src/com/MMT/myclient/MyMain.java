@@ -14,7 +14,7 @@ public class MyMain {
 		//while(true){
 			
 				try {
-					home.HomePageMenu();
+					home.homePageMenu();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

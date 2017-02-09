@@ -9,7 +9,7 @@ import com.MMT.bl.UserBlMMT;
 import com.MMT.helper.SignupHelper;
 
 public class HomePage {
-	public void HomePageMenu() throws ClassNotFoundException, SQLException, IOException{
+	public void homePageMenu() throws ClassNotFoundException, SQLException, IOException{
 		System.out.println("-------------HomePage--------------");
 		
 		System.out.println("1.Login");
@@ -32,7 +32,16 @@ public class HomePage {
 			signUp.input();
 			User user=signUp.getUs();
 			 UserBlMMT userBL=new  UserBlMMT();
-			 userBL.register(user);
+			 boolean trueFalse=userBL.register(user);
+			 if(trueFalse==true)
+			 {
+				 System.out.println("SignUp Successful!!");
+			 }
+			 else
+			 {
+				 System.out.println("SignUp Failed!!");
+				 homePageMenu();
+			 }
 			break;
 		
 		case 3:
@@ -48,7 +57,7 @@ public class HomePage {
 		
 		default:
 			System.out.println("Invalid Input");
-			HomePageMenu();
+			homePageMenu();
 		}
 	}
 }
