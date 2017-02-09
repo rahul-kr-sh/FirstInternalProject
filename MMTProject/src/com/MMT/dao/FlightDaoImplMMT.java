@@ -4,6 +4,7 @@ package com.MMT.dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -141,8 +142,11 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		ArrayList<Flight> F =new ArrayList<Flight>();
 		Connection con=DbConnection.dbConnection();
 		//Query
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Flight where flightSource="+flightSource +" AND flightDestination="+flightDestination);
+		PreparedStatement pst;
+		 pst=con.prepareStatement("select * from Flight where flightSource=? AND flightDestination=?");
+		pst.setString(1, flightSource);
+		 pst.setString(2, flightDestination);
+		 ResultSet rs=pst.executeQuery();
 		//Process Results
 		while(rs.next()){
 			f.setFlightCompanyName(rs.getString("flightCompanyName"));

@@ -2,6 +2,7 @@ package com.MMT.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -134,8 +135,10 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		con=DbConnection.dbConnection();
 		Promotion pro=new Promotion();
 		ArrayList<Promotion> proList=new ArrayList<Promotion>();
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from  Promotion where promotionType="+promotionType);
+		PreparedStatement pst;
+		pst=con.prepareStatement("select * from  Promotion where promotionType=?");
+		ResultSet rs=pst.executeQuery();
+		
 		while(rs.next()){
 				pro.setPromotionId(rs.getString(1));
 				pro.setPromotionName(rs.getString(2));
