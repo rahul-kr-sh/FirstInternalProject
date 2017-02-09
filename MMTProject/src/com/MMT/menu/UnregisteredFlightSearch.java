@@ -14,15 +14,16 @@ import com.MMT.bl.UserBlMMT;
 import com.MMT.bl.WalletBlMMT;
 
 public class UnregisteredFlightSearch {
-	FlightBookingBlMMT fbl = new FlightBookingBlMMT();
-	UserBlMMT Us=new UserBlMMT();
-	HomePage HP=new HomePage();
-	PromotionBlMMT Pbl = new PromotionBlMMT();
-	WalletBlMMT Wbl = new WalletBlMMT();
-	UserDashboard Udb=new UserDashboard();
-	Scanner sc=new Scanner(System.in);
-	public void showDashboard(){
-		User user=null;
+	FlightBookingBlMMT flightBookingBL = new FlightBookingBlMMT();
+	UserBlMMT userBL = new UserBlMMT();
+	HomePage homepage = new HomePage();
+	PromotionBlMMT promotionBl = new PromotionBlMMT();
+	WalletBlMMT walletBL = new WalletBlMMT();
+	UserDashboard userDashboard = new UserDashboard();
+	Scanner sc = new Scanner(System.in);
+
+	public void showDashboard() {
+		User user = null;
 		System.out.println("Enter Source:");
 		String source = sc.next();
 		System.out.println("Enter Destination:");
@@ -30,7 +31,7 @@ public class UnregisteredFlightSearch {
 		ArrayList<Flight> fList = null;
 		LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 		try {
-			fList = fbl.searchFlight(source, destination);
+			fList = flightBookingBL.searchFlight(source, destination);
 		} catch (ClassNotFoundException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -53,38 +54,35 @@ public class UnregisteredFlightSearch {
 		System.out.println("Enter No of seats:");
 		int seats = sc.nextInt();
 		double cartValue = fpicked.getFlightTicketPrice() * seats;
-		System.out.println("Total Amount to be paid:" +cartValue);
-		
+		System.out.println("Total Amount to be paid:" + cartValue);
+
 		System.out.println("Press 1 forLogin to Proceed Further!!");
 		System.out.println("Press 2 to go back");
-		int in=sc.nextInt();
-		if(in==1){
+		int in = sc.nextInt();
+		if (in == 1) {
 			System.out.println("Enter User Name:");
-			String name=sc.next();
+			String name = sc.next();
 			System.out.println("Enter Password: ");
-			String pass=sc.next();
-			
-			if(name==null){
+			String pass = sc.next();
+
+			if (name == null) {
 				System.out.println("THE USERNAME FIELD IS BLANK!!!");
-			}
-			else if(pass==null){
+			} else if (pass == null) {
 				System.out.println("THE PASSWORD FIELD IS BLANK!!!");
 			} else
 				try {
-					if(Us.checkLogin(name, pass)!=null){
+					if (userBL.checkLogin(name, pass) != null) {
 						System.out.println(" Successful User Login!!");
-						user = Us.checkLogin(name, pass);
+						user = userBL.checkLogin(name, pass);
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		}
-		else if(in==2){
-			HP.HomePageMenu();
-		}
-		else {
-			HP.HomePageMenu();
+		} else if (in == 2) {
+			homepage.HomePageMenu();
+		} else {
+			homepage.HomePageMenu();
 		}
 		System.out.println("Press 1 to See Additional Offers!!");
 		int choice = sc.nextInt();
@@ -92,7 +90,7 @@ public class UnregisteredFlightSearch {
 			boolean paymentStatus = false;
 			ArrayList<Promotion> promo = null;
 			try {
-				promo = Pbl.displayPromotion("FLIGHT");
+				promo = promotionBl.displayPromotion("FLIGHT");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,10 +110,10 @@ public class UnregisteredFlightSearch {
 
 			Promotion pPicked = promoMap.get(promoindex);
 
-			float valueAfterPromotion = Pbl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
+			float valueAfterPromotion = promotionBl.applyPromotion(pPicked, user.getUserId(), (float) cartValue);
 			float amountShort = 0;
 			try {
-				amountShort = valueAfterPromotion - Wbl.walletBalance(user.getUserId());
+				amountShort = valueAfterPromotion - walletBL.walletBalance(user.getUserId());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -130,13 +128,13 @@ public class UnregisteredFlightSearch {
 					System.out.println("Enter amount you want to add to wallet!!");
 					double amount = sc.nextDouble();
 					try {
-						Wbl.addWalletMoney(user.getUserId(), amount);
+						walletBL.addWalletMoney(user.getUserId(), amount);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
-						paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+						paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -148,29 +146,29 @@ public class UnregisteredFlightSearch {
 					System.out.println("Booking Cancelled due to insufficient funds!!");
 					System.out.println("Booking Cancelled!!");
 					paymentStatus = false;
-					Udb.showDashboard(user);
+					userDashboard.showDashboard(user);
 
 				} else {
 					System.out.println("Invalid Input");
 					paymentStatus = false;
-					Udb.showDashboard(user);
+					userDashboard.showDashboard(user);
 				}
 
 			} else {
 				try {
-					paymentStatus = Wbl.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
+					paymentStatus = walletBL.subtractWalletMoney(user.getUserId(), (double) valueAfterPromotion);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println("Payment Done!!! ");
 				System.out.println("Confirming Flight Booking!!");
-				
+
 			}
 
 			FlightBooking fb = null;
 			try {
-				fb = fbl.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
+				fb = flightBookingBL.bookFlight(user.getUserId(), fpicked.getFlightId(), source, destination, seats);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -181,10 +179,10 @@ public class UnregisteredFlightSearch {
 			if ((paymentStatus) && (fb != null)) {
 				System.out.println("Flight Booking Done");
 				System.out.println("Your Booking ID is: " + fb.getFlightBookingId());
-				Udb.showDashboard(user);
+				userDashboard.showDashboard(user);
 			} else if (fb == null) {
 				System.out.println("Sorry !! Booking Failed");
-				Udb.showDashboard(user);
+				userDashboard.showDashboard(user);
 			}
 		}
 
