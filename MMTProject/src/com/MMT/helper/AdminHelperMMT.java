@@ -17,6 +17,8 @@ public class AdminHelperMMT {
 	public void input(){
 		System.out.println("Enter Admin ID");
 		admin.setAdminId(sc.next());
+		System.out.println("Enter Admin Password");
+		admin.setAdminPassword(sc.next());
 		System.out.println("Enter Admin Name");
 		admin.setAdminName(sc.next());
 		System.out.println("Enter Admin Phone No");

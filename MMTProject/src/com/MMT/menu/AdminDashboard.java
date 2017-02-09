@@ -118,6 +118,7 @@ public class AdminDashboard {
 			admin1=adminHelper.getAdmin();
 			try {
 				adminBl.modifyAdmin(admin.getAdminId(), admin1);
+				adminProfileChoice();
 			} catch (SQLException e) {
 				System.out.println("Please enter correct details");
 //				e.printStackTrace();
