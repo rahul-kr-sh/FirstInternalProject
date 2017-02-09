@@ -61,10 +61,12 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 			fb.setFlightBookingId(rs.getString("flightBooikngDate"));
 
 			String status = "false";
-			if (rs.getString("flag").equals("true"))
+			if (rs.getString("flag").equals("true")) {
 				status = "true";
 
-			fb.setFlag(true);
+				fb.setFlag(true);
+			}
+
 			fList.add(fb);
 		}
 		return fList;
@@ -75,17 +77,20 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 
 		con = DbConnection.dbConnection();
 		int row = 0;
-		Statement stmt = con.createStatement();
-	
+		// Statement stmt = con.createStatement();
+		System.out.println("DAOPrint:"+fb);
 		PreparedStatement pst = con.prepareStatement("insert into FLIGHTBOOKING values(?,?,?,?,?)");
 		pst.setString(1, fb.getFlightBookingId());
 		pst.setString(2, fb.getUserId());
 		pst.setString(3, fb.getFlightId());
 		pst.setString(4, fb.getFlightBookingDate());
 		String status = "false";
-		if (fb.isFlag())
+		if (fb.isFlag()) {
 			status = "true";
-		pst.setString(5, status);
+			pst.setString(5, status);
+		}
+
+		row = pst.executeUpdate();
 
 		con.close();
 		return row;
@@ -109,6 +114,5 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }
