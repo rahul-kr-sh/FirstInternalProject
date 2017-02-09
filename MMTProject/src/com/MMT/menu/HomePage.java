@@ -15,6 +15,8 @@ public class HomePage {
 		Scanner sc=new Scanner(System.in);
 		int input=sc.nextInt();
 		LoginMenu lm=new LoginMenu();
+		UnregisteredFlightSearch UFS = new UnregisteredFlightSearch();
+		UnregisteredHotelSearch UHS=new UnregisteredHotelSearch();
 		switch(input){
 		case 1:
 			 lm.LoginPage();
@@ -24,19 +26,19 @@ public class HomePage {
 			break;
 		
 		case 3:
+			UFS.showDashboard();
 			break;
 		
 		case 4:
+			UHS.showDashboard();
 			break;
-			
 		case 5:
-			
-			break;
+			System.out.println("Thank you!!!");
+			System.exit(0);
 		
 		default:
 			System.out.println("Invalid Input");
 			HomePageMenu();
-			break;
 		}
 	}
 }
