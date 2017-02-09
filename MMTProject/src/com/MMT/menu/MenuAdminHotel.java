@@ -41,13 +41,16 @@ public class MenuAdminHotel {
 				try {
 					if(adminBl.insertHotel(hotel)>0){
 						System.out.println("Successfully added");
+						choice(); 
 					}
 					else
 					{
-						System.out.println("Hote can be added");
+						System.out.println("Hote can't be added");
+						choice() ;
 					}
 				} catch (Exception e) {
 					System.out.println("Please try again");
+					choice() ;
 				}
 				
 			}
@@ -63,13 +66,16 @@ public class MenuAdminHotel {
 					
 					if(adminBl.modifyHotel(hotelId, hotel)>0){
 						System.out.println("Successfully updated");
+						choice(); 
 					}
 					else
 					{
 						System.out.println("hotel can not be updated");
+						choice(); 
 					}
 				} catch (ClassNotFoundException e) {
 					System.out.println("Please try again");
+					choice(); 
 //					e.printStackTrace();
 				}
 				break;
@@ -79,9 +85,11 @@ public class MenuAdminHotel {
 				//					hotel=new hotelBookingBlMMT;
 				if(hotel!=null){
 					System.out.println(hotel);
+					choice(); 
 				}
 				else 
 					System.out.println("Please enter correct hotel id");
+				choice(); 
 				
 				break;
 				
@@ -91,10 +99,12 @@ public class MenuAdminHotel {
 				
 				if(adminBl.deleteFlight(sc.next())>0){
 					System.out.println("Successfully deleted");
+					choice(); 
 				}
 				else
 				{
 					System.out.println("hotel can not deleted");
+					choice(); 
 				}
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
@@ -106,12 +116,14 @@ public class MenuAdminHotel {
 			case 5:
 				ArrayList<Hotel> arraylistHotel=new ArrayList<Hotel>();
 				arraylistHotel= hotelBl.displayHotel();
+				choice(); 
 				break;
 		case 6:choice();
 			
 				break;
 			default :
 				System.out.println("Invalid choice");
+				choice(); 
 				break;
 				
 			}
