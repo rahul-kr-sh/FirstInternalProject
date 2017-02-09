@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.MMT.bean.HotelRoom;
-/*private String hotelId;
-	private int hotelRoomNo;
-	private String hotelRoomType;
-	private double hotelRoomPrice;
-	private String hotelRoomStatus;
- * */
+
 public class HotelRoomHelperMMT {
 	HotelRoom hotelRoom=new HotelRoom();
 	Scanner sc=new Scanner(System.in);
