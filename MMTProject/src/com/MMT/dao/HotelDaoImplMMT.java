@@ -27,7 +27,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 		pst.setString(4, h.getHotelInfo());
 		
 		rows=pst.executeUpdate();
-		System.out.println(rows);
+		//System.out.println(rows);
 		
 		ArrayList<HotelRoom> rl=h.getHotelRoom();
 		
