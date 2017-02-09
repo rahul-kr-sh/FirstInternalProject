@@ -2,10 +2,13 @@ package com.MMT.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import com.MMT.bean.Promotion;
 import com.MMT.bean.Wallet;
 
 public class WalletDaoImplMMT implements WalletDaoMMT {
@@ -16,8 +19,11 @@ public class WalletDaoImplMMT implements WalletDaoMMT {
 	public Wallet displayWallet(String userId) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
 		wl = new Wallet();
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from  WALLET where USERID=" + userId);
+		
+		ResultSet rs;
+		PreparedStatement pst=con.prepareStatement("select * from wallet where UserId=?");
+		pst.setString(1, userId);
+		rs=pst.executeQuery();
 		while (rs.next()) {
 			wl.setUserId(rs.getString(1));
 			wl.setWalletBalance(rs.getDouble(2));

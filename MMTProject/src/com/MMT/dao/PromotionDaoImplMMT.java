@@ -123,6 +123,7 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		ArrayList<Promotion> proList = new ArrayList<Promotion>();
 		PreparedStatement pst;
 		pst = con.prepareStatement("select * from  Promotion where promotionType=?");
+		pst.setString(1, promotionType);
 		ResultSet rs = pst.executeQuery();
 
 		while (rs.next()) {
