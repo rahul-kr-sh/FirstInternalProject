@@ -9,10 +9,10 @@ import com.MMT.bl.AdminBlMMT;
 import com.MMT.bl.UserBlMMT;
 
 public class LoginMenu {
-	AdminDashboard adb=new AdminDashboard();
-	AdminBlMMT Ad=new AdminBlMMT();
-	UserBlMMT Us=new UserBlMMT();
-	UserDashboard ud=new UserDashboard();
+	AdminDashboard adminDashboard=new AdminDashboard();
+	AdminBlMMT adminBl=new AdminBlMMT();
+	UserBlMMT userBl=new UserBlMMT();
+	UserDashboard userDashboard=new UserDashboard();
 	
 	Scanner sc=new Scanner(System.in);
 	public void LoginPage(){
@@ -30,21 +30,21 @@ public class LoginMenu {
 		else{
 			
 			try {
-				if(Ad.checkAdminLogin(name, pass)!=null)
+				if(adminBl.checkAdminLogin(name, pass)!=null)
 					{
 					
 					System.out.println(" Successful Admin Login!!");
-					Admin admin=Ad.checkAdminLogin(name, pass);
-					adb.showDashboard(admin);
+					Admin admin=adminBl.checkAdminLogin(name, pass);
+					adminDashboard.showDashboard(admin);
 				//	adminDisplay();
 					
 					}
-				else if(Us.checkLogin(name, pass)!=null)
+				else if(userBl.checkLogin(name, pass)!=null)
 				{
 					System.out.println(" Successful User Login!!");
-					User user = Us.checkLogin(name, pass);
+					User user = userBl.checkLogin(name, pass);
 					
-					ud.showDashboard(user);                //User Display 
+					userDashboard.showDashboard(user);                //User Display 
 				}
 				else{
 					System.out.println("Invalid Credentials");

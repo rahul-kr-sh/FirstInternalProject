@@ -13,8 +13,8 @@ import com.MMT.dao.HotelBookingDaoImplMMT;
 import com.MMT.dao.UserDaoImplMMT;
 
 public class UserBlMMT {
-	private HotelBookingDaoImplMMT H = new HotelBookingDaoImplMMT();
-	private FlightBookingImpMMT F = new FlightBookingImpMMT();
+	private HotelBookingDaoImplMMT hotelBookingDao = new HotelBookingDaoImplMMT();
+	private FlightBookingImpMMT flightBookingDao = new FlightBookingImpMMT();
 
 	public User checkLogin(String username, String password) throws SQLException {
 		UserDaoImplMMT udi = new UserDaoImplMMT();
@@ -45,13 +45,13 @@ public class UserBlMMT {
 	public ArrayList<FlightBooking> pastFbooking(String userId) throws ClassNotFoundException, SQLException
 	{
 		
-		return F.searchFlightBooking(userId);
+		return flightBookingDao.searchFlightBooking(userId);
 	}
 	
 	public ArrayList<HotelBooking> pastHbooking(String userId) throws ClassNotFoundException, IOException, SQLException
 	{
 		
-		return H.searchHotelBooking(userId);
+		return hotelBookingDao.searchHotelBooking(userId);
 	}
 	public User searchUser(String uid) throws SQLException{
 		return new UserDaoImplMMT().search(uid);

@@ -14,23 +14,23 @@ public class HomePage {
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
 		int input=sc.nextInt();
-		LoginMenu lm=new LoginMenu();
-		UnregisteredFlightSearch UFS = new UnregisteredFlightSearch();
-		UnregisteredHotelSearch UHS=new UnregisteredHotelSearch();
+		LoginMenu loginMenu=new LoginMenu();
+		UnregisteredFlightSearch UnregisteredFlightSearch = new UnregisteredFlightSearch();
+		UnregisteredHotelSearch UnregisteredHotelSearch=new UnregisteredHotelSearch();
 		switch(input){
 		case 1:
-			 lm.LoginPage();
+			loginMenu.LoginPage();
 			break;
 		case 2:
 		
 			break;
 		
 		case 3:
-			UFS.showDashboard();
+			UnregisteredFlightSearch.showDashboard();
 			break;
 		
 		case 4:
-			UHS.showDashboard();
+			UnregisteredHotelSearch.showDashboard();
 			break;
 		case 5:
 			System.out.println("Thank you!!!");

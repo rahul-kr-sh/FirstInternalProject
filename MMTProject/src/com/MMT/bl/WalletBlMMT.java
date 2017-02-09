@@ -8,30 +8,30 @@ import com.MMT.dao.WalletDaoImplMMT;
 import com.MMT.dao.WalletDaoMMT;
 
 public class WalletBlMMT {
-	private WalletDaoMMT W = new WalletDaoImplMMT();
+	private WalletDaoMMT walletDao = new WalletDaoImplMMT();
 
 	public float walletBalance(String userId) throws SQLException {
 		Wallet w;
 
-		w = W.displayWallet(userId);
+		w = walletDao.displayWallet(userId);
 		return (float) w.getWalletBalance();
 	}
 
 	public ArrayList<Wallet> displayAll() throws SQLException {
-		return W.displayWalletAll();
+		return walletDao.displayWalletAll();
 	}
 
 	public boolean addWalletMoney(String userId,Double value) throws SQLException {
 		Wallet w;
-		w=W.displayWallet(userId);
+		w=walletDao.displayWallet(userId);
 		w.setWalletBalance(w.getWalletBalance()+value);
-		W.updateWallet(userId, w);
+		walletDao.updateWallet(userId, w);
 		return true;
 	}
 	
 	public boolean subtractWalletMoney(String userId,Double value) throws SQLException {
 		Wallet w;
-		w=W.displayWallet(userId);
+		w=walletDao.displayWallet(userId);
 		double temp=w.getWalletBalance()-value;
 		if(temp<0){
 			//Exception //Insufficient Funds Add money to wallet
@@ -39,7 +39,7 @@ public class WalletBlMMT {
 		}
 		else{
 			w.setWalletBalance(temp);
-			W.updateWallet(userId, w);
+			walletDao.updateWallet(userId, w);
 			return true;
 		}
 		
