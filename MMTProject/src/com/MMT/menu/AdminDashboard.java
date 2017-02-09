@@ -64,7 +64,7 @@ public class AdminDashboard {
 		
 		case 6:
 			try {
-				homePage.HomePageMenu();
+				homePage.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

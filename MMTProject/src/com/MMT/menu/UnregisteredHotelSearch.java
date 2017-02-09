@@ -150,7 +150,7 @@ public class UnregisteredHotelSearch {
 		}
 		else if(in==2){
 			try {
-				homepage.HomePageMenu();
+				homepage.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -164,7 +164,7 @@ public class UnregisteredHotelSearch {
 		}
 		else {
 			try {
-				homepage.HomePageMenu();
+				homepage.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

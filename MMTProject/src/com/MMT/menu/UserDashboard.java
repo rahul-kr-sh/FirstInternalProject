@@ -541,7 +541,7 @@ public class UserDashboard {
 			System.out.println("Successfully logged out!!!");
 			HomePage hp = new HomePage();
 			try {
-				hp.HomePageMenu();
+				hp.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

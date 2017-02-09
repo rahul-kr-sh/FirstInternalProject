@@ -93,7 +93,7 @@ public class UnregisteredFlightSearch {
 				}
 		} else if (in == 2) {
 			try {
-				homepage.HomePageMenu();
+				homepage.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -106,7 +106,7 @@ public class UnregisteredFlightSearch {
 			}
 		} else {
 			try {
-				homepage.HomePageMenu();
+				homepage.homePageMenu();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -49,7 +49,7 @@ public class LoginMenu {
 				}
 				else{
 					System.out.println("Invalid Credentials");
-					homePage.HomePageMenu();
+					homePage.homePageMenu();
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
