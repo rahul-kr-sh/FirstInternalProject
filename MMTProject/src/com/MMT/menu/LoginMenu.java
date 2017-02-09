@@ -16,7 +16,7 @@ public class LoginMenu {
 	UserDashboard userDashboard=new UserDashboard();
 	HomePage homePage = new HomePage();
 	Scanner sc=new Scanner(System.in);
-	public void LoginPage(){
+	public void loginPage(){
 		System.out.println("Enter User Name:");
 		String name=sc.next();
 		System.out.println("Enter Password: ");

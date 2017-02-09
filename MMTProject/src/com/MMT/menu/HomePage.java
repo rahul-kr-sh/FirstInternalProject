@@ -25,7 +25,7 @@ public class HomePage {
 		UnregisteredHotelSearch UnregisteredHotelSearch=new UnregisteredHotelSearch();
 		switch(input){
 		case 1:
-			loginMenu.LoginPage();
+			loginMenu.loginPage();
 			break;
 		case 2:
 			SignupHelper signUp=new SignupHelper();
