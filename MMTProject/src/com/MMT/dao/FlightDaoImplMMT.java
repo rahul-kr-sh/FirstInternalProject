@@ -27,7 +27,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		//Testing//server
 		//Query
 		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats)  values ("+flightCompanyName+","+flightId+","+flightSource+","+flightDestination+","+flightDepartureTime+","+flightArrivalTime+","+flightTicketPrice+","+availableSeats+")");
+		int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats)  values ('"+flightCompanyName+"','"+flightId+"','"+flightSource+"','"+flightDestination+"','"+flightDepartureTime+"','"+flightArrivalTime+"',"+flightTicketPrice+","+availableSeats+")");
 		System.out.println("Inserted");
 		//Process Results
 		
@@ -72,7 +72,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		
 		//Query
 		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("update Flight set flightCompanyName="+flightCompanyName+" flightId="+flightId1+"flightSource="+flightSource+"flightDestination="+flightDestination+"flightDepartureTime="+flightDepartureTime+"flightArrivalTime="+flightArrivalTime+"flightTicketPrice="+flightTicketPrice+"availableSeats="+availableSeats);
+		int rows=stmt.executeUpdate("update Flight set flightCompanyName="+flightCompanyName+", flightId="+flightId1+",flightSource="+flightSource+",flightDestination="+flightDestination+",flightDepartureTime="+flightDepartureTime+",flightArrivalTime="+flightArrivalTime+",flightTicketPrice="+flightTicketPrice+",availableSeats="+availableSeats);
 		 //rows=stmt.executeUpdate("insert into User (address,email,uid,name,pass,phoneNo values ("+address+","+email+","+uid+","+name+","+pass+","+phoneNo+")");
 		//Process Results
 		
@@ -139,7 +139,7 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 		Connection con=DbConnection.dbConnection();
 		//Query
 		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Flight where flightSource="+flightSource +"AND flightDestination="+flightDestination);
+		ResultSet rs=stmt.executeQuery("select * from Flight where flightSource="+flightSource +" AND flightDestination="+flightDestination);
 		//Process Results
 		while(rs.next()){
 			f.setFlightCompanyName(rs.getString("flightCompanyName"));
