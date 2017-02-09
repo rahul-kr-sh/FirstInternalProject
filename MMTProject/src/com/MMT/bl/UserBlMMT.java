@@ -49,7 +49,19 @@ public class UserBlMMT {
 		}
 
 	}
-
+	
+	public User displayUserProfile(String userId) throws ClassNotFoundException, SQLException, IOException{
+		User user=userDao.search(userId);
+		
+		return user;
+	}
+	
+	public Double userWalletBalance(String userId) throws ClassNotFoundException, SQLException, IOException{
+		WalletDaoImplMMT walletDao=new WalletDaoImplMMT();
+		Wallet wallet;
+		wallet=walletDao.displayWallet(userId);
+		return wallet.getWalletBalance();
+	}
 	public ArrayList<FlightBooking> pastFbooking(String userId)
 			throws ClassNotFoundException, SQLException, IOException {
 

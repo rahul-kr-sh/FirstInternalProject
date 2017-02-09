@@ -32,7 +32,7 @@ public class UserDashboard {
 	HotelBlMMT hotelBL = new HotelBlMMT();
 	UserBlMMT userBL = new UserBlMMT();
 
-	public void showDashboard(User user) {
+	public void showDashboard(User user) throws ClassNotFoundException, SQLException, IOException {
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
 		System.out.println("1.Search Flight");
@@ -40,7 +40,8 @@ public class UserDashboard {
 		System.out.println("3. View Past Flight Bookings");
 		System.out.println("4. View Past Hotel Bookings");
 		System.out.println("5. Add Money to Wallet");
-		System.out.println("6. Logout");
+		System.out.println("6. Show User Profile");
+		System.out.println("7. Logout");
 		// Comment
 		System.out.println("Enter a choice: ");
 		int input = sc.nextInt();
@@ -537,7 +538,13 @@ public class UserDashboard {
 			}
 			// addMoneyDisplay();
 			break;
+			
 		case 6:
+			System.out.println(userBL.displayUserProfile(user.getUserId()));
+			System.out.println("Aailable Balance is: "+userBL.userWalletBalance(user.getUserId()));
+			showDashboard(user);
+		
+		case 7:
 			System.out.println("Successfully logged out!!!");
 			HomePage hp = new HomePage();
 			try {

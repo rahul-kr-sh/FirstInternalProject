@@ -264,12 +264,34 @@ public class UnregisteredHotelSearch {
 					System.out.println("Booking Cancelled due to insufficient funds!!");
 					System.out.println("Booking Cancelled!!");
 					paymentStatus = false;
-					userDashboard.showDashboard(user);
+					try {
+						userDashboard.showDashboard(user);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 				} else {
 					System.out.println("Invalid Input");
 					paymentStatus = false;
-					userDashboard.showDashboard(user);
+					try {
+						userDashboard.showDashboard(user);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 			} else {
@@ -306,10 +328,32 @@ public class UnregisteredHotelSearch {
 			if ((paymentStatus) && (hb != null)) {
 				System.out.println("Hotel Booking Done");
 				System.out.println("Your Booking ID is: " + hb.getHotelBookingId());
-				userDashboard.showDashboard(user);
+				try {
+					userDashboard.showDashboard(user);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else if (hb == null) {
 				System.out.println("Sorry !! Booking Failed");
-				userDashboard.showDashboard(user);
+				try {
+					userDashboard.showDashboard(user);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
