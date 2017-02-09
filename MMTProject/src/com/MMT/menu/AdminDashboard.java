@@ -138,6 +138,7 @@ public class AdminDashboard {
 			admin1=adminHelper.getAdmin();
 			try {
 				adminBl.addAdmin(admin1);
+				adminProfileChoice();
 			} catch (SQLException e) {
 				System.out.println("Please try another one");
 //				e.printStackTrace();
@@ -156,8 +157,10 @@ public class AdminDashboard {
 				if(adminBl.removeAdmin(sc.next())!=1){
 					System.out.println("Please enter correct Admin id.");
 				}
-				else
+				else{
 					System.out.println("Admin succesfully deleted.");
+					adminProfileChoice();
+				}
 				
 			} catch (SQLException e) {
 				System.out.println("Admin could not be delete.");
@@ -171,10 +174,12 @@ public class AdminDashboard {
 			} 
 		    return ;
 		case 5:showDashboard(admin);
+		adminProfileChoice();
+		break;
 		
 		default:
 			System.out.println("Invalid Input");
-			
+			adminProfileChoice();
 			break;
 		}
 	}
