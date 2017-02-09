@@ -540,7 +540,18 @@ public class UserDashboard {
 		case 6:
 			System.out.println("Successfully logged out!!!");
 			HomePage hp = new HomePage();
-			hp.HomePageMenu();
+			try {
+				hp.HomePageMenu();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		default:
 			System.out.println("Invalid Input!!");
