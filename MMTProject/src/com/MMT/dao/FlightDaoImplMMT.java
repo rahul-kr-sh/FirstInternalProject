@@ -37,19 +37,18 @@ public class FlightDaoImplMMT implements FlightDaoMMT {
 
 	@Override
 	public int deleteFlight(String flightId) throws ClassNotFoundException, SQLException, IOException {
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		//Query
-		Statement stmt=con.createStatement();
-		int rows=stmt.executeUpdate("delete from Flight where flightId ="+flightId);
-		//Process Results
+		int row=0;
 		
-		if(rows>0)
-		{
-			con.close();
+		PreparedStatement pst=con.prepareStatement("delete from flight where flightId=?");
+		
+		pst.setString(1, flightId);
+		
+		row=pst.executeUpdate();
+		con.close();
 
-			return rows;
-		}
-		else return 0;
+		return row;
 	}
 
 	@Override

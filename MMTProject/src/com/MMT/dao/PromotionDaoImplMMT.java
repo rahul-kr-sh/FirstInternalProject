@@ -21,18 +21,16 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 		int row;
 		con = DbConnection.dbConnection();
 
-		
+		con = DbConnection.dbConnection();
+		PreparedStatement pst = con.prepareStatement("insert into promotion values(?,?,?,?,?,?)");
 
-		con=DbConnection.dbConnection();
-		PreparedStatement pst=con.prepareStatement("insert into promotion values(?,?,?,?,?,?)");
-		
 		pst.setString(1, p.getPromotionId());
 		pst.setString(2, p.getPromotionName());
 		pst.setDouble(3, p.getPromotionDiscount());
 		pst.setString(4, p.getPromotionExpiryDate());
 		pst.setDouble(5, p.getPromotionMinRequiredAmount());
-		pst.setString(6,p.getPromotionType());
-		row=pst.executeUpdate();
+		pst.setString(6, p.getPromotionType());
+		row = pst.executeUpdate();
 		return row;
 
 	}
@@ -40,38 +38,37 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	@Override
 	public int deletePromotion(String promotionId) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
-		Statement stmt = con.createStatement();
-		int rows = stmt.executeUpdate("delete from PROMOTION where PROMOTIONID =" + promotionId);
-		if (rows > 0) {
-			con.close();
-			return rows;
-		} else {
-			con.close();
-			return 0;
-		}
+		// Statement stmt = con.createStatement();
+		// int rows = stmt.executeUpdate("delete from PROMOTION where
+		// PROMOTIONID =" + promotionId);
+		int row = 0;
+		PreparedStatement pst = con.prepareStatement("delete from promotion where promotionId=?");
+		pst.setString(1, promotionId);
+		row = pst.executeUpdate();
+
+		con.close();
+		return row;
 	}
 
 	@Override
-	public int updatePromotion(String pId, Promotion newp) throws SQLException, ClassNotFoundException, IOException {
+	public int updatePromotion(String promotionId, Promotion newp)
+			throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
-		String promotionId = newp.getPromotionId();
-		String promotionName = newp.getPromotionName();
-		double promotionDiscount = newp.getPromotionDiscount();
-		String promotionExp = newp.getPromotionExpiryDate();
-		double promotionReqAmt = newp.getPromotionMinRequiredAmount();
-		String promotionType = newp.getPromotionType();
-		Statement stmt = con.createStatement();
-		int rows = stmt.executeUpdate("update PROMOTION set PROMO" + "TIONID= '" + promotionId + "' ,PROMOTIONNAME ='"
-				+ promotionName + "',PROMOTIONDI" + "SCOUNT='" + promotionDiscount + "' ,PROMOTIONEXPIRYDATE='"
-				+ promotionExp + "',PROMOTIONMINREQ" + "UIREDAMOUNT='" + promotionReqAmt + "',PROMOTIONTYPE ='"
-				+ promotionType + "' where PROMOTIONID=" + promotionId);
-		if (rows > 0) {
-			con.close();
-			return rows;
-		} else {
-			con.close();
-			return 0;
-		}
+		int row = 0;
+		PreparedStatement pst = con.prepareStatement(
+				"update promotion set promotionId=?,  promotionName=?, promotionDiscount=?, promotionExpiryDate=?,promotionMinRequiredAmount=?,promotionType=? where promotionId=?");
+		pst.setString(1, newp.getPromotionId());
+		pst.setString(2, newp.getPromotionName());
+		pst.setDouble(3, newp.getPromotionDiscount());
+		pst.setString(4, newp.getPromotionExpiryDate());
+		pst.setDouble(5, newp.getPromotionMinRequiredAmount());
+		pst.setString(6, newp.getPromotionType());
+		pst.setString(7, promotionId);
+		
+		row=pst.executeUpdate();
+		con.close();
+
+		return row;
 	}
 
 	@Override
@@ -99,10 +96,13 @@ public class PromotionDaoImplMMT implements PromotionDaoMMT {
 	@Override
 	public Promotion searchPromotion(String promotionId) throws SQLException, ClassNotFoundException, IOException {
 		con = DbConnection.dbConnection();
-		Promotion pro = new Promotion();
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from  Promotion where PROMOTIONID=" + promotionId);
+		Promotion pro;
+		PreparedStatement pst = con.prepareStatement("select * from promotion where promotionId=?");
+		pst.setString(1, promotionId);
+		ResultSet rs = pst.executeQuery();
+
 		while (rs.next()) {
+			pro = new Promotion();
 			pro.setPromotionId(rs.getString(1));
 			pro.setPromotionName(rs.getString(2));
 			pro.setPromotionDiscount(rs.getFloat(3));

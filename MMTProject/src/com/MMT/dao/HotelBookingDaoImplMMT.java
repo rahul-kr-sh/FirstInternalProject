@@ -2,7 +2,7 @@ package com.MMT.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +25,12 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 		pst.setString(2, hb.getHotelId());
 		pst.setString(3, hb.getUserId());
 		pst.setInt(4, hb.getRoomNo());
-		pst.setDate(5, (Date) hb.getHotelCheckInDate());
-		pst.setDate(6, (Date) hb.getHotelCheckOutDate());
+		Date d = hb.getHotelCheckInDate();
+		java.sql.Date sqlDate1 = new java.sql.Date(d.getTime());
+		pst.setDate(5, sqlDate1);
+		Date d1 =hb.getHotelCheckOutDate();
+		java.sql.Date sqlDate2 = new java.sql.Date(d1.getTime());
+		pst.setDate(6, sqlDate2 );
 		pst.setInt(7, hb.getStayDuration());
 		row=pst.executeUpdate();
 		con.close();
@@ -36,12 +40,13 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 	@Override
 	public ArrayList<HotelBooking> searchHotelBooking(String userId) throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<HotelBooking> hb =new ArrayList<HotelBooking>();
-		HotelBooking h=new HotelBooking();
+		HotelBooking h;
 		Connection con=DbConnection.dbConnection();
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery("select * from HotelBooking where userId like '"+userId+"'");
 		//Process Results
 		while(rs.next()){
+			h=new HotelBooking();;
 			h.setHotelBookingId(rs.getString("hotelBookingId"));
 			h.setHotelId(rs.getString("hotelId"));
 			h.setUserId(rs.getString("userId"));

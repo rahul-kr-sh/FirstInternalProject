@@ -14,12 +14,12 @@ import com.MMT.bean.HotelRoom;
 
 
 public class HotelDaoImplMMT implements HotelDaoMMT {
-
+	Connection con;
 	@Override
 	public int insertHotel(Hotel h) throws SQLException, ClassNotFoundException, IOException {
 		
 		int rows,rows2 = 0;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("insert into hotel values(?,?,?,?)");
 		pst.setString(1, h.getHotelId());
 		pst.setString(2, h.getHotelName());
@@ -62,7 +62,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	public int deleteHotel(String hotelId) throws  SQLException, ClassNotFoundException, IOException {
 		
 		int rows,rows2;
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		PreparedStatement pst=con.prepareStatement("delete from hotel where HOTELID=?");
 		PreparedStatement pst1=con.prepareStatement("delete from hotelROOM where HOTELID=?");
 		rows=pst.executeUpdate();
@@ -81,7 +81,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	@Override
 	public int updateHotel(String hotelId, Hotel newhotel) throws  SQLException, ClassNotFoundException, IOException {
 		
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		String hotelId1=newhotel.getHotelId();
 		String hotelName=newhotel.getHotelName();
 		String hotelLocation=newhotel.getHotelLocation();
@@ -109,23 +109,30 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	@Override
 	public ArrayList<Hotel> displayHotel() throws  SQLException, ClassNotFoundException, IOException {
 		Hotel hotel =new Hotel();
-		Connection con=DbConnection.dbConnection();
+		con=DbConnection.dbConnection();
 		//Query
 		ArrayList<Hotel> hotList=new ArrayList<Hotel>();
 		HotelRoom room=new HotelRoom(); 
 
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Hotel ");
+		//Statement stmt=con.createStatement();
+		//ResultSet rs=stmt.executeQuery("select * from Hotel ");
 		//Process Results
+		ResultSet rs;
+		PreparedStatement pst=con.prepareStatement("select * from hotel");
+		rs=pst.executeQuery();
 		while(rs.next()){
 			
 			hotel.setHotelId(rs.getString("hotelId"));
 			hotel.setHotelName(rs.getString("hotelName"));
 			hotel.setHotelLocation(rs.getString("hotelLocation"));
 			hotel.setHotelInfo(rs.getString("hotelInfo"));
-			Statement stmt2=con.createStatement();
+			ResultSet rs2;
+			PreparedStatement pst1=con.prepareStatement("select * from hotelroom where hotelId=?");
+			pst1.setString(1, rs.getString("hotelId"));
+			//Statement stmt2=con.createStatement();
 			ArrayList<HotelRoom> rl=new ArrayList<HotelRoom>();
-			ResultSet rs2=stmt.executeQuery("select * from  HotelRoom where hotelId= "+rs.getString("hotelId"));
+			rs2=pst1.executeQuery();
+			//ResultSet rs2=stmt.executeQuery("select * from  HotelRoom where hotelId= "+rs.getString("hotelId"));
 			while(rs2.next())
 			{
 				room.setHotelRoomNo(rs2.getInt("hotelRoomNo"));
@@ -138,6 +145,7 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 			hotel.setHotelRoom(rl);;
 			
 			hotList.add(hotel);
+			//System.out.println(hotList);
 
 		}
 		
@@ -148,26 +156,24 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	@Override
 	public Hotel searchHotel(String hotelId) throws  SQLException, ClassNotFoundException, IOException {
 		Hotel hotel =new Hotel();
-		Connection con=DbConnection.dbConnection();
-		//Query
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Hotel where hotelId="+hotelId);
-		//Process Results
+		con=DbConnection.dbConnection();
+		
+		ResultSet rs;
+		PreparedStatement pst=con.prepareStatement("select * from hotel where hotelId=?");
+		pst.setString(1, hotelId);
+		rs=pst.executeQuery();
 		while(rs.next()){
-//			int id=rs.getInt("eid");
-			
-			
+
 			hotel.setHotelId(rs.getString("hotelId"));
 			hotel.setHotelName(rs.getString("hotelName"));
 			hotel.setHotelLocation(rs.getString("hotelLocation"));
 			hotel.setHotelInfo(rs.getString("hotelInfo"));
-//			hotel.setuEmailId(rs.getString("uemail"));
-//			user.setuPassword(rs.getString("upassword"));
-//			user.setuPhoneNumber(rs.getInt("uphoneNumber"));
-			Statement stmt2=con.createStatement();
+			PreparedStatement pst1=con.prepareStatement("select * from hotelroom where hotelId=?");
+			pst1.setString(1, hotelId);
 			HotelRoom room=new HotelRoom();
 			ArrayList<HotelRoom> rl=new ArrayList<HotelRoom>();
-			ResultSet rs2=stmt.executeQuery("select * from Hoteloom where hotelId= "+rs.getString("hotelId"));
+			ResultSet rs2=pst1.executeQuery();
+			//ResultSet rs2=stmt.executeQuery("select * from Hoteloom where hotelId= "+rs.getString("hotelId"));
 			while(rs2.next())
 			{
 				room.setHotelRoomNo(rs2.getInt("hotelRoomNo"));
@@ -178,12 +184,12 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 			}
 			hotel.setHotelRoom(rl);;
 			
-			
+			con.close();
 			return hotel;
 
 		}
 		
-		
+		con.close();
 		return null;
 	}
 
@@ -193,26 +199,26 @@ public class HotelDaoImplMMT implements HotelDaoMMT {
 	public ArrayList<Hotel> searchHotel1(String hotelLocation) throws SQLException, ClassNotFoundException, IOException {
 		ArrayList<Hotel> H=new ArrayList<>();
 		Hotel hotel =new Hotel();
-		Connection con=DbConnection.dbConnection();
-		//Query
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("select * from Hotel where hotelLocation="+hotelLocation);
-		//Process Results
+		con=DbConnection.dbConnection();
+		ResultSet rs;
+		PreparedStatement pst=con.prepareStatement("select * from hotel where hotelLocation=?");
+		
+		pst.setString(1, hotelLocation);
+		rs=pst.executeQuery();
 		while(rs.next()){
-//			int id=rs.getInt("eid");
-			
 			
 			hotel.setHotelId(rs.getString("hotelId"));
 			hotel.setHotelName(rs.getString("hotelName"));
 			hotel.setHotelLocation(rs.getString("hotelLocation"));
 			hotel.setHotelInfo(rs.getString("hotelInfo"));
-//			hotel.setuEmailId(rs.getString("uemail"));
-//			user.setuPassword(rs.getString("upassword"));
-//			user.setuPhoneNumber(rs.getInt("uphoneNumber"));
-			Statement stmt2=con.createStatement();
+			PreparedStatement pst1=con.prepareStatement("select * from hotelroom where hotelId=?");
+			
+			pst1.setString(1, (rs.getString("hotelId")));
+			ResultSet rs2=pst1.executeQuery();
+
 			HotelRoom room=new HotelRoom();
 			ArrayList<HotelRoom> rl=new ArrayList<HotelRoom>();
-			ResultSet rs2=stmt.executeQuery("select * from Hoteloom where hotelId= "+rs.getString("hotelId"));
+			//ResultSet rs2=stmt.executeQuery("select * from Hoteloom where hotelId= "+rs.getString("hotelId"));
 			while(rs2.next())
 			{
 				room.setHotelRoomNo(rs2.getInt("hotelRoomNo"));

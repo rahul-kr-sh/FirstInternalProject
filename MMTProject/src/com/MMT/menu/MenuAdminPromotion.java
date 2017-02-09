@@ -52,11 +52,14 @@ public class MenuAdminPromotion {
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				choice(admin);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				choice(admin);
 			}
 			System.out.println(promotion);
+			choice(admin);
 			break;
 		case 3:
 
@@ -94,16 +97,19 @@ public class MenuAdminPromotion {
 			}
 			if (k == 1) {
 				System.out.println("Promotion " + pId + " is Deleted");
+				choice(admin);
 			} else {
 				System.out.println("Can't delete");
+				choice(admin);
 			}
 			break;
 		case 5:
 			System.out.println("Enter the Promotion ID whose Information you want to update");
-			String h = promotion.getPromotionId();
-			Promotion p1 = null;
+			String promotionID=sc.next();
+			//String  = promotion.getPromotionId();
+			Promotion promo1 = null;
 			try {
-				p1 = promotionDao.searchPromotion(h);
+				promo1 = promotionDao.searchPromotion(promotionID);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -111,7 +117,7 @@ public class MenuAdminPromotion {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (p1 == null) {
+			if (promo1 == null) {
 				System.out.println("This Promotion doesn't not exist");
 				choice(admin);
 			} else {
@@ -119,18 +125,24 @@ public class MenuAdminPromotion {
 				Promotion ob1 = promotionHelper.getOb();
 				int l = 0;
 				try {
-					l = promotionDao.updatePromotion(h, ob1);
+					l = promotionDao.updatePromotion(promotionID, ob1);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					choice(admin);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					choice(admin);
 				}
 				if (l == 1) {
 					System.out.println("Updated");
-				} else
+					choice(admin);
+				} else{
 					System.out.println("Not Updated");
+					choice(admin);
+				}
+					
 			}
 			break;
 		case 6:

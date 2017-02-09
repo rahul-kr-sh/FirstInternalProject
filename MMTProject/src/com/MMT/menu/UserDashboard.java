@@ -321,7 +321,8 @@ public class UserDashboard {
 				ArrayList<Promotion> promo = null;
 
 				try {
-					promo = promotionBL.displayPromotion("Hotel");
+					promo = promotionBL.displayPromotion("HOTEL");
+					//System.out.println(promo);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -333,16 +334,20 @@ public class UserDashboard {
 					e.printStackTrace();
 				}
 				LinkedHashMap<Integer, Promotion> promoMap = new LinkedHashMap<Integer, Promotion>();
+				// System.out.println("Printing");
 				int j = 1;
 				for (Promotion pindex : promo) {
 					promoMap.put(j++, pindex);
 				}
+
 				j = 1;
 				for (Promotion p : promo) {
+					// System.out.println("sdasuidhuiashd");
 					System.out.println(j++ + ":" + p);
 				}
 
 				System.out.println("Pick a Promo Code!!");
+
 				int promoindex = sc.nextInt();
 
 				Promotion pPicked = promoMap.get(promoindex);
@@ -434,18 +439,22 @@ public class UserDashboard {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						showDashboard(user);
 					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					showDashboard(user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					showDashboard(user);
 				}
 
 				if ((paymentStatus) && (hb != null)) {
 					System.out.println("Hotel Booking Done");
 					System.out.println("Your Booking ID is: " + hb.getHotelBookingId());
+					showDashboard(user);
 				} else if (hb == null) {
 					System.out.println("Sorry !! Booking Failed");
 					showDashboard(user);

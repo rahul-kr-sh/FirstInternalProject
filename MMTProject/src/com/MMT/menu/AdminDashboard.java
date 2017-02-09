@@ -35,7 +35,7 @@ public class AdminDashboard {
 			return;
 		case 2:
 			MenuAdminHotel menuAdminHotel= new MenuAdminHotel ();
-			menuAdminHotel.choice();
+			menuAdminHotel.choice(admin);
 			return;
 		
 		case 3:

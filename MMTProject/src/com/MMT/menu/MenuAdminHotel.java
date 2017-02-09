@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.MMT.bean.Admin;
 import com.MMT.bean.Hotel;
 import com.MMT.bean.HotelBooking;
 import com.MMT.bean.HotelRoom;
@@ -18,14 +19,14 @@ import com.MMT.helper.HotelRoomHelperMMT;
 public class MenuAdminHotel {
 
 	
-	
+	AdminDashboard adminDashboard = new AdminDashboard();
 		Hotel hotel=new Hotel();
 		HotelBlMMT hotelBl=new HotelBlMMT();
 		AdminBlMMT adminBl= new AdminBlMMT();
 		HotelBooking hotelBookingBlMMT=new HotelBooking();
 		HotelHelperMMT hotelhelper=new HotelHelperMMT();
 		Scanner sc=new Scanner(System.in);
-		public void choice() throws SQLException, IOException, ClassNotFoundException{
+		public void choice(Admin admin) throws SQLException, IOException, ClassNotFoundException{
 			System.out.println("1.	Insert New Hotel_Detail");
 			System.out.println("2.	Update Existing Hotel");
 			System.out.println("3.	Search Hotel");
@@ -47,16 +48,16 @@ public class MenuAdminHotel {
 				try {
 					if(i1>0){
 						System.out.println("Successfully added");
-						choice(); 
+						choice(admin); 
 					}
 					else
 					{
 						System.out.println("Hotel can't be added");
-						choice() ;
+						choice(admin) ;
 					}
 				} catch (Exception e) {
 					System.out.println("Please try again");
-					choice() ;
+					choice(admin) ;
 				}
 				
 			}
@@ -72,30 +73,33 @@ public class MenuAdminHotel {
 					
 					if(adminBl.modifyHotel(hotelId, hotel)>0){
 						System.out.println("Successfully updated");
-						choice(); 
+						choice(admin); 
 					}
 					else
 					{
 						System.out.println("hotel can not be updated");
-						choice(); 
+						choice(admin); 
 					}
 				} catch (ClassNotFoundException e) {
 					System.out.println("Please try again");
-					choice(); 
+					choice(admin); 
 //					e.printStackTrace();
 				}
 				break;
 				
 			case 3:
 				System.out.println("Enter Hotel id to be search");
+				String hotelID=sc.next();
+				Hotel hotel;
+				hotel=hotelBl.searchHotel(hotelID);
 				//					hotel=new hotelBookingBlMMT;
 				if(hotel!=null){
 					System.out.println(hotel);
-					choice(); 
+					choice(admin); 
 				}
 				else 
 					System.out.println("Please enter correct hotel id");
-				choice(); 
+				choice(admin); 
 				
 				break;
 				
@@ -105,12 +109,12 @@ public class MenuAdminHotel {
 				
 				if(adminBl.deleteFlight(sc.next())>0){
 					System.out.println("Successfully deleted");
-					choice(); 
+					choice(admin); 
 				}
 				else
 				{
 					System.out.println("hotel can not deleted");
-					choice(); 
+					choice(admin); 
 				}
 			} catch (ClassNotFoundException e) {
 				System.out.println("Please try again");
@@ -122,14 +126,16 @@ public class MenuAdminHotel {
 			case 5:
 				ArrayList<Hotel> arraylistHotel=new ArrayList<Hotel>();
 				arraylistHotel= hotelBl.displayHotel();
-				choice(); 
+				System.out.println(arraylistHotel);
+				choice(admin); 
 				break;
-		case 6:choice();
+		case 6:
+			adminDashboard.showDashboard(admin);
 			
 				break;
 			default :
 				System.out.println("Invalid choice");
-				choice(); 
+				choice(admin); 
 				break;
 				
 			}
