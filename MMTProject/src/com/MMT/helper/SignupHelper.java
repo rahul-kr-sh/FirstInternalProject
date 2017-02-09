@@ -22,10 +22,11 @@ public void input(){
 	System.out.println("Enter User Address");
 	us.setUserAddress(sc.next());
 }
-public User getValue() {
+
+public User getUs() {
 	return us;
 }
-public void setValue(User us) {
+public void setUs(User us) {
 	this.us = us;
 }
 
