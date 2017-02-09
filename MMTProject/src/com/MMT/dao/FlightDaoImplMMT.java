@@ -14,36 +14,24 @@ import java.util.ArrayList;
 import com.MMT.bean.Flight;
 
 public class FlightDaoImplMMT implements FlightDaoMMT {
-	
+	Connection con;
 	@Override
-	public int insertFlight(Flight f) throws ClassNotFoundException, SQLException, IOException {
-		Connection con=DbConnection.dbConnection();		
-		String flightCompanyName=f.getFlightCompanyName();
-		String flightId=f.getFlightId();
-		String flightSource=f.getFlightSource();
-		String flightDestination=f.getFlightDestination();
-		String flightDepartureTime=f.getFlightDepartureTime();
-		String flightArrivalTime=f.getFlightArrivalTime();
-		double flightTicketPrice=f.getFlightTicketPrice();
-		int availableSeats=f.getAvailableSeats();
-		//Testing//server
-		//Query
-		Statement stmt=con.createStatement();
-		//int rows=stmt.executeUpdate("insert into InfoSignee values("+id+","+ct+","+pwd+","+ename+","+parkNo+")");
-		int rows=stmt.executeUpdate("insert into Flight values ("+flightCompanyName+","+flightId+","+flightSource+","+flightDestination+","+flightDepartureTime+","+flightArrivalTime+","+flightTicketPrice+","+availableSeats+")");
-		//int rows=stmt.executeUpdate("insert into Flight( flightCompanyName,flightId,flightSource,flightDestination,flightDepartureTime,flightArrivalTime,flightTicketPrice ,availableSeats)  values ("+flightCompanyName+","+flightId+","+flightSource+","+flightDestination+","+flightDepartureTime+","+flightArrivalTime+","+flightTicketPrice+","+availableSeats+")");
-		System.out.println("Inserted");
-		//Process Results
+	public int insertFlight(Flight flight) throws ClassNotFoundException, SQLException, IOException {	
 		
-		if(rows>0)
-		{
-			con.close();
-			return rows;
-		}
-		else 
-		{	con.close();
-		return 0;
-		}
+		int row=0;
+		con=DbConnection.dbConnection();
+		PreparedStatement pst=con.prepareStatement("insert into flight values(?,?,?,?,?,?,?,?)");
+
+		pst.setString(1, flight.getFlightCompanyName());
+		pst.setString(2, flight.getFlightId());
+		pst.setString(3, flight.getFlightSource());
+		pst.setString(4, flight.getFlightDestination());
+		pst.setString(5, flight.getFlightDepartureTime());
+		pst.setString(6, flight.getFlightArrivalTime());
+		pst.setDouble(7, flight.getFlightTicketPrice());
+		pst.setInt(8, flight.getAvailableSeats());
+		row=pst.executeUpdate();
+		return row;
 	}
 
 	@Override

@@ -41,8 +41,8 @@ public class MenuAdminFlight {
 					System.out.println("Flight could added");
 				}
 			} catch (Exception e) {
-				System.out.println("Please try again");
-//				e.printStackTrace();
+				System.out.println("Flight Already Exists!!");
+			//e.printStackTrace();
 			}
 			break;
 		case 2:
