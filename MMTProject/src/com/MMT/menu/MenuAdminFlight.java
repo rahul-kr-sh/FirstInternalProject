@@ -145,8 +145,19 @@ public class MenuAdminFlight {
 		case 5:
 			try {
 				ArrayList<Flight> fList=flightBookingBlMMT.displayFlight();
-				for(Flight f:fList){
-					System.out.println(f);
+				System.out.println("==============Flight List================");
+				for(Flight flight:fList){
+					
+					System.out.println("Flight ID : "+flight.getFlightId());
+					System.out.println("Flight Company Name : "+flight.getFlightCompanyName());
+					System.out.println("Flight Source : "+flight.getFlightSource());
+					System.out.println("Flight Destination : "+flight.getFlightDestination());
+					System.out.println("Flight Departure Time : "+flight.getFlightDepartureTime());
+					System.out.println("Flight Arrival Time : "+flight.getFlightArrivalTime());
+					System.out.println("Flight Ticket Price : "+flight.getFlightTicketPrice());
+					System.out.println("Flight Available Seats : "+flight.getAvailableSeats());
+					System.out.println("-------------------------------------");
+					
 				}
 				choice(admin);
 

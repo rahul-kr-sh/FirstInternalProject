@@ -127,7 +127,22 @@ public class MenuAdminHotel {
 			case 5:
 				ArrayList<Hotel> arraylistHotel=new ArrayList<Hotel>();
 				arraylistHotel= hotelBl.displayHotel();
-				System.out.println(arraylistHotel);
+				for(Hotel hotelNew:arraylistHotel){
+					System.out.println("Hotel ID : "+hotelNew.getHotelId());
+					System.out.println("Hotel name : "+hotelNew.getHotelName());
+					System.out.println("Hotel location : "+hotelNew.getHotelLocation());
+					System.out.println("Hotel information : "+hotelNew.getHotelInfo());
+					System.out.println("-----------Room Details-----------");
+					
+					for(HotelRoom hotelRoom:hotelNew.getHotelRoom()){
+						System.out.println("Hotel room No : "+hotelRoom.getHotelRoomNo());
+						System.out.println("Hotel room type : "+hotelRoom.getHotelRoomType());
+						System.out.println("Hotel room price : "+hotelRoom.getHotelRoomPrice());
+						System.out.println("Hotel room status : "+hotelRoom.getHotelRoomStatus());
+					}
+					System.out.println("============================================");
+				}
+				//System.out.println(arraylistHotel);
 				choice(admin); 
 				break;
 		case 6:
@@ -141,6 +156,8 @@ public class MenuAdminHotel {
 				
 			}
 		}
+		
+		
 	}
 
 
