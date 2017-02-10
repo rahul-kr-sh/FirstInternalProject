@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.MMT.bean.Admin;
@@ -30,6 +31,7 @@ public class AdminTestCase {
 		assertEquals(1,adi.insert(admin)); 
 		adi.delete("admin1");
 	}
+	@Ignore
 	@Test
 	public void testsearchAdmin() throws SQLException, ClassNotFoundException, IOException {
 		adi.insert(admin);
@@ -42,6 +44,7 @@ public class AdminTestCase {
 		adi.insert(admin);
 		assertEquals(1,adi.delete("admin1")); 
 	}
+	@Ignore
 	@Test
 	public void testupdateAdmin() throws SQLException, ClassNotFoundException, IOException {
 		adi.insert(admin);

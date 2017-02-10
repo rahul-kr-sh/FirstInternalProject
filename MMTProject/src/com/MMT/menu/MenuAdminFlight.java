@@ -3,6 +3,7 @@ package com.MMT.menu;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.MMT.bean.Admin;
@@ -18,7 +19,7 @@ public class MenuAdminFlight {
 	FlightBookingBlMMT flightBookingBlMMT=new FlightBookingBlMMT();
 	FlightHelper flightHelper=new FlightHelper();
 	Scanner sc=new Scanner(System.in);
-	public void choice(Admin admin) throws SQLException, ClassNotFoundException, IOException{
+	public void choice(Admin admin) throws InputMismatchException,SQLException, ClassNotFoundException, IOException{
 		System.out.println("1.	Insert New Flight");//
 		System.out.println("2.	Update Existing Flight");//
 		System.out.println("3.	Search Flight");

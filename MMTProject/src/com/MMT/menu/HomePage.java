@@ -20,6 +20,8 @@ public class HomePage {
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
 		int input=sc.nextInt();
+		//if(input>=5&&input<=0)
+			
 		LoginMenu loginMenu=new LoginMenu();
 		UnregisteredFlightSearch UnregisteredFlightSearch = new UnregisteredFlightSearch();
 		UnregisteredHotelSearch UnregisteredHotelSearch=new UnregisteredHotelSearch();

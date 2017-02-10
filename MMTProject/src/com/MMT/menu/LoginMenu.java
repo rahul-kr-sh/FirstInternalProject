@@ -2,6 +2,7 @@ package com.MMT.menu;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.MMT.bean.Admin;
@@ -51,7 +52,7 @@ public class LoginMenu {
 					System.out.println("Invalid Credentials");
 					homePage.homePageMenu();
 				}
-			} catch (SQLException e) {
+			} catch (InputMismatchException|SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {

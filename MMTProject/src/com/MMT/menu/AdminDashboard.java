@@ -2,6 +2,7 @@ package com.MMT.menu;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.MMT.bean.Admin;
@@ -28,7 +29,15 @@ public class AdminDashboard {
 		System.out.println("6.	Logout.");
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
-		int input=sc.nextInt();
+		int input=0;
+		try {
+			
+			 input=sc.nextInt();
+		} catch (Exception e) {
+			System.out.println("enter valid choice");
+			showDashboard(admin);
+		}
+		
 		switch(input){
 		case 1:
 			 adminProfileChoice();
@@ -54,7 +63,7 @@ public class AdminDashboard {
 			try {
 				System.out.println(userBl.searchUser(sc.next()));
 				showDashboard(admin);
-			} catch (ClassNotFoundException e) {
+			} catch (InputMismatchException|ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -76,7 +85,7 @@ public class AdminDashboard {
 			break;
 		default:
 			System.out.println("Invalid Input");
-			
+			showDashboard(admin);
 			break;
 		}
 	}
@@ -119,7 +128,7 @@ public class AdminDashboard {
 			try {
 				adminBl.modifyAdmin(admin.getAdminId(), admin1);
 				adminProfileChoice();
-			} catch (SQLException e) {
+			} catch (InputMismatchException|SQLException e) {
 				System.out.println("Please enter correct details");
 //				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -139,7 +148,7 @@ public class AdminDashboard {
 			try {
 				adminBl.addAdmin(admin1);
 				adminProfileChoice();
-			} catch (SQLException e) {
+			} catch (InputMismatchException|SQLException e) {
 				System.out.println("Please try another one");
 //				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -180,7 +189,7 @@ public class AdminDashboard {
 		default:
 			System.out.println("Invalid Input");
 			adminProfileChoice();
-			break;
+			
 		}
 	}
 	
