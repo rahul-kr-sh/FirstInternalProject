@@ -51,9 +51,26 @@ public class UnregisteredHotelSearch {
 			hotelMap.put(i1++, hindex);
 		}
 		i1 = 1;
-		for (Hotel h : hList) {
-			System.out.println(i1++ + ":" + h);
+		
+	System.out.println("------------Hotel Details------------");
+		for(Hotel hotelNew:hList){
+			System.out.println(i1+" Hotel ");
+			System.out.println("Hotel ID : "+hotelNew.getHotelId());
+			System.out.println("Hotel name : "+hotelNew.getHotelName());
+			System.out.println("Hotel location : "+hotelNew.getHotelLocation());
+			System.out.println("Hotel information : "+hotelNew.getHotelInfo());
+			System.out.println("-----------Room Details-----------");
+			
+			for(HotelRoom hotelRoom:hotelNew.getHotelRoom()){
+				System.out.println("Hotel room No : "+hotelRoom.getHotelRoomNo());
+				System.out.println("Hotel room type : "+hotelRoom.getHotelRoomType());
+				System.out.println("Hotel room price : "+hotelRoom.getHotelRoomPrice());
+				System.out.println("Hotel room status : "+hotelRoom.getHotelRoomStatus());
+			}
+			System.out.println("============================================");
+			i1++;
 		}
+		
 		System.out.println("Pick a Hotel :");
 		int m = sc.nextInt();
 
@@ -202,8 +219,15 @@ public class UnregisteredHotelSearch {
 			}
 			j = 1;
 			for (Promotion p : promo) {
-				System.out.println(j++ + ":" + p);
+				System.out.println("Promotion " + j);
+
+				System.out.println("Promotion Name : " + p.getPromotionName());
+				System.out.println("Promotion Type : " + p.getPromotionType());
+				System.out.println("Promotion Discount% : " + p.getPromotionDiscount());
+				System.out.println("Promotion Expiry Date : " + p.getPromotionExpiryDate());
+				j++;
 			}
+			System.out.println("");
 
 			System.out.println("Pick a Promo Code!!");
 			int promoindex = sc.nextInt();
