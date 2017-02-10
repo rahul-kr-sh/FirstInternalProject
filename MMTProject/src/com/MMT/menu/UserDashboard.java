@@ -49,9 +49,9 @@ public class UserDashboard {
 		switch (input) {
 		case 1:
 			System.out.println("Enter Source:");
-			String source = sc.next();
+			String source = sc.next().toLowerCase();
 			System.out.println("Enter Destination:");
-			String destination = sc.next();
+			String destination = sc.next().toLowerCase();
 			ArrayList<Flight> fList = null;
 			LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 			try {

@@ -25,9 +25,9 @@ public Flight getFlight() {
 		System.out.println("Enter Flight Company name");
 		flight.setFlightCompanyName(sc.next());
 		System.out.println("Enter Flight source");
-		flight.setFlightSource(sc.next());
+		flight.setFlightSource(sc.next().toLowerCase());
 		System.out.println("Enter Flight Destination");
-		flight.setFlightDestination(sc.next());
+		flight.setFlightDestination(sc.next().toLowerCase());
 		System.out.println("Enter Flight departure time");
 		flight.setFlightDepartureTime(sc.next());
 		System.out.println("Enter Flight arrival time");
