@@ -34,8 +34,8 @@ public class HotelBookingDaoImplMMT implements HotelBookingDaoMMT {
 		pst.setDate(6, sqlDate2 );
 		pst.setInt(7, hb.getStayDuration());
 		row=pst.executeUpdate();
-		System.out.println("----------");
-		System.out.println("DAO"+hb);
+		//System.out.println("----------");
+		//System.out.println("DAO"+hb);
 		con.close();
 		return row;
 	}

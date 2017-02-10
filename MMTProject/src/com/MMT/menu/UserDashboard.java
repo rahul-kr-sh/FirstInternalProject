@@ -285,7 +285,7 @@ public class UserDashboard {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("Enter RoomID:");
+			System.out.println("Enter Room Number : ");
 			int rno = sc.nextInt();
 
 			System.out.println("Enter Check In Date in DD-MM-YYYY");

@@ -34,6 +34,11 @@ public class UnregisteredFlightSearch {
 		try {
 			try {
 				fList = flightBookingBL.searchFlight(source, destination);
+				if(fList==null){
+					System.out.println("Flight not available");
+					showDashboard();
+					
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,7 +69,11 @@ public class UnregisteredFlightSearch {
 			System.out.println("----------------------------");
 			i++;
 		}
-		System.out.println("Pick a flight :");
+		
+		
+			System.out.println("Pick a flight :");
+		
+		
 		int v = sc.nextInt();
 
 		Flight fpicked = flightMap.get(v);
