@@ -78,6 +78,7 @@ public class AdminBlTest {
 		assertEquals(1,abl.deleteHotel("1"));
 		
 	}
+	@Ignore
 	@Test
 	public void testmodifyHotel() throws  SQLException, ClassNotFoundException, IOException {
 		abl.insertHotel(h);

@@ -38,6 +38,10 @@ public class FlightBookingBlMMT {
 
 	public ArrayList<Flight> searchFlight(String flightSource, String flightDestination)
 			throws ClassNotFoundException, SQLException, IOException {
+		if(flightdao.searchFlight(flightSource, flightDestination)==null){
+			return null;
+		}
+				
 		return flightdao.searchFlight(flightSource, flightDestination);
 	}
 
