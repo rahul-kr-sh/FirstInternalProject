@@ -15,7 +15,7 @@ public class HotelHelperMMT {
 		System.out.println("Enter Hotel Name :");
 		hotel.setHotelName(sc.next());
 		System.out.println("Enter Hotel Location :");
-		hotel.setHotelLocation(sc.next());
+		hotel.setHotelLocation(sc.next().toLowerCase());
 		System.out.println("Enter Information :");
 		hotel.setHotelInfo(sc.next());
 		System.out.println("Add hotel room details : ");

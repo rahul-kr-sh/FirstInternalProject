@@ -74,16 +74,16 @@ public class UserDashboard {
 			}
 			i = 1;
 			for (Flight f : fList) {
-				System.out.println(" Flight Details "+i);
+				System.out.println(" Flight Details " + i);
 				System.out.println("");
-				System.out.println(  " Flight ID: " + f.getFlightId());
-				System.out.println(  " Flight Company Name: " + f.getFlightCompanyName());
-				System.out.println( " Flight Source: " + f.getFlightSource());
-				System.out.println( " Flight Destination: " + f.getFlightDestination());
-				System.out.println( " Flight Departure Time: " + f.getFlightDepartureTime());
-				System.out.println( " Flight Arrival Time: " + f.getFlightArrivalTime());
-				System.out.println( " Flight Ticket Price: " + f.getFlightTicketPrice());
-				System.out.println( " Flight Available Seats: " + f.getAvailableSeats());
+				System.out.println(" Flight ID: " + f.getFlightId());
+				System.out.println(" Flight Company Name: " + f.getFlightCompanyName());
+				System.out.println(" Flight Source: " + f.getFlightSource());
+				System.out.println(" Flight Destination: " + f.getFlightDestination());
+				System.out.println(" Flight Departure Time: " + f.getFlightDepartureTime());
+				System.out.println(" Flight Arrival Time: " + f.getFlightArrivalTime());
+				System.out.println(" Flight Ticket Price: " + f.getFlightTicketPrice());
+				System.out.println(" Flight Available Seats: " + f.getAvailableSeats());
 				System.out.println("----------------------------");
 				i++;
 			}
@@ -119,15 +119,15 @@ public class UserDashboard {
 				}
 				j = 1;
 				for (Promotion p : promo) {
-					System.out.println("Promotion "+j);
-					
+					System.out.println("Promotion " + j);
+
 					System.out.println("Promotion Name : " + p.getPromotionName());
 					System.out.println("Promotion Type : " + p.getPromotionType());
 					System.out.println("Promotion Discount% : " + p.getPromotionDiscount());
 					System.out.println("Promotion Expiry Date : " + p.getPromotionExpiryDate());
 					j++;
 				}
-System.out.println("");
+				System.out.println("");
 				System.out.println("Pick a Promo Code!!");
 				int promoindex = sc.nextInt();
 
@@ -245,7 +245,7 @@ System.out.println("");
 		case 2:
 			// hotelDisplay();
 			System.out.println("Enter Location:");
-			String loc = sc.next();
+			String loc = sc.next().toLowerCase();
 			ArrayList<Hotel> hList = new ArrayList<>();
 			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 			try {
@@ -339,7 +339,7 @@ System.out.println("");
 
 				try {
 					promo = promotionBL.displayPromotion("HOTEL");
-					//System.out.println(promo);
+					// System.out.println(promo);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -359,9 +359,15 @@ System.out.println("");
 
 				j = 1;
 				for (Promotion p : promo) {
-					// System.out.println("sdasuidhuiashd");
-					System.out.println(j++ + ":" + p);
+					System.out.println("Promotion " + j);
+
+					System.out.println("Promotion Name : " + p.getPromotionName());
+					System.out.println("Promotion Type : " + p.getPromotionType());
+					System.out.println("Promotion Discount% : " + p.getPromotionDiscount());
+					System.out.println("Promotion Expiry Date : " + p.getPromotionExpiryDate());
+					j++;
 				}
+				System.out.println("");
 
 				System.out.println("Pick a Promo Code!!");
 
@@ -486,17 +492,17 @@ System.out.println("");
 			try {
 				try {
 					fb = userBL.pastFbooking(user.getUserId());
-					int h=1;
-					for(FlightBooking fligtBooking:fb){
-						System.out.println("Flight Booking : "+ h++ + "Details");
-						System.out.println("flight id"+fligtBooking.getFlightBookingId());
-						System.out.println("flight id"+fligtBooking.getFlightId());
-						System.out.println("flight id"+fligtBooking.getFlightBookingDate());
-						System.out.println("flight id"+fligtBooking.getUserId());
+					int h = 1;
+					for (FlightBooking fligtBooking : fb) {
+						System.out.println("Flight Booking : " + h++ + "Details");
+						System.out.println("flight id" + fligtBooking.getFlightBookingId());
+						System.out.println("flight id" + fligtBooking.getFlightId());
+						System.out.println("flight id" + fligtBooking.getFlightBookingDate());
+						System.out.println("flight id" + fligtBooking.getUserId());
 						System.out.println("---------------------------");
-					
+
 					}
-					//System.out.println(fb);
+					// System.out.println(fb);
 					showDashboard(user);
 
 				} catch (IOException e) {
