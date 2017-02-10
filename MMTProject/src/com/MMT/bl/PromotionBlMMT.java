@@ -36,7 +36,7 @@ public class PromotionBlMMT {
 	public float applyPromotion(Promotion p, String userId, float TicketPrice){
 		float finalPrice;
 		float currentPrice=TicketPrice;
-		System.out.println("Promotion: "+p);
+		//System.out.println("Promotion: "+p);
 		if(currentPrice-p.getPromotionDiscount()>0){
 			float discount= (float) ((p.getPromotionDiscount()/100)*currentPrice);
 			finalPrice=currentPrice-discount;

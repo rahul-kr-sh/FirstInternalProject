@@ -74,7 +74,18 @@ public class UserDashboard {
 			}
 			i = 1;
 			for (Flight f : fList) {
-				System.out.println(i++ + ":" + f);
+				System.out.println(" Flight Details "+i);
+				System.out.println("");
+				System.out.println(  " Flight ID: " + f.getFlightId());
+				System.out.println(  " Flight Company Name: " + f.getFlightCompanyName());
+				System.out.println( " Flight Source: " + f.getFlightSource());
+				System.out.println( " Flight Destination: " + f.getFlightDestination());
+				System.out.println( " Flight Departure Time: " + f.getFlightDepartureTime());
+				System.out.println( " Flight Arrival Time: " + f.getFlightArrivalTime());
+				System.out.println( " Flight Ticket Price: " + f.getFlightTicketPrice());
+				System.out.println( " Flight Available Seats: " + f.getAvailableSeats());
+				System.out.println("----------------------------");
+				i++;
 			}
 			System.out.println("Pick a flight :");
 			int v = sc.nextInt();
@@ -108,9 +119,15 @@ public class UserDashboard {
 				}
 				j = 1;
 				for (Promotion p : promo) {
-					System.out.println(j++ + ":" + p);
+					System.out.println("Promotion "+j);
+					
+					System.out.println("Promotion Name : " + p.getPromotionName());
+					System.out.println("Promotion Type : " + p.getPromotionType());
+					System.out.println("Promotion Discount% : " + p.getPromotionDiscount());
+					System.out.println("Promotion Expiry Date : " + p.getPromotionExpiryDate());
+					j++;
 				}
-
+System.out.println("");
 				System.out.println("Pick a Promo Code!!");
 				int promoindex = sc.nextInt();
 
@@ -164,12 +181,12 @@ public class UserDashboard {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						System.out.println("Payment Done!!! ");
-						System.out.println("Confirming Flight Booking!!");
+						System.out.println("Payment Done!!! \n");
+						System.out.println("Confirming Flight Booking!!\n");
 
 					} else if (ch1 == 2) {
-						System.out.println("Booking Cancelled due to insufficient funds!!");
-						System.out.println("Booking Cancelled!!");
+						System.out.println("Booking Cancelled due to insufficient funds!!\n");
+						System.out.println("Booking Cancelled!!\n");
 						paymentStatus = false;
 						showDashboard(user);
 
@@ -192,8 +209,8 @@ public class UserDashboard {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					System.out.println("Payment Done!!! ");
-					System.out.println("Confirming Flight Booking!!");
+					System.out.println("Payment Done!!!\n ");
+					System.out.println("Confirming Flight Booking!!\n");
 				}
 
 				FlightBooking fb = null;
@@ -469,7 +486,17 @@ public class UserDashboard {
 			try {
 				try {
 					fb = userBL.pastFbooking(user.getUserId());
-					System.out.println(fb);
+					int h=1;
+					for(FlightBooking fligtBooking:fb){
+						System.out.println("Flight Booking : "+ h++ + "Details");
+						System.out.println("flight id"+fligtBooking.getFlightBookingId());
+						System.out.println("flight id"+fligtBooking.getFlightId());
+						System.out.println("flight id"+fligtBooking.getFlightBookingDate());
+						System.out.println("flight id"+fligtBooking.getUserId());
+						System.out.println("---------------------------");
+					
+					}
+					//System.out.println(fb);
 					showDashboard(user);
 
 				} catch (IOException e) {
