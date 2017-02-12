@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -25,14 +26,17 @@ import com.MMT.bl.WalletBlMMT;
 import com.MMT.dao.HotelDaoImplMMT;
 
 public class UserDashboard {
+	
+	
 	FlightBookingBlMMT flightBookingBL = new FlightBookingBlMMT();
 	PromotionBlMMT promotionBL = new PromotionBlMMT();
 	WalletBlMMT walletBL = new WalletBlMMT();
-	Scanner sc = new Scanner(System.in);
+	Scanner sc;
 	HotelBlMMT hotelBL = new HotelBlMMT();
 	UserBlMMT userBL = new UserBlMMT();
 
 	public void showDashboard(User user) throws ClassNotFoundException, SQLException, IOException {
+	
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
 		System.out.println("1. Search Flight");
@@ -42,10 +46,19 @@ public class UserDashboard {
 		System.out.println("5. Add Money to Wallet");
 		System.out.println("6. Show User Profile");
 		System.out.println("7. Logout");
-		// Comment
-		System.out.println("Enter a choice: ");
-		int input = sc.nextInt();
-
+		//Scanner sc=new Scanner(System.in);
+		int input=0;
+		sc = new Scanner(System.in);
+		System.out.println("Enter a choice");
+		try {
+			
+			 input=sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter Integer between 1 to 7");
+			
+		}
+		
+		
 		switch (input) {
 		case 1:
 			System.out.println("Enter Source:");
@@ -648,7 +661,14 @@ public class UserDashboard {
 			break;
 
 		case 6:
-			System.out.println(userBL.displayUserProfile(user.getUserId()));
+			User user1=userBL.displayUserProfile(user.getUserId());
+			System.out.println();
+			System.out.println("User ID : "+user1.getUserId());
+			System.out.println("User Name : "+user1.getUserName());
+			System.out.println("User Phone number: "+user1.getUserPhoneNo());
+			System.out.println("User EmailId : "+user1.getUserEmailId());
+			System.out.println("User Address : "+user1.getUserAddress());
+			System.out.println();
 			System.out.println("Aailable Balance is: " + userBL.userWalletBalance(user.getUserId()));
 			showDashboard(user);
 
@@ -670,7 +690,7 @@ public class UserDashboard {
 			break;
 		default:
 			System.out.println("Invalid Input!!");
-			break;
+			showDashboard(user);
 		}
 	}
 
