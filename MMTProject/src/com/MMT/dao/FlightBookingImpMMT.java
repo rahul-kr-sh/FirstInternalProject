@@ -67,7 +67,7 @@ public class FlightBookingImpMMT implements FlightBookingDaoMMT {
 			fb.setFlightBookingDate(d);
 
 			String status = "false";
-			if (rs.getString("flag").equals("true")) {
+			if (rs.getString("flag").equalsIgnoreCase("true")) {
 				status = "true";
 
 				fb.setFlag(true);

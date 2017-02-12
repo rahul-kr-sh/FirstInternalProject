@@ -2,6 +2,7 @@ package com.MMT.menu;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.MMT.bean.User;
@@ -11,7 +12,7 @@ import com.MMT.helper.SignupHelper;
 public class HomePage {
 	public void homePageMenu() throws ClassNotFoundException, SQLException, IOException{
 		System.out.println("-------------HomePage--------------");
-		
+		int input=0;
 		System.out.println("1. Login");
 		System.out.println("2. Signup");
 		System.out.println("3. Flight");
@@ -19,8 +20,13 @@ public class HomePage {
 		System.out.println("5. Exit");
 		System.out.println("Pick a option from Menu");
 		Scanner sc=new Scanner(System.in);
-		int input=sc.nextInt();
-		//if(input>=5&&input<=0)
+		try{
+		input=sc.nextInt();
+		}catch(InputMismatchException e)
+		{
+			System.out.println("Enter integer between 1 to 5 ");
+			homePageMenu();
+		}
 			
 		LoginMenu loginMenu=new LoginMenu();
 		UnregisteredFlightSearch UnregisteredFlightSearch = new UnregisteredFlightSearch();

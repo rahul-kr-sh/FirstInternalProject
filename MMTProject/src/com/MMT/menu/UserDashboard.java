@@ -35,7 +35,7 @@ public class UserDashboard {
 	public void showDashboard(User user) throws ClassNotFoundException, SQLException, IOException {
 		System.out.println("-------------User Dashboard-----------");
 		System.out.println("Welcome " + user.getUserName() + "!!");
-		System.out.println("1.Search Flight");
+		System.out.println("1. Search Flight");
 		System.out.println("2. Search Hotel");
 		System.out.println("3. View Past Flight Bookings");
 		System.out.println("4. View Past Hotel Bookings");
@@ -97,6 +97,8 @@ public class UserDashboard {
 			System.out.println("Total Amount to be paid:" + cartValue);
 			System.out.println("Press 1 to See Additional Offers!!");
 			int choice = sc.nextInt();
+//			if(choice!=1)
+//				showDashboard(user);
 			if (choice == 1) {
 				boolean paymentStatus = false;
 				ArrayList<Promotion> promo = null;
@@ -246,7 +248,7 @@ public class UserDashboard {
 			// hotelDisplay();
 			System.out.println("Enter Location:");
 			String loc = sc.next().toLowerCase();
-			ArrayList<Hotel> hList = new ArrayList<>();
+			ArrayList<Hotel> hList = new ArrayList<Hotel>();
 			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 			try {
 				hList = hotelBL.searchHotel1(loc);
@@ -311,7 +313,12 @@ public class UserDashboard {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			if(dout.getTime()<din.getTime()){
+				System.out.println("CheckOut Date should be greater than CheckIn date ");
+				System.out.println();
+				showDashboard(user);
+			}
+				
 			long diff = dout.getTime() - din.getTime();
 			int duration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
@@ -328,6 +335,14 @@ public class UserDashboard {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(dout.equals(din)){
+				System.out.println("");
+				System.out.println("One day payment is compulsary");
+				duration=1;
+				System.out.println();
+				//System.out.println("duration inside if: "+duration);
+				}
+			//System.out.println("duration outside if: "+duration);
 			float cartValue1 = (float) (pickedRoom.getHotelRoomPrice() * duration);
 			System.out.println("Total Price to be paid: " + cartValue1);
 
@@ -486,19 +501,26 @@ public class UserDashboard {
 			// System.out.println("Total Price: "+);
 			break;
 		case 3:
-			System.out.println("Your Past Flight Bookings are------");
-			ArrayList<FlightBooking> fb = null;
+			
+			
 
 			try {
 				try {
+					ArrayList<FlightBooking> fb = null;
 					fb = userBL.pastFbooking(user.getUserId());
+					if(fb.isEmpty()){
+						System.out.println("No past Bookings");
+						showDashboard(user);
+					}
+					System.out.println("Your Past Flight Bookings are------");
 					int h = 1;
 					for (FlightBooking fligtBooking : fb) {
-						System.out.println("Flight Booking : " + h++ + "Details");
-						System.out.println("flight id" + fligtBooking.getFlightBookingId());
-						System.out.println("flight id" + fligtBooking.getFlightId());
-						System.out.println("flight id" + fligtBooking.getFlightBookingDate());
-						System.out.println("flight id" + fligtBooking.getUserId());
+						System.out.println("Flight Booking : " + h++ + " Details");
+						System.out.println("flight booking ID : " + fligtBooking.getFlightBookingId());
+						
+						System.out.println("flight id : " + fligtBooking.getFlightId());
+						System.out.println("flight booking date : " + fligtBooking.getFlightBookingDate());
+						System.out.println("User Id : " + fligtBooking.getUserId());
 						System.out.println("---------------------------");
 
 					}
@@ -520,10 +542,17 @@ public class UserDashboard {
 			// flightBookingDisplay();
 			break;
 		case 4:
-			System.out.println("Your Past Hotel Bookings are------");
-			ArrayList<HotelBooking> hb = null;
+			
+			
 			try {
+				ArrayList<HotelBooking> hb = null;
 				hb = userBL.pastHbooking(user.getUserId());
+				if(hb.isEmpty()){
+					System.out.println("No past hotel Bookings");
+					showDashboard(user);
+				}
+				System.out.println("Your Past Hotel Bookings are------");
+				
 				System.out.println(hb);
 				showDashboard(user);
 			} catch (ClassNotFoundException e) {

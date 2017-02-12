@@ -45,7 +45,7 @@ public class UserDaoImplMMT implements UserDaoMMT {
 		if(rs.next()){
 			user.setUserId((rs.getString("USERID")));
 			user.setUserName((rs.getString("USERNAME")));
-			user.setUserPhoneNo(rs.getInt("USERPHONENO"));
+			user.setUserPhoneNo(rs.getLong("USERPHONENO"));
 			user.setUserEmailId(rs.getString("USEREMAILID"));
 			user.setUserAddress(rs.getString("USERADDRESS"));
 			user.setUserPassword(rs.getString("userpassword"));	

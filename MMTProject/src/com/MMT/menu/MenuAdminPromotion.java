@@ -58,7 +58,14 @@ public class MenuAdminPromotion {
 				e.printStackTrace();
 				choice(admin);
 			}
-			System.out.println(promotion);
+			System.out.println(promotion.getPromotionId());
+			System.out.println(promotion.getPromotionName());
+			System.out.println(promotion.getPromotionType());
+			System.out.println(promotion.getPromotionDiscount());
+			System.out.println(promotion.getPromotionExpiryDate());
+			
+			System.out.println(promotion.getPromotionMinRequiredAmount());
+			System.out.println("------------------------");
 			choice(admin);
 			break;
 		case 3:
