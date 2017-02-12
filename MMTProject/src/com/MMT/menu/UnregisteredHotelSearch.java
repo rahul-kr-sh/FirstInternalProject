@@ -31,7 +31,7 @@ public class UnregisteredHotelSearch {
 	public void showDashboard(){
 		User user=null;
 		System.out.println("Enter Location:");
-		String loc = sc.next();
+		String loc = sc.next().toLowerCase();
 		ArrayList<Hotel> hList = new ArrayList<Hotel>();
 		LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 		try {
@@ -79,6 +79,11 @@ public class UnregisteredHotelSearch {
 		int m = sc.nextInt();
 
 		Hotel hpicked = hotelMap.get(m);
+		if(hpicked==null)
+		{
+			System.out.println("Choose from available options");
+			showDashboard();
+		}
 		ArrayList<HotelRoom> arl = null;
 		try {
 			arl = hotelBL.displayAvailHotelRoom(hpicked.getHotelId());
@@ -131,13 +136,17 @@ public class UnregisteredHotelSearch {
 			pickedRoom = hotelBL.searchHotelRoom(hpicked.getHotelId(), rno);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Choose from available options");
+			showDashboard();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Choose from available options");
+			showDashboard();
 		}
 		if(dout.equals(din)){
 			System.out.println("");

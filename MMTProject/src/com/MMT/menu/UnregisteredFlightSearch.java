@@ -26,9 +26,9 @@ public class UnregisteredFlightSearch {
 	public void showDashboard() {
 		User user = null;
 		System.out.println("Enter Source:");
-		String source = sc.next();
+		String source = sc.next().toLowerCase();
 		System.out.println("Enter Destination:");
-		String destination = sc.next();
+		String destination = sc.next().toLowerCase();
 		ArrayList<Flight> fList = null;
 		LinkedHashMap<Integer, Flight> flightMap = new LinkedHashMap<Integer, Flight>();
 		try {
@@ -76,6 +76,11 @@ public class UnregisteredFlightSearch {
 		int v = sc.nextInt();
 
 		Flight fpicked = flightMap.get(v);
+		if(fpicked==null)
+		{
+			System.out.println("Choose from available options");
+			showDashboard();
+		}
 		System.out.println("Enter No of seats:");
 		int seats = sc.nextInt();
 		double cartValue = fpicked.getFlightTicketPrice() * seats;

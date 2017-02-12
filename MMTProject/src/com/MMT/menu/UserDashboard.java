@@ -108,6 +108,11 @@ public class UserDashboard {
 			int v = sc.nextInt();
 
 			Flight fpicked = flightMap.get(v);
+			if(fpicked==null)
+			{
+				System.out.println("Choose from available options");
+				showDashboard(user);
+			}
 			System.out.println("Enter No of seats:");
 			int seats = sc.nextInt();
 			double cartValue = fpicked.getFlightTicketPrice() * seats;
@@ -315,18 +320,27 @@ public class UserDashboard {
 			int m = sc.nextInt();
 
 			Hotel hpicked = hotelMap.get(m);
+			if(hpicked==null)
+			{
+				System.out.println("Choose from available options");
+				showDashboard(user);
+			}
 			ArrayList<HotelRoom> arl = null;
 			try {
 				arl = hotelBL.displayAvailHotelRoom(hpicked.getHotelId());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Choose from available hotels ");
+				showDashboard(user);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Choose from available hotels ");
+				showDashboard(user);
 			}
 			System.out.println("Enter Room Number : ");
 			int rno = sc.nextInt();
@@ -340,7 +354,9 @@ public class UserDashboard {
 				din = dateFormat.parse(date);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Enter correct date format");
+				showDashboard(user);
 			}
 
 			System.out.println("Enter Check Out Date in DD-MM-YYYY");
@@ -352,7 +368,9 @@ public class UserDashboard {
 				dout = dateFormat1.parse(date1);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Enter correct date format");
+				showDashboard(user);
 			}
 			if(dout.getTime()<din.getTime()){
 				System.out.println("CheckOut Date should be greater than CheckIn date ");
@@ -368,13 +386,17 @@ public class UserDashboard {
 				pickedRoom = hotelBL.searchHotelRoom(hpicked.getHotelId(), rno);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Room not available !!!");
+				showDashboard(user);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("Room not available !!!");
+				showDashboard(user);
 			}
 			if(dout.equals(din)){
 				System.out.println("");
@@ -383,7 +405,7 @@ public class UserDashboard {
 				System.out.println();
 				//System.out.println("duration inside if: "+duration);
 				}
-			//System.out.println("duration outside if: "+duration);
+			System.out.println("duration outside if: "+duration);
 			float cartValue1 = (float) (pickedRoom.getHotelRoomPrice() * duration);
 			System.out.println("Total Price to be paid: " + cartValue1);
 
@@ -624,7 +646,13 @@ public class UserDashboard {
 			}
 
 			System.out.println("Enter Amount you want to add to wallet:");
-			double amt = sc.nextDouble();
+			double amt=0;
+			try{
+			amt = sc.nextDouble();
+			}catch(InputMismatchException e){
+				System.out.println("Invalid Input try again!!");
+				showDashboard(user);
+			}
 			boolean flag = false;
 			try {
 				flag = walletBL.addWalletMoney(user.getUserId(), amt);
@@ -655,7 +683,7 @@ public class UserDashboard {
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("Some problem accoured, Money not added");
+				System.out.println("Some problem occurred, Money cannot be added");
 			}
 			// addMoneyDisplay();
 			break;
