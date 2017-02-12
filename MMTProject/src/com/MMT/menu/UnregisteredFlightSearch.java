@@ -34,10 +34,9 @@ public class UnregisteredFlightSearch {
 		try {
 			try {
 				fList = flightBookingBL.searchFlight(source, destination);
-				if(fList==null){
-					System.out.println("Flight not available");
+				if(fList.isEmpty()){
+					System.out.println("No Flights available from"+source+" to "+destination);
 					showDashboard();
-					
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

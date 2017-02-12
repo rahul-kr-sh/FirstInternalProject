@@ -32,10 +32,14 @@ public class UnregisteredHotelSearch {
 		User user=null;
 		System.out.println("Enter Location:");
 		String loc = sc.next();
-		ArrayList<Hotel> hList = new ArrayList<>();
+		ArrayList<Hotel> hList = new ArrayList<Hotel>();
 		LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 		try {
 			hList = hotelBL.searchHotel1(loc);
+			if(hList.isEmpty()){
+				System.out.println("No Hotels in "+loc);
+				showDashboard();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

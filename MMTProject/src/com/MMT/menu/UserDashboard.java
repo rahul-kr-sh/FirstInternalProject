@@ -57,6 +57,10 @@ public class UserDashboard {
 			try {
 				try {
 					fList = flightBookingBL.searchFlight(source, destination);
+					if(fList.isEmpty()){
+						System.out.println("No Flights available from "+source+" to "+destination);
+						showDashboard(user);
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -252,6 +256,10 @@ public class UserDashboard {
 			LinkedHashMap<Integer, Hotel> hotelMap = new LinkedHashMap<Integer, Hotel>();
 			try {
 				hList = hotelBL.searchHotel1(loc);
+				if(hList.isEmpty()){
+					System.out.println("No Hotels in "+loc);
+					showDashboard(user);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -266,10 +274,30 @@ public class UserDashboard {
 			for (Hotel hindex : hList) {
 				hotelMap.put(i1++, hindex);
 			}
+//			i1 = 1;
+//			for (Hotel h : hList) {
+//				System.out.println(i1++ + ":" + h);
+//			}
 			i1 = 1;
-			for (Hotel h : hList) {
-				System.out.println(i1++ + ":" + h);
-			}
+			
+			System.out.println("------------Hotel Details------------");
+				for(Hotel hotelNew:hList){
+					System.out.println(i1+" Hotel ");
+					System.out.println("Hotel ID : "+hotelNew.getHotelId());
+					System.out.println("Hotel name : "+hotelNew.getHotelName());
+					System.out.println("Hotel location : "+hotelNew.getHotelLocation());
+					System.out.println("Hotel information : "+hotelNew.getHotelInfo());
+					System.out.println("-----------Room Details-----------");
+					
+					for(HotelRoom hotelRoom:hotelNew.getHotelRoom()){
+						System.out.println("Hotel room No : "+hotelRoom.getHotelRoomNo());
+						System.out.println("Hotel room type : "+hotelRoom.getHotelRoomType());
+						System.out.println("Hotel room price : "+hotelRoom.getHotelRoomPrice());
+						System.out.println("Hotel room status : "+hotelRoom.getHotelRoomStatus());
+					}
+					System.out.println("============================================");
+					i1++;
+				}
 			System.out.println("Pick a Hotel :");
 			int m = sc.nextInt();
 
@@ -509,7 +537,7 @@ public class UserDashboard {
 					ArrayList<FlightBooking> fb = null;
 					fb = userBL.pastFbooking(user.getUserId());
 					if(fb.isEmpty()){
-						System.out.println("No past Bookings");
+						System.out.println("No past Flight Bookings");
 						showDashboard(user);
 					}
 					System.out.println("Your Past Flight Bookings are------");
