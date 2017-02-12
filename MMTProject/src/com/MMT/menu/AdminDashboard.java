@@ -165,6 +165,7 @@ public class AdminDashboard {
 		    try {
 				if(adminBl.removeAdmin(sc.next())!=1){
 					System.out.println("Please enter correct Admin id.");
+					adminProfileChoice();
 				}
 				else{
 					System.out.println("Admin succesfully deleted.");

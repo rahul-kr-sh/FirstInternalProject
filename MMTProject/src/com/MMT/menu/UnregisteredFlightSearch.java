@@ -35,7 +35,7 @@ public class UnregisteredFlightSearch {
 			try {
 				fList = flightBookingBL.searchFlight(source, destination);
 				if(fList.isEmpty()){
-					System.out.println("No Flights available from"+source+" to "+destination);
+					System.out.println("No Flights available from "+source+" to "+destination);
 					showDashboard();
 				}
 			} catch (IOException e) {
@@ -81,7 +81,7 @@ public class UnregisteredFlightSearch {
 		double cartValue = fpicked.getFlightTicketPrice() * seats;
 		System.out.println("Total Amount to be paid:" + cartValue);
 
-		System.out.println("Press 1 forLogin to Proceed Further!!");
+		System.out.println("Press 1 for Login to Proceed Further!!");
 		System.out.println("Press 2 to go back");
 		int in = sc.nextInt();
 		if (in == 1) {

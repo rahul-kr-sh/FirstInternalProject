@@ -64,7 +64,7 @@ public class UnregisteredHotelSearch {
 			System.out.println("Hotel location : "+hotelNew.getHotelLocation());
 			System.out.println("Hotel information : "+hotelNew.getHotelInfo());
 			System.out.println("-----------Room Details-----------");
-			
+			//ArrayList<HotelRoom> hotelroom= hotelNew.getHotelRoom();
 			for(HotelRoom hotelRoom:hotelNew.getHotelRoom()){
 				System.out.println("Hotel room No : "+hotelRoom.getHotelRoomNo());
 				System.out.println("Hotel room type : "+hotelRoom.getHotelRoomType());
@@ -118,7 +118,11 @@ public class UnregisteredHotelSearch {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		if(dout.getTime()<din.getTime()){
+			System.out.println("CheckOut Date should be greater than CheckIn date ");
+			System.out.println();
+			showDashboard();
+		}
 		long diff = dout.getTime() - din.getTime();
 		int duration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
@@ -135,6 +139,13 @@ public class UnregisteredHotelSearch {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(dout.equals(din)){
+			System.out.println("");
+			System.out.println("One day payment is compulsary");
+			duration=1;
+			System.out.println();
+			//System.out.println("duration inside if: "+duration);
+			}
 		float cartValue1 = (float) (pickedRoom.getHotelRoomPrice() * duration);
 		System.out.println("Total Price to be paid: " + cartValue1);
 		
