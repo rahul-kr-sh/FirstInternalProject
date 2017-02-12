@@ -40,6 +40,7 @@ public class HotelBlMMT {
 		for(HotelRoom hr:hotelRoomList){
 			if(hr.getHotelRoomNo()==rno){
 				hotelRoom=hr;
+				hotelRoom.setHotelRoomStatus("booked");
 			}
 		}
 		return hotelRoom; 

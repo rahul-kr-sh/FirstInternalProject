@@ -343,8 +343,11 @@ public class UserDashboard {
 				showDashboard(user);
 			}
 			System.out.println("Enter Room Number : ");
-			int rno = sc.nextInt();
-
+			int rno =0;
+			try{
+			 rno = sc.nextInt();
+			}catch(InputMismatchException e){System.out.println("Choose from above rooms try again!!");
+			showDashboard(user);}
 			System.out.println("Enter Check In Date in DD-MM-YYYY");
 			String date = sc.next();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -405,7 +408,7 @@ public class UserDashboard {
 				System.out.println();
 				//System.out.println("duration inside if: "+duration);
 				}
-			System.out.println("duration outside if: "+duration);
+			//System.out.println("duration outside if: "+duration);
 			float cartValue1 = (float) (pickedRoom.getHotelRoomPrice() * duration);
 			System.out.println("Total Price to be paid: " + cartValue1);
 

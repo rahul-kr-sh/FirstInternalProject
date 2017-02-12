@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -98,7 +99,12 @@ public class UnregisteredHotelSearch {
 			e.printStackTrace();
 		}
 		System.out.println("Enter Room Number:");
-		int rno = sc.nextInt();
+		//int rno = sc.nextInt();
+		int rno =0;
+		try{
+		 rno = sc.nextInt();
+		}catch(InputMismatchException e){System.out.println("Choose from above rooms try again!!");
+		showDashboard();}
 
 		System.out.println("Enter Check In Date in DD-MM-YYYY");
 		String date = sc.next();
@@ -109,7 +115,9 @@ public class UnregisteredHotelSearch {
 			din = dateFormat.parse(date);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Enter correct date format");
+			showDashboard();
 		}
 
 		System.out.println("Enter Check Out Date in DD-MM-YYYY");
