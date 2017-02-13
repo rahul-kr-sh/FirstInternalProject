@@ -30,8 +30,11 @@ public class DbConnection {
 
 		 try {
 		 Class.forName("oracle.jdbc.driver.OracleDriver");
-		 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521",
-		 "system", "sapient@123");
+//		 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521",
+//		 "system", "sapient@123");
+		 con=DriverManager.getConnection("jdbc:oracle:thin:@DELBAHAMAS46635:1521","system", "sapient@123");
+
+		 
 		 } catch (ClassNotFoundException | SQLException e) {
 		
 		 e.printStackTrace();
