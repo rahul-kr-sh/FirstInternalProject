@@ -34,8 +34,8 @@ public class UnregisteredFlightSearch {
 		try {
 			try {
 				fList = flightBookingBL.searchFlight(source, destination);
-				if(fList.isEmpty()){
-					System.out.println("No Flights available from "+source+" to "+destination);
+				if (fList.isEmpty()) {
+					System.out.println("No Flights available from " + source + " to " + destination);
 					showDashboard();
 				}
 			} catch (IOException e) {
@@ -55,29 +55,26 @@ public class UnregisteredFlightSearch {
 		}
 		i = 1;
 		for (Flight f : fList) {
-			System.out.println(" Flight Details "+i);
+			System.out.println(" Flight Details " + i);
 			System.out.println("");
-			System.out.println(  " Flight ID: " + f.getFlightId());
-			System.out.println(  " Flight Company Name: " + f.getFlightCompanyName());
-			System.out.println( " Flight Source: " + f.getFlightSource());
-			System.out.println( " Flight Destination: " + f.getFlightDestination());
-			System.out.println( " Flight Departure Time: " + f.getFlightDepartureTime());
-			System.out.println( " Flight Arrival Time: " + f.getFlightArrivalTime());
-			System.out.println( " Flight Ticket Price: " + f.getFlightTicketPrice());
-			System.out.println( " Flight Available Seats: " + f.getAvailableSeats());
+			System.out.println(" Flight ID: " + f.getFlightId());
+			System.out.println(" Flight Company Name: " + f.getFlightCompanyName());
+			System.out.println(" Flight Source: " + f.getFlightSource());
+			System.out.println(" Flight Destination: " + f.getFlightDestination());
+			System.out.println(" Flight Departure Time: " + f.getFlightDepartureTime());
+			System.out.println(" Flight Arrival Time: " + f.getFlightArrivalTime());
+			System.out.println(" Flight Ticket Price: " + f.getFlightTicketPrice());
+			System.out.println(" Flight Available Seats: " + f.getAvailableSeats());
 			System.out.println("----------------------------");
 			i++;
 		}
-		
-		
-			System.out.println("Pick a flight :");
-		
-		
+
+		System.out.println("Pick a flight :");
+
 		int v = sc.nextInt();
 
 		Flight fpicked = flightMap.get(v);
-		if(fpicked==null)
-		{
+		if (fpicked == null) {
 			System.out.println("Choose from available options");
 			showDashboard();
 		}
@@ -166,15 +163,15 @@ public class UnregisteredFlightSearch {
 			}
 			j = 1;
 			for (Promotion p : promo) {
-				System.out.println("Promotion "+j);
-				
+				System.out.println("Promotion " + j);
+
 				System.out.println("Promotion Name : " + p.getPromotionName());
 				System.out.println("Promotion Type : " + p.getPromotionType());
 				System.out.println("Promotion Discount% : " + p.getPromotionDiscount());
 				System.out.println("Promotion Expiry Date : " + p.getPromotionExpiryDate());
 				j++;
 			}
-System.out.println("");
+			System.out.println("");
 
 			System.out.println("Pick a Promo Code!!");
 			int promoindex = sc.nextInt();
